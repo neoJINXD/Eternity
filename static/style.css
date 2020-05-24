@@ -1,0 +1,58 @@
+h1 {
+    color: black;
+    text-align: center;
+}
+
+h3 {
+    position: absolute;
+    right:1%;
+    bottom:0;
+}
+
+body {
+    background-color: lightskyblue;
+}
+
+.calculator {
+    border: 5px solid gray;
+    position:absolute;
+    width: 300px;
+    height: 400px;
+    top: 35%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -100px;
+}
+
+.main {
+    position:absolute;
+    top: 37%;
+    left: 43%;
+}
+
+.number{
+    width:30px;
+    margin:5px;
+    height:25px;
+    font-size:12px;
+    border-radius:50%;
+    text-align: center;
+    border:none;
+    outline:none;
+}
+
+.operator{
+    width:30px;
+    margin:5px;
+    height:25px;
+    font-size:12px;
+    border-radius:50%;
+    text-align: center;
+    border:none;
+    outline:none;
+}
+
+.special{
+    background:darkgray;
+    color:black;
+}
