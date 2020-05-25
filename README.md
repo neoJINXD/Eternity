@@ -6,19 +6,14 @@
 
 ----
 
+requires nodejs installed locally
+
 ```bash
 
-//Install flask
-pip install flask
+// installs the dependencies
+npm install
 
-//Set up environment variables
-//on windows
-set FLASK_APP=calculator.py
-
-//on linux & mac
-export FLASK_APP=calculator.py
-
-//Run the application
-flask run
+// runs the electron app, local ui
+npm start
 
 ```
