@@ -1,12 +1,22 @@
 function addToExpression(i){
-	document.getElementById('resultInput').value = document.getElementById('resultInput').value + i;
+	document.getElementById('input').value = document.getElementById('input').value + i;
 }
 
 function clearInput() { 
-	document.getElementById('resultInput').value = '' 
+	document.getElementById('input').value = '' ;
 }
 
-function delEle() { 
-	str = document.getElementById('resultInput').value;
-	document.getElementById('resultInput').value = str.substring(0, str.length - 1)
+function deleteEle() { 
+	str = document.getElementById('input').value;
+	document.getElementById('input').value = str.substring(0, str.length - 1);
 }
+
+$(document).ready(function(){
+	$('[name=io]').click(function() {
+		//$('#input').append($(this).val());
+		$('#input').val($('#input').val() + $(this).val());
+		if ($('#input').html().length > 20) {
+			alert("test");
+		}
+	});
+});
