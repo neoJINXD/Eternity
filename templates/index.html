@@ -2,7 +2,8 @@
 <html>
 <head>
 <title>Calculator Application</title>
-<link rel="stylesheet" type="text/css" href="static/style.css">
+<link rel="stylesheet" type="text/css" href="static/style/style.css">
+<script src="static/script/script.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -21,9 +22,16 @@
     
         <table>
             <tr>
-                <td><button class='special' id='1'>AC</button></td>
-                <td><button class='special' id='a'>DEL</button></td>
-                <td><input type="submit" name="io" class="operator" value="%" /></td>
+                <td><input type="submit" name="io" class="special" value="AC" /></td>
+                <td><button onclick='delEle()' class='special' id='1'>DEL</button></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="io" class="special" value="sd" /></td>
+                <td><input type="submit" name="io" class="special" value="mad" /></td>
+                <td><input type="submit" name="io" class="operator" value="π" /></td>
                 <td><input type="submit" name="io" class="operator" value="(" /></td>
                 <td><input type="submit" name="io" class="operator" value=")" /></td>
             </tr>
@@ -38,21 +46,21 @@
                 <td><input type="submit" name="io" class="number" value="4" /></td>
                 <td><input type="submit" name="io" class="number" value="5" /></td>
                 <td><input type="submit" name="io" class="number" value="6" /></td>
-                <td> <input type="submit" name="io" class="operator" value="/" /></td>
                 <td> <input type="submit" name="io" class="operator" value="*" /></td>
+                <td> <input type="submit" name="io" class="operator" value="/" /></td>
             </tr>
             <tr>
                 <td><input type="submit" name="io" class="number" value="1" /></td>
                 <td><input type="submit" name="io" class="number" value="2" /></td>
                 <td><input type="submit" name="io" class="number" value="3" /></td>
-                <td><input type="submit" name="io" class="operator" value="-" /></td>
                 <td><input type="submit" name="io" class="operator" value="+" /></td>
+                <td><input type="submit" name="io" class="operator" value="-" /></td>
             </tr>
             <tr>
                 <td colspan='2'><input type="submit" class="special" value="=" style='width:80px;border-radius:35%' /></td>
                 <td><input type="submit" name="io" class="number" value="0" /></td>
                 <td><input type="submit" name="io" class="number" value="." /></td>
-                <td><input type="submit" name="io" class="number" value="π" /></td>
+                <td><input type="submit" name="io" class="operator" value="%" /></td>
             </tr>
         </table>
     </form>
