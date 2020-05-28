@@ -51,3 +51,45 @@ def calcEval(equation):
 
 
 
+
+
+
+
+
+
+
+class Cal:
+    def __init__(self, L):
+        self.values = L       
+
+    def dump(self):
+        print(self.values)
+
+    def mad(self):
+        sum = 0        
+        for e in self.values:
+            sum += e
+        size = len(self.values)
+        mean = sum/size
+        distance = 0
+        for e in self.values:
+            distance += (mean-e, e-mean)[e-mean>0]
+        result = distance/size
+        #print(result)
+        return result
+
+    def sd(self):
+        sum = 0        
+        for e in self.values:
+            sum += e
+        size = len(self.values)
+        mean = sum/size
+        distance_square = 0
+        for e in self.values:
+            distance_square += (e-mean)*(e-mean)
+        result = (distance_square/size)**(.5)
+        #print(result)
+        return result
+
+#t = Cal([1, 4, 7, 2, 6])
+#t.sd()
