@@ -19,7 +19,7 @@
     <div class='output'>= {% if result %}{{result}}{% endif %}</div>
 
     <form action="/" method="POST"> 
-        <input type="text" style="width: 220px" name="calc" id="input" value="{{ test }}" />  
+        <input type="text" style="width: 240px" name="calc" id="input" value="{{ test }}" />  
         <br/><br/>
         <table>
             <tr>
@@ -33,24 +33,31 @@
 
     <table>
         <tr>
+            <td><button name="io" class="special" value="sinh" >sinh</button></td>
             <td><button name="io" class="special" value="sin" >sin</button></td>
+            <td><button name="io" class="special" value="( )^(1/ )" >x√y</button></td>
+            <td><button name="io" class="special" value="sd" >sd</button></td>
+            <td><button name="io" class="special" value="mad" >mad</button></td>
+        </tr>
+        <tr>
+            <td><button name="io" class="special" value="cosh" >cosh</button></td>
             <td><button name="io" class="special" value="cos" >cos</button></td>
+            <td><button name="io" class="special" value="^" >x^y</button></td>
             <td><button name="io" class="special" value="ln" >ln</button></td>
-            <td><button name="io" class="special" value="e^" >e^x</button></td>
             <td><button name="io" class="special" value="log" >log</button></td>
         </tr>
         <tr>
-            <td><button name="io" class="operator" value="sd" >sd</button></td>            
-            <td><button name="io" class="number" value="e" >e</button></td>
+            <td><button name="io" class="operator" value="e" >e</button></td>            
             <td><button name="io" class="number" value="π" >π</button></td>
-            <td><button name="io" class="operator" value="mad" >mad</button></td>
+            <td><button name="io" class="number" value="!" >n!</button></td>
+            <td><button name="io" class="operator" value="e^" >e^x</button></td>
             <td><button name="io" class="operator" value="10^" >10^x</button></td>
         </tr>
         <tr>
             <td><button name="io" class="number" value="7" >7</button></td>
             <td><button name="io" class="number" value="8" >8</button></td>
             <td><button name="io" class="number" value="9" >9</button></td>
-            <td> <button name="io" class="operator" value="^" >^</button></td>
+            <td> <button name="io" class="operator" value="^2" >²</button></td>
             <td> <button name="io" class="operator" value="√" >√</button></td>
         </tr>
         <tr>
