@@ -4,10 +4,12 @@ from add import add
 
 # test class
 class TestAdd(unittest.TestCase):
-    # make sure to write good tests (all the edge cases), not just a lot of cases
+
+    # make sure to write good tests (all the edge cases),
+    # not just a lot of cases
     def test_add(self):
         self.assertEquals(add(1, 1), 2)
-    
+
     def test_raise_error(self):
         with self.assertRaises(ValueError):
             add(1, 2)
