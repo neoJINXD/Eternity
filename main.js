@@ -10,7 +10,10 @@ function createWindow () {
       width: 800, 
       height: 600
     })
-    window.loadFile('calc.html')
+    //window.loadURL('https://youtube.com')
+    //console.log(`Loading: file://${__dirname}/public/index.html`);
+    
+    window.loadURL(`file://${__dirname}/index.html`)
     window.setAlwaysOnTop(true)
 
     
