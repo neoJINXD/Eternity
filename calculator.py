@@ -11,15 +11,14 @@ def frontPage():
     
   elif request.method == 'POST':
     if 'io' in request.form:
+      # Update HTML page
       expression = request.form.get('calc') + request.form['io']
-
       return render_template('index.html', test=expression)
 
     else:
       # Calculate request
       expression = request.form.get('calc')
       result = str(calcEval(expression))
-
       return render_template('index.html', result=result, expression=expression)
     
 
