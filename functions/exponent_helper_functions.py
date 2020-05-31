@@ -6,7 +6,7 @@ import numpy as np
 # This function calculates x^y when y is an integer
 def calculate_exponent_int_only(x, y):
     new_value = 1
-    if is_exponent_negative(y):
+    if is_negative(y):
         y = y * -1
         for value in range(1, y):
             new_value = new_value * x
@@ -18,7 +18,7 @@ def calculate_exponent_int_only(x, y):
 
 
 # This function checks if an exponent is negative
-def is_exponent_negative(x):
+def is_negative(x):
     if x >= 0:
         return False
     return True

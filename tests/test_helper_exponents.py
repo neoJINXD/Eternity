@@ -8,8 +8,8 @@ class HelperTest(unittest.TestCase):
         self.assertEqual(helper_functions.calculate_exponent_int_only(5, 8), 5 ** 8)
 
     def test_exponent_negative(self):
-        self.assertEqual(helper_functions.is_exponent_negative(-5), True)
-        self.assertEqual(helper_functions.is_exponent_negative(5), False)
+        self.assertEqual(helper_functions.is_negative(-5), True)
+        self.assertEqual(helper_functions.is_negative(5), False)
 
     def test_inverse(self):
         self.assertEqual(helper_functions.take_inverse(5), 1 / 5)
