@@ -38,7 +38,7 @@ class TestSin(unittest.TestCase):
         self.assertAlmostEqual(sin(-2*PI/3), -0.866025403784, 9)
         self.assertAlmostEqual(sin(-3*PI/4), -0.707106781186, 9)
         self.assertAlmostEqual(sin(-5*PI/6), -0.5, 9)
-        
+
 
 if __name__ == '__main__':
     unittest.main()
