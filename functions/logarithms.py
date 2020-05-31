@@ -1,8 +1,8 @@
 ﻿import math
-
 import unittest
 
-def ln_taylor(argument, iterations = 50):
+
+def ln_taylor(argument, iterations=50):
     # Calculate the natural logarithm of some argument using the Maclaurin series expansion of ln(1-x) around x=0. Argument must be a real number between 0 and 2 for expansion to converge.
     # Check type of argument.
     if (not isinstance(argument, (int, float))):
@@ -21,6 +21,7 @@ def ln_taylor(argument, iterations = 50):
 
     return sum
 
+
 def ln(argument):
     # Calculate the natural logarithm of some argument. Argument must be a real number.
     # Check type of argument.
@@ -36,7 +37,8 @@ def ln(argument):
     lnMantissa = ln_taylor(mantissa)
     return lnMantissa + exponent*LN_2
 
-def log(argument, base = 10):
+
+def log(argument, base=10):
     # Calculate logarithm of some argument for a given base.
     # Check type of base (we could leave this to ln but we will do it here to make message more specific).
     if (not isinstance(base, (int, float))):
@@ -51,6 +53,7 @@ def log(argument, base = 10):
     # Calcukate log with arbitrary base using conversion of base property of logarithms.
     return ln(argument) / ln(base)
 
+
 class TempTest(unittest.TestCase):
     def test(self):
         self.assertAlmostEqual(log(1.5), math.log(1.5, 10))
@@ -61,6 +64,7 @@ class TempTest(unittest.TestCase):
         self.assertAlmostEqual(log(2, math.pi), math.log(2, math.pi))
         self.assertAlmostEqual(log(3, 1.45), math.log(3, 1.45))
         self.assertAlmostEqual(log(1000000, 2), math.log(1000000, 2))
+
 
 if __name__ == '__main__':
     unittest.main()
