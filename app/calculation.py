@@ -24,7 +24,7 @@ class Calculation:
         #print(result)
         return result
 
-    def sd(self, *arg):
+    def std(self, *arg):
         sum = 0        
         self.values = list(arg)
         for e in self.values:

@@ -126,7 +126,7 @@ class Parser(object):
                     "all": lambda *a: all(a),
                     "mod": operator.mod,
                     "mad": cal.mad,
-                    "sd": cal.sd,}
+                    "std": cal.std,}
 
     def evaluateStack(self, s):
         op, num_args = s.pop(), 0
