@@ -1,6 +1,19 @@
 # This class is for all the helper functions that were used to calculate the exponent function.
-
 import numpy as np
+
+
+# This function obtain a dictionary with a number and the corresponding result of that number to the 100th root
+def calculate_approx_square():
+    a = np.arange(1, 1.44, 0.000001)  # Not sure if numpy can be used
+    dictionary = {}
+    new_list = []
+    for items in a:
+        new_list.append(calculate_exponent_int_only(items, 100))
+    value = 0
+    for i in a:
+        dictionary[i] = new_list[value]
+        value = value + 1
+    return dictionary
 
 
 # This function calculates x^y when y is an integer
@@ -32,16 +45,14 @@ def take_inverse(x):
 # This function is used to calculate the approximate value of a number to the 100th root
 # This is used if the exponent is a fraction.
 def calculate_root(b):
-    a = calculate_approx_square()
+    a = listOfValues
     the_number = 0
     to_continue = True
     while to_continue:
-        index = 0
         for values in a:
             temp = calculate_exponent_int_only(values, 100)
             if temp < b:
                 continue
-                index = index + 1
             if temp > b:
                 to_continue = False
                 the_number = values
@@ -49,15 +60,5 @@ def calculate_root(b):
     return the_number
 
 
-# This function obtain a dictionary with a number and the corresponding result of that number to the 100th root
-def calculate_approx_square():
-    a = np.arange(1, 1.44, 0.000001)  # Not sure if numpy can be used
-    dictionary = {}
-    new_list = []
-    for items in a:
-        new_list.append(calculate_exponent_int_only(items, 100))
-    value = 0
-    for i in a:
-        dictionary[i] = new_list[value]
-        value = value + 1
-    return dictionary
+# Static variables
+listOfValues = calculate_approx_square()
