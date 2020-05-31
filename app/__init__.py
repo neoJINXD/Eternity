@@ -21,34 +21,38 @@ def frontPage():
       result = str(calcEval(expression))
       return render_template('index.html', result=result, expression=expression)
     
-from nparser import Parser
+from .nparser import Parser
 nsp = Parser()
 def calcEval(equation):
   '''
-
   calcEval() uses eval(), which is normally a dangerous thing to do.
   To combat this, a list of allowed inputs are made so eval() only gets called if the 
-  "equation" given contains only allowed inputs. return (eval(equation))
-  
-  '''
+  "equation" given contains only allowed inputs.
 
   characters = list(equation)
 
-  allowedInputs = ['0','1','2','3','4','5','6','7','8','9','+','-','*','/','^','%',
-  ' ', '(', ')', '.', ',', 'cos', 'sin', 'cosh', 'sinh', 'sd', 'mad', 'ln', 'log',]
+  allowedInputs = ['0','1','2','3','4','5','6','7','8','9',
+  '+','-','*','/','^', ' ', '(', ')','.']
 
   checkSet = set(characters + allowedInputs)
 
-  if len(checkSet) == len(allowedInputs):###################### !=
+  if len(checkSet) != len(allowedInputs):
     return "Error: Unknown input character."
 
   else:
     try:
       equation = re.sub('(?<=\d|\))(\()', '*(', equation)
       equation = equation.replace('^','**')
-      result = nsp.eval(equation)
-      return result
+      return (eval(equation))
     except:
-      return 'Unknown error occured.'  
+      return 'Unknown error occured.' 
+  '''
+  try:
+    equation = re.sub('(?<=\d|\))(\()', '*(', equation)
+    equation = equation.replace('π','PI')
+    result = nsp.eval(equation)
+    return result
+  except:
+    return 'Unknown error occured.'  
 
 

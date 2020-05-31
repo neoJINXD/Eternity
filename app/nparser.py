@@ -9,6 +9,7 @@ Extended test cases, simplified pushFirst method.
 Removed unnecessary expr.suppress() call (thanks Nathaniel Peterson!), and added Group
 Changed fnumber to use a Regex, which is now the preferred method
 Reformatted to latest pypyparsing features, support multiple and variable args to functions
+use % as op must change the logic
 '''
 #%%
 from pyparsing import (
@@ -26,7 +27,7 @@ from pyparsing import (
 )
 import math
 import operator
-from calculation import Calculation
+from .calculation import Calculation
 
 class Parser(object):
     exprStack = []
@@ -106,8 +107,7 @@ class Parser(object):
                     "-": operator.sub,
                     "*": operator.mul,
                     "/": operator.truediv,
-                    "^": operator.pow,
-                    "%": operator.mod,}
+                    "^": operator.pow,}
         self.fn = {"sinh": math.sinh,
                    "cosh": math.cosh,
                    "tanh": math.tanh,
@@ -124,6 +124,7 @@ class Parser(object):
                     "hypot": math.hypot,
                     # functions with a variable number of arguments
                     "all": lambda *a: all(a),
+                    "mod": operator.mod,
                     "mad": cal.mad,
                     "sd": cal.sd,}
 
@@ -161,8 +162,10 @@ class Parser(object):
             val = self.evaluateStack(self.exprStack[:])
         except ParseException as pe:
             print(num_string, "failed parse:", str(pe))
+            return "Error: Unknown input character."
         except Exception as e:
             print(num_string, "failed eval:", str(e), self.exprStack)
+            return "Error: Unknown input character."
         else:
             if expected is None:
                 return val
@@ -189,3 +192,6 @@ class Parser(object):
 # print(result)
 
 # # %%
+# nsp = Parser()
+# result = nsp.eval("5%3", 2)
+# print(result)
