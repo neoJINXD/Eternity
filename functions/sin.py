@@ -1,6 +1,4 @@
 from math import factorial
-from math import pi
-import math
 
 
 def sin(x: float) -> float:
@@ -14,6 +12,3 @@ def sin(x: float) -> float:
     return result
     # math based on
     # https://en.wikibooks.org/wiki/Trigonometry/Power_Series_for_Cosine_and_Sine
-
-
-# print(f'sin is {sin(6)}')
