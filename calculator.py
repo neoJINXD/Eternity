@@ -21,75 +21,34 @@ def frontPage():
       result = str(calcEval(expression))
       return render_template('index.html', result=result, expression=expression)
     
-
+from nparser import Parser
+nsp = Parser()
 def calcEval(equation):
   '''
 
   calcEval() uses eval(), which is normally a dangerous thing to do.
   To combat this, a list of allowed inputs are made so eval() only gets called if the 
-  "equation" given contains only allowed inputs.
+  "equation" given contains only allowed inputs. return (eval(equation))
   
   '''
 
   characters = list(equation)
 
-  allowedInputs = ['0','1','2','3','4','5','6','7','8','9',
-  '+','-','*','/','^', ' ', '(', ')','.','cos','sin']
+  allowedInputs = ['0','1','2','3','4','5','6','7','8','9','+','-','*','/','^','%',
+  ' ', '(', ')', '.', ',', 'cos', 'sin', 'cosh', 'sinh', 'sd', 'mad', 'ln', 'log',]
 
   checkSet = set(characters + allowedInputs)
 
-  if len(checkSet) != len(allowedInputs):
+  if len(checkSet) == len(allowedInputs):###################### !=
     return "Error: Unknown input character."
 
   else:
     try:
       equation = re.sub('(?<=\d|\))(\()', '*(', equation)
       equation = equation.replace('^','**')
-      return (eval(equation))
+      result = nsp.eval(equation)
+      return result
     except:
       return 'Unknown error occured.'  
 
 
-
-
-
-
-
-
-
-
-class Cal:
-    def __init__(self, L):
-        self.values = L       
-
-    def dump(self):
-        print(self.values)
-
-    def mad(self):
-        sum = 0        
-        for e in self.values:
-            sum += e
-        size = len(self.values)
-        mean = sum/size
-        distance = 0
-        for e in self.values:
-            distance += (mean-e, e-mean)[e-mean>0]
-        result = distance/size
-        #print(result)
-        return result
-
-    def sd(self):
-        sum = 0        
-        for e in self.values:
-            sum += e
-        size = len(self.values)
-        mean = sum/size
-        distance_square = 0
-        for e in self.values:
-            distance_square += (e-mean)*(e-mean)
-        result = (distance_square/size)**(.5)
-        #print(result)
-        return result
-
-#t = Cal([1, 4, 7, 2, 6])
-#t.sd()
