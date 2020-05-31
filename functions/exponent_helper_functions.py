@@ -47,16 +47,13 @@ def take_inverse(x):
 def calculate_root(b):
     a = listOfValues
     the_number = 0
-    to_continue = True
-    while to_continue:
-        for values in a:
-            temp = calculate_exponent_int_only(values, 100)
-            if temp < b:
-                continue
-            if temp > b:
-                to_continue = False
-                the_number = values
-                break
+    for values in a:
+        temp = calculate_exponent_int_only(values, 100)
+        if temp < b:
+            continue
+        if temp > b:
+            the_number = values
+            break
     return the_number
 
 
