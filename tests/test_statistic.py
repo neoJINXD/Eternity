@@ -1,5 +1,5 @@
 import unittest
-import functions.std_mad as std_mad
+import functions.statistic as std_mad
 import numpy as np
 import pandas as pd
 import exceptions.exceptions as the_exception

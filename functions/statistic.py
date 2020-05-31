@@ -2,32 +2,33 @@ import numpy as np
 import exceptions.exceptions as the_exception
 
 
+def cal_mean(arg):
+    total = 0
+    for e in arg:
+        total += e
+    size = len(arg)
+    result = total / size
+    return result
+
+
 def mad(*arg):
-    sum = 0
     values = list(arg)
-    for e in values:
-        sum += e
-    size = len(values)
-    mean = sum / size
+    size = len(arg)
+    mean = cal_mean(values)
     distance = 0
     for e in values:
         distance += (mean - e, e - mean)[e - mean > 0]
     result = distance / size
-    # print(result)
     return result
 
 
 def std(*arg):
-    sum = 0
     values = list(arg)
-    for e in values:
-        sum += e
     size = len(values)
-    mean = sum / size
+    mean = cal_mean(values)
     distance_square = 0
     for e in values:
         distance_square += (e - mean) * (e - mean)
-    result = (distance_square / size) ** (.5)
-    # print(result)
+    result = (distance_square / size) ** .5
     return result
 
