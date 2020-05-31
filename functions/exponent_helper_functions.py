@@ -49,9 +49,7 @@ def calculate_root(b):
     the_number = 0
     for values in a:
         temp = calculate_exponent_int_only(values, 100)
-        if temp < b:
-            continue
-        if temp > b:
+        if temp >= b:
             the_number = values
             break
     return the_number
