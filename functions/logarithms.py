@@ -50,7 +50,7 @@ def log(argument, base=10):
     if (base <= 0):
         raise ValueError("Logarithm with negative base is undefined.")
 
-    # Calcukate log with arbitrary base using conversion of base property of logarithms.
+    # Calculate log with arbitrary base using conversion of base property of logarithms.
     return ln(argument) / ln(base)
 
 
@@ -63,7 +63,23 @@ class TempTest(unittest.TestCase):
         self.assertAlmostEqual(log(1, 20), math.log(1, 10))
         self.assertAlmostEqual(log(2, math.pi), math.log(2, math.pi))
         self.assertAlmostEqual(log(3, 1.45), math.log(3, 1.45))
-        self.assertAlmostEqual(log(1000000, 2), math.log(1000000, 2))
+        self.assertAlmostEqual(log(1000000, 0.5), math.log(1000000, 0.5))
+        with self.assertRaises(ValueError):
+            log(20, 0)
+        with self.assertRaises(ValueError):
+            log(20, 1)
+        with self.assertRaises(ValueError):
+            log(20, -1)
+        with self.assertRaises(TypeError):
+            log(20, "hello")
+        with self.assertRaises(ValueError):
+            log(-5, 2)
+        with self.assertRaises(ValueError):
+            log(0, 2)
+        with self.assertRaises(TypeError):
+            log(complex(2, 1), 2)
+        with self.assertRaises(TypeError):
+            log(None, 2)
 
 
 if __name__ == '__main__':
