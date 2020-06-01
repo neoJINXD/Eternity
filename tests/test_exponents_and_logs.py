@@ -48,12 +48,12 @@ class ExponentsTest(unittest.TestCase):
         self.assertAlmostEqual(exp.power_of_pi(0), 1)
         self.assertAlmostEqual(exp.power_of_pi(1), self.PI)
         self.assertAlmostEqual(exp.power_of_pi(2), self.PI**2)
-        self.assertAlmostEqual(exp.power_of_pi(-4), self.PI**(-4)) # TODO still innacurate
+        self.assertAlmostEqual(exp.power_of_pi(-4), self.PI**(-4))  # TODO still innacurate
         self.assertAlmostEqual(exp.power_of_pi(0.01), self.PI**0.01)
-        self.assertAlmostEqual(exp.power_of_pi(self.PI), self.PI**self.PI) # TODO still innacurate
+        self.assertAlmostEqual(exp.power_of_pi(self.PI), self.PI**self.PI)  # TODO still innacurate
         self.assertRaises(the_exception.CalculationError, exp.power_of_pi, True)
 
-    #I will need to fix this test
+    # I will need to fix this test
     def test_exceptions(self):
         self.assertRaises(the_exception.CalculationError, exp.calculate_exponent, 'x-Value', 5)
         self.assertRaises(the_exception.CalculationError, exp.calculate_exponent, 5, 'y-Value')
