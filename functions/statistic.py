@@ -1,5 +1,6 @@
 import numpy as np
 import exceptions.exceptions as the_exception
+import EulersNumber as exp
 
 
 def cal_mean(arg):
@@ -29,6 +30,6 @@ def std(*arg):
     distance_square = 0
     for e in values:
         distance_square += (e - mean) * (e - mean)
-    result = (distance_square / size) ** .5
+    result = exp.calculate_exponent((distance_square/size), (1/2))
     return result
 
