@@ -38,6 +38,8 @@ class Parser(object):
         for t in toks:
             if t == "-":
                 self.exprStack.append('unary -')
+            elif t == "!":
+                self.exprStack.append('unary !')
             else:
                 break
 
@@ -46,7 +48,7 @@ class Parser(object):
 
         """
         expop   :: '^'
-        multop  :: '*' | '/'
+        multop  :: '*' | '/' | '%'
         addop   :: '+' | '-'
         integer :: ['+' | '-'] '0'..'9'+
         atom    :: PI | E | real | fn '(' expr ')' | '(' expr ')'
@@ -67,10 +69,10 @@ class Parser(object):
         fnumber = Regex(r"[+-]?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?")
         ident = Word(alphas, alphanums + "_$")
 
-        plus, minus, mult, div = map(Literal, "+-*/")
+        plus, minus, mult, div, mod = map(Literal, "+-*/%")
         lpar, rpar = map(Suppress, "()")
         addop = plus | minus
-        multop = mult | div
+        multop = mult | div | mod
         expop = Literal("^")
 
         expr = Forward()
@@ -107,7 +109,8 @@ class Parser(object):
                     "-": operator.sub,
                     "*": operator.mul,
                     "/": operator.truediv,
-                    "^": operator.pow,}
+                    "^": operator.pow,
+                    "%": operator.mod,}
         self.fn = {"sinh": math.sinh,
                    "cosh": math.cosh,
                    "tanh": math.tanh,
@@ -124,7 +127,7 @@ class Parser(object):
                     "hypot": math.hypot,
                     # functions with a variable number of arguments
                     "all": lambda *a: all(a),
-                    "mod": operator.mod,
+                    "!": math.factorial,
                     "mad": cal.mad,
                     "std": cal.std,}
 
@@ -134,7 +137,7 @@ class Parser(object):
             op, num_args = op
         if op == 'unary -':
             return -self.evaluateStack(s)
-        if op in "+-*/^":
+        if op in "+-*/^%":
             op2 = self.evaluateStack(s)
             op1 = self.evaluateStack(s)
             return self.opn[op](op1, op2)
@@ -176,22 +179,6 @@ class Parser(object):
                 else:
                     print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)       
 
-# # %%
-# nsp = Parser()
-# result = nsp.eval("(9+3) / 11", (9 + 3.0) / 11)
-# print(result)
 
-# # %%
-# nsp = Parser()
-# result = nsp.eval("sin(PI/2)", 1)
-# print(result)
 
-# # %%
-# nsp = Parser()
-# result = nsp.eval("mad(3, 15, 21, 13)", 5)
-# print(result)
 
-# # %%
-# nsp = Parser()
-# result = nsp.eval("5%3", 2)
-# print(result)
