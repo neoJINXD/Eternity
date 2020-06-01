@@ -38,8 +38,6 @@ class Parser(object):
         for t in toks:
             if t == "-":
                 self.exprStack.append('unary -')
-            elif t == "!":
-                self.exprStack.append('unary !')
             else:
                 break
 
@@ -74,6 +72,7 @@ class Parser(object):
         addop = plus | minus
         multop = mult | div | mod
         expop = Literal("^")
+        factop = Literal("!")
 
         expr = Forward()
         expr_list = delimitedList(Group(expr))
@@ -110,7 +109,8 @@ class Parser(object):
                     "*": operator.mul,
                     "/": operator.truediv,
                     "^": operator.pow,
-                    "%": operator.mod,}
+                    "%": operator.mod,
+                    "!": math.factorial,}
         self.fn = {"sinh": math.sinh,
                    "cosh": math.cosh,
                    "tanh": math.tanh,
@@ -127,7 +127,6 @@ class Parser(object):
                     "hypot": math.hypot,
                     # functions with a variable number of arguments
                     "all": lambda *a: all(a),
-                    "!": math.factorial,
                     "mad": cal.mad,
                     "std": cal.std,}
 
@@ -178,7 +177,5 @@ class Parser(object):
                     return val
                 else:
                     print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)       
-
-
 
 
