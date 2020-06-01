@@ -17,7 +17,7 @@ def mad(*arg):
     mean = cal_mean(values)
     distance = 0
     for e in values:
-        distance += (mean - e, e - mean)[e - mean > 0]
+        distance += (mean - e) if(mean - e > 0) else(e - mean)
     result = distance / size
     return result
 
