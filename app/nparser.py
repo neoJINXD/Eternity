@@ -46,6 +46,7 @@ class Parser(object):
 
         """
         expop   :: '^'
+        factop  :: '!'
         multop  :: '*' | '/' | '%'
         addop   :: '+' | '-'
         integer :: ['+' | '-'] '0'..'9'+
@@ -95,9 +96,11 @@ class Parser(object):
 
         # by defining exponentiation as "atom [ ^ factor ]..." instead of "atom [ ^ atom ]...", we get right-to-left
         # exponents, instead of left-to-right that is, 2^3^2 = 2^(3^2), not (2^3)^2.
+        # term = factor + (multop + factor).setParseAction(self.pushFirst)[...]
         factor = Forward()
         factor <<= atom + (expop + factor).setParseAction(self.pushFirst)[...]
-        term = factor + (multop + factor).setParseAction(self.pushFirst)[...]
+        fato = factor + (factop).setParseAction(self.pushFirst)[...]
+        term = fato + (multop + fato).setParseAction(self.pushFirst)[...]
         expr <<= term + (addop + term).setParseAction(self.pushFirst)[...]
         self.bnf = expr
 
@@ -136,6 +139,9 @@ class Parser(object):
             op, num_args = op
         if op == 'unary -':
             return -self.evaluateStack(s)
+        if op == "!":
+            op1 = self.evaluateStack(s)
+            return self.opn[op](op1)
         if op in "+-*/^%":
             op2 = self.evaluateStack(s)
             op1 = self.evaluateStack(s)
@@ -177,5 +183,3 @@ class Parser(object):
                     return val
                 else:
                     print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)       
-
-
