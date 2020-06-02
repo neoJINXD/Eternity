@@ -44,7 +44,8 @@ def calculate_exponent(x, y):
 
 
 def ln_taylor(argument, iterations=50):
-    # Calculate the natural logarithm of some argument using the Maclaurin series expansion of ln(1-x) around x=0. Argument must be a real number between 0 and 2 for expansion to converge.
+    # Calculate the natural logarithm of some argument using the Maclaurin series expansion of ln(1-x) around x=0.
+    # Argument must be a real number between 0 and 2 for expansion to converge.
     # Check type of argument.
     if not isinstance(argument, (int, float)):
         raise TypeError("Logarithm of non-numeral argument is undefined.")
