@@ -2,6 +2,7 @@ import functions.common as common
 import functions.exponent_helper_functions as helper_functions
 import exceptions.exceptions as exceptions
 import math as math
+import functions.trignometry as trig
 
 
 def generate_e(x=1):
@@ -29,8 +30,8 @@ def calculate_exponent(x, y):
         second_calculation = helper_functions.calculate_exponent_int_only(first_calculation, numerator)
 
     return second_calculation
-
-
+  
+  
 def ln_taylor(argument, iterations=50):
     # Calculate the natural logarithm of some argument using the Maclaurin series expansion of ln(1-x) around x=0. Argument must be a real number between 0 and 2 for expansion to converge.
     # Check type of argument.
@@ -82,3 +83,13 @@ def log(argument, base=10):
 
     # Calculate log with arbitrary base using conversion of base property of logarithms.
     return ln(argument) / ln(base)
+  
+  
+def power_of_ten(x):
+    # Returns the result of 10^x, delegating calculations to functions.exponent_helper_functions.calculate_exponent.
+    return calculate_exponent(10, x)
+
+
+def power_of_pi(x):
+    # Returns the result of pi^x, delegating calculations to functions.exponent_helper_functions.calculate_exponent.
+    return calculate_exponent(trig.generate_pi(), x)
