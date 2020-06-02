@@ -10,25 +10,36 @@ class ExponentsTest(unittest.TestCase):
     PI = trig.generate_pi()
 
     def test_e(self):
-        # Tests eurler number function's capacity for generating euler number.
-        self.assertAlmostEqual(exp.generate_e(), 2.718281828, 9)
+        # Tests euler number function's capacity for generating euler number.
+        self.assertAlmostEqual(exp.generate_e(), math.e, 15)
 
 
     def test_generate_e_input_0(self):
-        # Tests eurler number function's capacity for handling input of 0.
+        # Tests euler number function's capacity for handling input of 0.
         self.assertAlmostEqual(exp.generate_e(0), 1.0, 1)
 
 
     def test_generate_e_input_neg(self):
-        # Tests eurler number function's capacity for handling negative inputs.
-        self.assertAlmostEqual(exp.generate_e(-10), 0.000045399)
-        self.assertAlmostEqual(exp.generate_e(-19), 0.000000005)
+        # Tests euler number function's capacity for handling negative inputs.
+        self.assertAlmostEqual(exp.generate_e(-10), math.pow(math.e, -10), 12)
+        self.assertAlmostEqual(exp.generate_e(-19),  math.pow(math.e, -19), 8)
 
 
     def test_generate_e_input_rational(self):
-        # Tests eurler number function's capacity for handling non-integer inputs.
+        # Tests euler number function's capacity for handling non-integer inputs.
         self.assertAlmostEqual(exp.generate_e(0.5), 1.648721271)
         self.assertAlmostEqual(exp.generate_e(5 / 8), 1.868245957)
+
+    def test_generate_e_input_big(self):
+        # Tests euler number function's capacity for handling big numbers
+        self.assertAlmostEqual(exp.generate_e(32), pow(math.e, 32), 0) #Accuracy needs work for big numbers
+        self.assertAlmostEqual(exp.generate_e(18), pow(math.e, 18), 6)
+        # FAILS: self.assertAlmostEqual(exp.generate_e(50), pow(math.e, 50), 0)
+
+    def test_generate_e_input_transcendental(self):
+        # Tests euler number function's capacity for handling other transcendental numbers such as pi as input
+        self.assertAlmostEqual(exp.generate_e(trig.generate_pi()), pow(math.e, math.pi))
+        self.assertAlmostEqual(exp.generate_e(exp.generate_e()), pow(math.e, math.e))
 
 
     def test_exponent_input_pos(self):
