@@ -1,6 +1,7 @@
 import unittest
 import functions.exponents_and_logs as exp
 import exceptions.exceptions as the_exception
+import math as math
 
 
 class ExponentsTest(unittest.TestCase):

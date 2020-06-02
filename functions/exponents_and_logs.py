@@ -1,6 +1,7 @@
 import functions.common as common
 import functions.exponent_helper_functions as helper_functions
 import exceptions.exceptions as exceptions
+import math as math
 
 
 def generate_e(x=1):
@@ -13,6 +14,7 @@ def generate_e(x=1):
 
 def calculate_exponent(x, y):
     # Calculate value of x to the power of y.
+    # Check type of parameters
     if not isinstance(x, (int, float)) or isinstance(x, bool):
         raise exceptions.CalculationError(x + " is not a number")
     if not isinstance(y, (int, float)) or isinstance(y, bool):
