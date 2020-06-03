@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator Application</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="./serverScripts.js"></script>
+</head>
+<body>
+
+<div class='calculator'>
+    <h1>Eternity</h1>
+</div>
+
+<div class='main'>
+    <input id="resultInput" type="text" style="width: 210px" name="calc" value="" /> 
+    <br/><br/>
+
+    <table>
+        <tr>
+            <td><button onclick='clearInput()' class='special' id='1'>AC</button></td>
+            <td><button onclick='del()' class='special' id='2'>DEL</button></td>
+            <td></td>
+            <td colspan='2'><input onclick='calc()' type="submit" class="special" value="CAL" style='width:80px;border-radius:35%' /></td>
+        </tr>
+        <tr>
+            <td><button onclick="addToExpression('sinh(')" name="io" class="special" value="sinh(" >sinh</button></td>
+            <td><button onclick="addToExpression('sin(')" name="io" class="special" value="sin(" >sin</button></td>
+            <td><button onclick="addToExpression('%')" name="io" class="special" value="%" >mod</button></td>  
+            <td><button onclick="addToExpression('mad(')" name="io" class="special" value="mad(," >mad</button></td>   
+            <td><button onclick="addToExpression('std(')" name="io" class="special" value="std(," >std</button></td>                   
+        </tr>
+        <tr>
+            <td><button onclick="addToExpression('cosh(')" name="io" class="special" value="cosh(" >cosh</button></td>
+            <td><button onclick="addToExpression('cos(')" name="io" class="special" value="cos(" >cos</button></td>
+            <td><button onclick="addToExpression('^')" name="io" class="special" value="^" >x^y</button></td>
+            <td><button onclick="addToExpression('log(')" name="io" class="special" value="log(" >log</button></td>
+            <td><button onclick="addToExpression('ln(')" name="io" class="special" value="ln(" >ln</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addToExpression('e')" name="io" class="number" value="e" >e</button></td>            
+            <td><button onclick="addToExpression('π')" name="io" class="number" value="π" >π</button></td>
+            <td><button onclick="addToExpression('!')" name="io" class="operator" value="!" >n!</button></td>
+            <td><button onclick="addToExpression('10^')" name="io" class="operator" value="10^" >10^x</button></td>
+            <td><button onclick="addToExpression('e^')" name="io" class="operator" value="e^" >e^x</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addToExpression(7)" name="io" class="number" value="7" >7</button></td>
+            <td><button onclick="addToExpression(8)" name="io" class="number" value="8" >8</button></td>
+            <td><button onclick="addToExpression(9)" name="io" class="number" value="9" >9</button></td>
+            <td> <button onclick="addToExpression('^2')" name="io" class="operator" value="^2" >²</button></td>
+            <td> <button onclick="addToExpression('√(')" name="io" class="operator" value="√(" >√</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addToExpression(4)" name="io" class="number" value="4" >4</button></td>
+            <td><button onclick="addToExpression(5)" name="io" class="number" value="5" >5</button></td>
+            <td><button onclick="addToExpression(6)" name="io" class="number" value="6" >6</button></td>
+            <td> <button onclick="addToExpression('*')" name="io" class="operator" value="*" >*</button></td>
+            <td> <button onclick="addToExpression('/')" name="io" class="operator" value="/" >/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addToExpression(1)" name="io" class="number" value="1" >1</button></td>
+            <td><button onclick="addToExpression(2)" name="io" class="number" value="2" >2</button></td>
+            <td><button onclick="addToExpression(3)" name="io" class="number" value="3" >3</button></td>
+            <td><button onclick="addToExpression('+')" name="io" class="operator" value="+" >+</button></td>
+            <td><button onclick="addToExpression('-')" name="io" class="operator" value="-" >-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addToExpression('(')" name="io" class="number" value="(" >(</button></td>
+            <td><button onclick="addToExpression(')')" name="io" class="number" value=")" >)</button></td>
+            <td><button onclick="addToExpression(0)" name="io" class="number" value="0" >0</button></td>
+            <td><button onclick="addToExpression('.')" name="io" class="operator" value="." >.</button></td>
+            <td><button onclick="addToExpression(',')" name="io" class="operator" value="," >,</button></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
