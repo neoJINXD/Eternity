@@ -1,7 +1,7 @@
 import functions.common as common
 import functions.exponent_helper_functions as helper_functions
 import exceptions.exceptions as exceptions
-import math as math
+import math as math  # used only for frexp() to get mantissa sign
 import functions.trignometry as trig
 
 
@@ -11,7 +11,7 @@ def generate_e(x=1):
     # Added in this section because the optimization results in overflow with floats, looking for a fix to this
     if isinstance(x, float):
         for n in range(1, 100):
-            e += calculate_exponent(x, n)/common.factorial(n)
+            e += calculate_exponent(x, n) / common.factorial(n)
         return e
 
     numerator = 1

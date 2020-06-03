@@ -1,18 +1,22 @@
 import unittest
-from functions.common import add
+import functions.common as common
+import math
 
 
 # test class
-class TestAdd(unittest.TestCase):
+class TestCommon(unittest.TestCase):
 
-    # make sure to write good tests (all the edge cases),
-    # not just a lot of cases
+
     def test_add(self):
-        self.assertEqual(add(1, 1), 2)
+        self.assertEqual(common.add(1, 1), 2)
 
-    def test_raise_error(self):
-        with self.assertRaises(ValueError):
-            add(1, 2)
+    def test_factorial(self):
+        self.assertEqual(common.factorial(6), math.factorial(6))
+        self.assertEqual(common.factorial(0), math.factorial(0))        # Test input of 0
+        self.assertEqual(common.factorial(345), math.factorial(345))    # Test large number
+
+
+
 
 
 # Allows us to run the tests immediately when this file is run
