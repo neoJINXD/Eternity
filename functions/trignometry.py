@@ -41,5 +41,5 @@ def sin(x: float) -> float:
 def sinh(x):
     # Calculate hyperbolic function using value of e
     e = exp.generate_e(x)
-    return (e - exp.calculate_exponent(exp_help.take_inverse())) / 2
+    return (e - exp_help.take_inverse(e)) / 2
 

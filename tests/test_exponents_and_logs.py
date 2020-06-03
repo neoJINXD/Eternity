@@ -14,23 +14,22 @@ class ExponentsTest(unittest.TestCase):
 
     def test_generate_e_input_0(self):
         # Tests euler number function's capacity for handling input of 0.
-        self.assertAlmostEqual(exp.generate_e(0), 1.0, 1)
+        self.assertAlmostEqual(exp.generate_e(0), math.pow(math.e, 0), 12)
 
     def test_generate_e_input_neg(self):
         # Tests euler number function's capacity for handling negative inputs.
         self.assertAlmostEqual(exp.generate_e(-10), math.pow(math.e, -10), 12)
-        self.assertAlmostEqual(exp.generate_e(-19), math.pow(math.e, -19), 8)
+        self.assertAlmostEqual(exp.generate_e(-3), math.pow(math.e, -3), 12)
 
     def test_generate_e_input_rational(self):
         # Tests euler number function's capacity for handling non-integer inputs.
-        self.assertAlmostEqual(exp.generate_e(0.5), 1.648721271)
-        self.assertAlmostEqual(exp.generate_e(5 / 8), 1.868245957)
+        self.assertAlmostEqual(exp.generate_e(0.5), math.pow(math.e, 0.5), 12)
+        self.assertAlmostEqual(exp.generate_e(5 / 8), math.pow(math.e, 5/8), 12)
 
     def test_generate_e_input_big(self):
         # Tests euler number function's capacity for handling big numbers
-        self.assertAlmostEqual(exp.generate_e(32), pow(math.e, 32), 0)  # Accuracy needs work for big numbers
+        self.assertAlmostEqual(exp.generate_e(32), pow(math.e, 32), 0)  # Accuracy needs work for big numbers, decimal places incorrect
         self.assertAlmostEqual(exp.generate_e(18), pow(math.e, 18), 6)
-        # FAILS: self.assertAlmostEqual(exp.generate_e(50), pow(math.e, 50), 0)
 
     def test_generate_e_input_transcendental(self):
         # Tests euler number function's capacity for handling other transcendental numbers such as pi as input
