@@ -50,7 +50,7 @@ def calcEval(equation):
   try:
     equation = re.sub('(?<=\d|\))(\()', '*(', equation)
     equation = equation.replace('π','PI')
-	equation = equation.replace('e','E')
+    equation = equation.replace('e','E')
     result = nsp.eval(equation)
     return result
   except:
