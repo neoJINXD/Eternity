@@ -1,22 +1,21 @@
   \documentclass{beamer}
   \usepackage{graphicx}
-  \graphicspath{ {./images/} }
+  \usetheme{Madrid}
 
   % Title page information
   \title{COMP 354 Iteration 1 Eternity Project}
-  \subtitle{Team I}
+  
+  \subtitle {Team I}
 
   \author
-  {Hong Phuc Nguyen 
-  \and Swati Pareek 
-  \and Anik Patel∂∂
-  \and Avnish Patel 
-  \and Clément Potteck 
-  \and Tara Seal 
-  \and Emanuel Sharma
+  {
+  Hong Phuc Nguyen \\ Swati Pareek \\Anik Patel\\Avnish Patel 
+  \\Clément Potteck \\ Tara Seal \\Emanuel Sharma
   }
 
-  \institute{Concordia University}
+  \institute{
+  Concordia University
+  }
   \date{Friday June 5, 2020}
 
   \begin{document}
@@ -26,48 +25,78 @@
   % wondering if the TOC is necessary for a 10-min presentation?
   % I would agree about title pages separating main sections though
   \begin{frame}
-  \frametitle{Table of Contents}
+  \frametitle{Overview}
   \tableofcontents
   \end{frame}
 
-  \section{Section 1}
+  \section{Team}
 
+
+  
   \begin{frame}
   \frametitle{The Team}
-  Our roles, how we organize and delegate tasks.
-  \begin{itemize}
-   \item Sharing strengths and experience (Skills Matrix)
-   \item Roles for Iteration 1
-    \begin{itemize}
-     \item Meeting Transcriber/Scrum master
-     \item Technical Writers
-     \item Developers/Quality Control
-     \item User Interface
-     \item Presenters
-    \end{itemize}
-   \end{itemize}
+  \null\hfil\hfil\makebox[2cm]{Nguyen}
+  \hfil\hfil\makebox[2cm]{Swati}
+  \hfil\hfil\makebox[2cm]{Anik}
+  \hfil\hfil\makebox[2cm]{Avnish}
+  \newline
+  \hfil\includegraphics[width=2cm]{Screen Shot}
+  \hfil\hfil\hfil\includegraphics[width=2cm]{Screen Shot}
+  \hfil\hfil\hfil\includegraphics[width=2cm]{Screen Shot}
+  \hfil\hfil\hfil\hfil\includegraphics[width=2cm]{Screen Shot}\newline
+  \null\hfil\hfil\makebox[2cm]{MAD}
+  \hfil\hfil\makebox[2cm]{\[e^x\] XOR \[a^x\]}
+  \hfil\hfil\makebox[2cm]{sin(x) XOR cos(x)}
+  \hfil\hfil\makebox[2cm]{sinh(x)}
+  \newline\newline
+  \vfil
+  \null\hfil\hfil\makebox[2cm]{Clement}
+  \hfil\hfil\makebox[2cm]{Tara}
+  \hfil\hfil\makebox[2cm]{Emanuel}\newline
+  \hfil\hfil\includegraphics[width=2cm]{Screen Shot}
+  \hfil\hfil\includegraphics[width=2cm]{Screen Shot}
+  \hfil\hfil\hfil\includegraphics[width=2cm]{Screen Shot}\newline
+  %There's an error about the dollar sign with these functions
+  \null\hfil\hfil\makebox[2cm]{\[10^x\] XOR \[\Pi^x\]}
+  \hfil\hfil\makebox[2cm]{\[x^y\]}
+  \hfil\hfil\makebox[2cm]{ln(x) XOR log_1_0(x) }\newline
+  \end{frame}
+  
+  
+  
+    \begin{frame}
+  \frametitle{Team Roles}
+  \begin{table}
+\begin{tabular}{l | c | c | c | c }
+Name & Primary Role and Responsibility & Secondary Role \\
+\hline
+Hong Phuc & GUI and Web application,& Implementation of\\
+& prototyping & new technologies\\
+ \hline
+Swati & Organizing and planning agenda& High-level vision, \\
+& for team meetings & scope management\\
+ \hline
+Anik & Set up of initial repository& Questions regarding\\
+& GUI for local application & the Python ecosystem\\
+ \hline
+Avnish & Technical Writer & Mathematics, \\
+& & documentation\\
+ \hline
+Clément & Major presenter, & Best practices \\
+& quality control  & PEP documentation\\
+ \hline
+Tara & Minor presenter, & Ensuring requirement \\
+& Team liason  & are followed\\
+ \hline
+Emmanuel & Technical writer &  Algorithm optimization
+& subject matter expert  & Latex\\
+& math algorithms  & \\
+\end{tabular}
+\end{table}
   \end{frame}
 
-
-
   \begin{frame}
-  \frametitle{The Team}
-  Our roles, how we organize and delegate tasks.
-  \begin{itemize}
-   \item Sharing strengths and experience (Skills Matrix)
-   \item Roles for Iteration 1
-    \begin{itemize}
-     \item Meeting Transcriber/Scrum master
-     \item Technical Writers
-     \item Developers/Quality Control
-     \item User Interface
-     \item Presenters
-    \end{itemize}
-   \end{itemize}
-  \end{frame}
-
-  \begin{frame}
-  \frametitle{Collaboration Patterns - Meetings}
+  \frametitle{Collaboration patterns:\\ Managing the project}
   \begin{itemize}
    \item Regular meetings once a week
    \item Agenda
@@ -86,7 +115,7 @@
   \end{frame}
 
   \begin{frame}
-  \frametitle{Collaboration Patterns - Platforms}
+  \frametitle{Collaboration Patterns: \\ Centralizing work product management}
   \begin{itemize}
    \item Discord
     \begin{itemize}
@@ -110,20 +139,20 @@
 
 
   \begin{frame}
-  \frametitle{Collaboration Patterns - Asymmetric review}
+  \frametitle{Asymmetric review}
   \begin{itemize}
    \item One individually responsible for conducting the code review
    \item Additional technique used:
     \begin{itemize}
-     \item Code review can be commented on by anyone in the team
-     \item Allows us utilize everyone's strengths within the team and further enhance the code
+     \item Available for comments by anyone in the team
+     \item Allows for skill utilization
     \end{itemize}
   \end{itemize}
   \end{frame}
 
 
 
-  \section{Section 2}
+  \section{Requirement Gathering}
 
   % Slide for the interview questions
   \begin{frame}
@@ -203,7 +232,7 @@
   \end{itemize}
   \end{frame}
   
-      %Slide for our interview findings
+%Slide for our interview findings
   \begin{frame}
   \frametitle{Interview: Other interesting findings}
   \begin{itemize}
@@ -217,7 +246,12 @@
   \end{itemize}
   \end{frame}
   
-  
+
+%Slide for our interview findings
+  \begin{frame}
+  \frametitle{Summarized Use case}
+  \includegraphics[scale=0.5]{Use Case}
+  \end{frame}
 
 
   \begin{frame}
@@ -259,11 +293,11 @@
 
 
 
-\section{Section 2}
+\section{Product}
 \begin{frame}
 \frametitle{Sample title2}
 This is a text in the first frame. This is a text in the first frame. This is a text in the first frame.
-\includegraphics{Screen Shot 2020-03-27 at 2.51.25 PM}
+\includegraphics[width=3cm, height=4cm]{Screen Shot}
 \end{frame}
 
   \end{document}
