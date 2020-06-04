@@ -10,18 +10,13 @@ class Calculation:
     def dump(self):
         print(self.values)
 
-    def cal_mean(self, arg):
-        total = 0
-        for e in arg:
-            total += e
-        size = len(arg)
-        result = total / size
-        return result
-
     def mad(self, *arg):
-        values = list(arg)
-        size = len(arg)
-        mean = cal_mean(values)
+        sum = 0        
+        self.values = list(arg)
+        for e in self.values:
+            sum += e
+        size = len(self.values)
+        mean = sum/size
         distance = 0
         for e in self.values:
             distance += (mean-e, e-mean)[e-mean>0]
@@ -30,9 +25,12 @@ class Calculation:
         return result
 
     def std(self, *arg):
-        values = list(arg)
-        size = len(values)
-        mean = cal_mean(values)
+        sum = 0        
+        self.values = list(arg)
+        for e in self.values:
+            sum += e
+        size = len(self.values)
+        mean = sum/size
         distance_square = 0
         for e in self.values:
             distance_square += (e-mean)*(e-mean)

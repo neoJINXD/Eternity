@@ -9,7 +9,7 @@ Extended test cases, simplified pushFirst method.
 Removed unnecessary expr.suppress() call (thanks Nathaniel Peterson!), and added Group
 Changed fnumber to use a Regex, which is now the preferred method
 Reformatted to latest pypyparsing features, support multiple and variable args to functions
-use % as op must change the logic
+Use ! as op must change the logic
 '''
 #%%
 from pyparsing import (
@@ -27,6 +27,7 @@ from pyparsing import (
 )
 import math
 import operator
+from . import functions as func
 from .calculation import Calculation
 
 class Parser(object):
@@ -99,8 +100,8 @@ class Parser(object):
         # term = factor + (multop + factor).setParseAction(self.pushFirst)[...]
         factor = Forward()
         factor <<= atom + (expop + factor).setParseAction(self.pushFirst)[...]
-        fato = factor + (factop).setParseAction(self.pushFirst)[...]
-        term = fato + (multop + fato).setParseAction(self.pushFirst)[...]
+        facto = factor + (factop).setParseAction(self.pushFirst)[...]
+        term = facto + (multop + facto).setParseAction(self.pushFirst)[...]
         expr <<= term + (addop + term).setParseAction(self.pushFirst)[...]
         self.bnf = expr
 
@@ -113,11 +114,11 @@ class Parser(object):
                     "/": operator.truediv,
                     "^": operator.pow,
                     "%": operator.mod,
-                    "!": math.factorial,}
+                    "!": func.factorial,}
         self.fn = {"sinh": math.sinh,
                    "cosh": math.cosh,
                    "tanh": math.tanh,
-                    "sin": math.sin,
+                    "sin": func.sin,
                     "cos": math.cos,
                     "tan": math.tan,
                     "exp": math.exp,
@@ -147,9 +148,9 @@ class Parser(object):
             op1 = self.evaluateStack(s)
             return self.opn[op](op1, op2)
         elif op == "PI":
-            return math.pi  # 3.1415926535
+            return func.generate_pi()  # 3.1415926535
         elif op == "E":
-            return math.e  # 2.718281828
+            return func.generate_e()  # 2.718281828
         elif op in self.fn:
             # note: args are pushed onto the stack in reverse order
             args = reversed([self.evaluateStack(s) for _ in range(num_args)])
@@ -183,3 +184,4 @@ class Parser(object):
                     return val
                 else:
                     print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)       
+
