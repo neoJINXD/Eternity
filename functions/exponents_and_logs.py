@@ -5,17 +5,25 @@ import math as math  # used only for frexp() to get mantissa sign
 import functions.trignometry as trig
 
 
-def generate_e(x=1):
+def generate_e_taylor(x=1):
     # Calculate e to the power of some input value x using the Maclaurin series expansion of e^x.
     e = 1
     numerator = 1
     denominator = 1
 
-    for n in range(1, 100):
+    for n in range(1, 50):
         numerator *= x
         denominator *= n
         e += numerator / denominator
     return e
+
+
+def generate_e(x=1):
+    # Calculate e to the power of some input value x using both the Maclaurin series expansion of e^x and exponentiation by squaring
+    e = 2.7182818284590452
+    integerPartOfX = int(x)
+    fractionalPartOfX = x - integerPartOfX
+    return helper_functions.exponentiation_by_squaring(e, integerPartOfX) * generate_e_taylor(fractionalPartOfX)
 
 
 def calculate_exponent(x, y):
