@@ -26,7 +26,7 @@ def generate_e(x=1):
     return helper_functions.exponentiation_by_squaring(e, integerPartOfX) * generate_e_taylor(fractionalPartOfX)
 
 
-def calculate_exponent(x, y):
+def calculate_exponent(x, y, rootUsed=int(1E5)):
     # Calculate value of x to the power of y.
     # Check type of parameters
     if not isinstance(x, (int, float)) or isinstance(x, bool):
@@ -34,15 +34,16 @@ def calculate_exponent(x, y):
     if not isinstance(y, (int, float)) or isinstance(y, bool):
         raise exceptions.CalculationError(y + " is not a number")
 
-    # Calculate exponent
-    if isinstance(y, int):
-        second_calculation = helper_functions.exponentiation_by_squaring(x, y)
-    else:
-        first_calculation = helper_functions.calculate_root(x)
-        numerator = int(y * 100)
-        second_calculation = helper_functions.exponentiation_by_squaring(first_calculation, numerator)
+    # Calculate exponent in two parts (integer and fractional part)
+    # Calculate integer part using exponentiation by squaring
+    integerPartOfY = int(y)
+    result = helper_functions.exponentiation_by_squaring(x, integerPartOfY)
+    # If fractional part remains, approximate it using Newton's method for the denominator and exponentiation by squaring for the numerator
+    fractionalPartOfY = y - integerPartOfY
+    if fractionalPartOfY != 0:
+        result *= helper_functions.exponentiation_by_squaring(helper_functions.nth_root(x, rootUsed), int(rootUsed * fractionalPartOfY))
 
-    return second_calculation
+    return result
 
 
 def ln_taylor(argument, iterations=50):

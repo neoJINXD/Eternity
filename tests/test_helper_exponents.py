@@ -20,11 +20,11 @@ class HelperTest(unittest.TestCase):
         self.assertEqual(helper_functions.take_inverse(-1 / 5), - 5)
 
     def test_root(self):
-        self.assertAlmostEqual(helper_functions.calculate_root(1), 1 ** (1 / 100), delta=0.000001)
-        self.assertAlmostEqual(helper_functions.calculate_root(200), 200 ** (1 / 100), delta=0.0000001)
-        self.assertAlmostEqual(helper_functions.calculate_root(100000), 100000 ** (1 / 100), delta=0.000001)
-        self.assertAlmostEqual(helper_functions.calculate_root(9000000), 9000000 ** (1 / 100), delta=0.000001)
-        self.assertAlmostEqual(helper_functions.calculate_root(9000000000), 9000000000 ** (1 / 100), delta=0.000001)
+        self.assertAlmostEqual(helper_functions.nth_root(1, 100), 1 ** (1 / 100), delta=0.000001)
+        self.assertAlmostEqual(helper_functions.nth_root(200, 100), 200 ** (1 / 100), delta=0.0000001)
+        self.assertAlmostEqual(helper_functions.nth_root(100000, 100), 100000 ** (1 / 100), delta=0.000001)
+        self.assertAlmostEqual(helper_functions.nth_root(9000000, 100), 9000000 ** (1 / 100), delta=0.000001)
+        self.assertAlmostEqual(helper_functions.nth_root(9000000000, 100), 9000000000 ** (1 / 100), delta=0.000001)
 
 
 if __name__ == '__main__':

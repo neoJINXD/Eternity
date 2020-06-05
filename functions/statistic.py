@@ -1,6 +1,7 @@
 import numpy as np
 import exceptions.exceptions as the_exception
 import functions.exponents_and_logs as exp
+import functions.exponent_helper_functions as helper_functions
 
 
 def cal_mean(arg):
@@ -30,6 +31,6 @@ def std(*arg):
     distance_square = 0
     for e in values:
         distance_square += (e - mean) * (e - mean)
-    result = exp.calculate_exponent((distance_square/size), (1/2))
+    result = helper_functions.nth_root((distance_square/size), 2)
     return result
 
