@@ -121,7 +121,7 @@ class Parser(object):
                     "sin": func.sin,
                     "cos": math.cos,
                     "tan": math.tan,
-                    "exp": func.power_of_e,
+                    "exp": func.generate_e,
                     "abs": abs,
                     "trunc": int,
                     "round": round,

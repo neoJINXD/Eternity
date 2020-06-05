@@ -95,7 +95,4 @@ def power_of_pi(x):
     return calculate_exponent(trig.generate_pi(), x)
 
 
-def power_of_e(x):
-    # Returns the result of 10^x, delegating calculations to functions.exponent_helper_functions.calculate_exponent.
-    return calculate_exponent(generate_e(), x)
 
