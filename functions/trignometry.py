@@ -1,5 +1,5 @@
-from . import common as common
-from . import exponents_and_logs as exp
+import functions.common as common
+import functions.exponents_and_logs as exp
 
 
 def generate_pi():

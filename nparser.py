@@ -11,7 +11,7 @@ Changed fnumber to use a Regex, which is now the preferred method
 Reformatted to latest pypyparsing features, support multiple and variable args to functions
 Use ! as op must change the logic
 '''
-#%%
+# %%
 from pyparsing import (
     Literal,
     Word,
@@ -27,11 +27,17 @@ from pyparsing import (
 )
 import math
 import operator
-from . import functions as func
-from .calculation import Calculation
+# from .calculation import Calculation
+
+from functions.common import factorial
+from functions.trignometry import sinh, cosh, tanh
+from functions.sin import sin
+from functions.exponents_and_logs import calculate_exponent, generate_e, ln, log
+from functions.statistic import mad, std
 
 class Parser(object):
     exprStack = []
+
     def pushFirst(self, strg, loc, toks):
         self.exprStack.append(toks[0])
 
@@ -43,7 +49,7 @@ class Parser(object):
                 break
 
     def __init__(self):
-        cal = Calculation()        
+        # cal = Calculation()
 
         """
         expop   :: '^'
@@ -79,6 +85,7 @@ class Parser(object):
         expr = Forward()
         expr_list = delimitedList(Group(expr))
         # add parse action that replaces the function identifier with a (name, number of args) tuple
+
         def insert_fn_argcount_tuple(t):
             fn = t.pop(0)
             num_args = len(t[0])
@@ -113,15 +120,16 @@ class Parser(object):
                     "*": operator.mul,
                     "/": operator.truediv,
                     "%": operator.mod,
-                    "^": func.calculate_exponent,
-                    "!": func.factorial,}
-        self.fn = {"sinh": func.sinh,
-                   "cosh": func.cosh,
-                   "tanh": func.tanh,
-                    "sin": func.sin,
+                    "^": calculate_exponent,
+                    "!": factorial, 
+                    }
+        self.fn = {"sinh": sinh,
+                   "cosh": cosh,
+                   "tanh": tanh,
+                    "sin": sin,
                     "cos": math.cos,
                     "tan": math.tan,
-                    "exp": func.generate_e,
+                    "exp": generate_e,
                     "abs": abs,
                     "trunc": int,
                     "round": round,
@@ -131,10 +139,11 @@ class Parser(object):
                     "hypot": math.hypot,
                     # functions with a variable number of arguments
                     "all": lambda *a: all(a),
-                    "mad": func.mad,
-                    "std": func.std,
-                    "ln": func.ln,
-                    "log": func.log,}
+                    "mad": mad,
+                    "std": std,
+                    "ln": ln,
+                    "log": log,
+                     }
 
     def evaluateStack(self, s):
         op, num_args = s.pop(), 0

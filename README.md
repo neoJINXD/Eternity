@@ -2,23 +2,27 @@
 
 ## Project for COMP 354
 
+This Project consists of making a calculator with the goal of solving transcendental functions
+
+---
+
 ### How to Run
 
-----
+#### Prerequesites
+
+[Requires nodejs installed locally](https://nodejs.org/en/)
+
+#### Running the dev versions
 
 ```bash
 
-//Install flask
-pip install flask
+// installs the dependencies
+npm install
 
-//Set up environment variables
-//on windows
-set FLASK_APP=app
+// runs the web app
+npm start
 
-//on linux & mac
-export FLASK_APP=calculator.py
-
-//Run the application
-flask run
+// runs the electron app
+npm run electron
 
 ```

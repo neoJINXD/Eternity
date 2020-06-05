@@ -1,6 +1,6 @@
 import numpy as np
-from . import exceptions as exceptions
-from . import exponents_and_logs as exp
+import exceptions.exceptions as the_exception
+import functions.exponents_and_logs as exp
 
 
 def cal_mean(arg):

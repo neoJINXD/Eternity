@@ -1,8 +1,8 @@
-from . import common as common
-from . import exponent_helper_functions as helper_functions
-from . import exceptions as exceptions
+import functions.common as common
+import functions.exponent_helper_functions as helper_functions
+import exceptions.exceptions as exceptions
 import math as math
-from . import trignometry as trig
+import functions.trignometry as trig
 
 
 def generate_e(x=1):
@@ -93,6 +93,3 @@ def power_of_ten(x):
 def power_of_pi(x):
     # Returns the result of pi^x, delegating calculations to functions.exponent_helper_functions.calculate_exponent.
     return calculate_exponent(trig.generate_pi(), x)
-
-
-

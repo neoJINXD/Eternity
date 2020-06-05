@@ -1,4 +1,4 @@
-from . import exceptions as exceptions
+import exceptions.exceptions as exceptions
 
 
 def add(x, y):
