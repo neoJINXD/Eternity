@@ -19,4 +19,13 @@ $(document).ready(function(){
 			alert("test");
 		}
 	});
+
+	$('#input').on("keydown", function(e) {
+		if(e.which === 13) { // enter key
+			e.preventDefault(); // prevents linebreak
+			// here you could add your submit call
+			$('#fm').submit();
+			return false;
+		}
+	});
 });

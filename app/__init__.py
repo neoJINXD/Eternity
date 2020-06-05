@@ -50,6 +50,7 @@ def calcEval(equation):
   try:
     equation = re.sub('(?<=\d|\))(\()', '*(', equation)
     equation = equation.replace('π','pi')
+    equation = equation.replace('√','sqrt')
     result = nsp.eval(equation)
     return result
   except:
