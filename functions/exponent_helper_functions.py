@@ -8,7 +8,7 @@ def calculate_approx_square():
     dictionary = {}
     new_list = []
     for items in a:
-        new_list.append(calculate_exponent_int_only(items, 100))
+        new_list.append(exponentiation_by_squaring(items, 100))
     value = 0
     for i in a:
         dictionary[i] = new_list[value]
@@ -16,18 +16,23 @@ def calculate_approx_square():
     return dictionary
 
 
-# This function calculates x^y when y is an integer
-def calculate_exponent_int_only(x, y):
-    new_value = 1
+def exponentiation_by_squaring(x, y):
+# This function calculates x^y when y is an integer.
+    result = 1
+    # if y is negative, we will use the fact that x^y = (1/x)^-y
     if is_negative(y):
-        y = y * -1
-        for value in range(1, y):
-            new_value = new_value * x
-        new_value = take_inverse(new_value)
-    else:
-        for value in range(y):
-            new_value = new_value * x
-    return new_value
+        x = 1 / x
+        y *= -1
+    # Exponentiation by squaring
+    while y > 0:
+        # If y is odd, we can use the fact that x^y = x(x^2)^((n-1)/2)
+        if y & 1 == 1:
+            result *= x
+            y -= 1
+        # Now that y is even, we can use the fact that x^y = (x^2)^(n/2) when y is even
+        x *= x
+        y >>= 1
+    return result
 
 
 # This function checks if an exponent is negative
@@ -48,7 +53,7 @@ def calculate_root(b):
     a = listOfValues
     the_number = 0
     for values in a:
-        temp = calculate_exponent_int_only(values, 100)
+        temp = exponentiation_by_squaring(values, 100)
         if temp >= b:
             the_number = values
             break

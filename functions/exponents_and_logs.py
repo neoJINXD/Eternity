@@ -28,11 +28,11 @@ def calculate_exponent(x, y):
 
     # Calculate exponent
     if isinstance(y, int):
-        second_calculation = helper_functions.calculate_exponent_int_only(x, y)
+        second_calculation = helper_functions.exponentiation_by_squaring(x, y)
     else:
         first_calculation = helper_functions.calculate_root(x)
         numerator = int(y * 100)
-        second_calculation = helper_functions.calculate_exponent_int_only(first_calculation, numerator)
+        second_calculation = helper_functions.exponentiation_by_squaring(first_calculation, numerator)
 
     return second_calculation
 

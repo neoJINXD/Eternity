@@ -5,7 +5,10 @@ import functions.exponent_helper_functions as helper_functions
 class HelperTest(unittest.TestCase):
 
     def test_exponent_ints(self):
-        self.assertEqual(helper_functions.calculate_exponent_int_only(5, 8), 5 ** 8)
+        self.assertAlmostEqual(helper_functions.exponentiation_by_squaring(5, 8), 5 ** 8)
+        self.assertAlmostEqual(helper_functions.exponentiation_by_squaring(5, 124), 5 ** 124)
+        self.assertAlmostEqual(helper_functions.exponentiation_by_squaring(-1.32, -1006), -1.32 ** -1006)
+        self.assertAlmostEqual(helper_functions.exponentiation_by_squaring(5, -8), 5 ** -8)
 
     def test_exponent_negative(self):
         self.assertEqual(helper_functions.is_negative(-5), True)
