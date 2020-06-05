@@ -112,8 +112,8 @@ class Parser(object):
                     "-": operator.sub,
                     "*": operator.mul,
                     "/": operator.truediv,
-                    "^": func.calculate_exponent,
                     "%": operator.mod,
+                    "^": func.calculate_exponent,
                     "!": func.factorial,}
         self.fn = {"sinh": func.sinh,
                    "cosh": func.cosh,
@@ -121,7 +121,7 @@ class Parser(object):
                     "sin": func.sin,
                     "cos": math.cos,
                     "tan": math.tan,
-                    "exp": math.exp,
+                    "exp": func.power_of_e,
                     "abs": abs,
                     "trunc": int,
                     "round": round,
@@ -131,8 +131,8 @@ class Parser(object):
                     "hypot": math.hypot,
                     # functions with a variable number of arguments
                     "all": lambda *a: all(a),
-                    "mad": cal.mad,
-                    "std": cal.std,
+                    "mad": func.mad,
+                    "std": func.std,
                     "ln": func.ln,
                     "log": func.log,}
 
@@ -187,23 +187,4 @@ class Parser(object):
                 else:
                     print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)       
 
-# # %%
-# nsp = Parser()
-# result = nsp.eval("(9+3) / 11", (9 + 3.0) / 11)
-# print(result)
-
-# # %%
-# nsp = Parser()
-# result = nsp.eval("sin(PI/2)", 1)
-# print(result)
-
-# # %%
-# nsp = Parser()
-# result = nsp.eval("mad(3, 15, 21, 13)", 5)
-# print(result)
-
-# # %%
-# nsp = Parser()
-# result = nsp.eval("5%3", 2)
-# print(result)
 
