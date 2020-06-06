@@ -4,7 +4,7 @@ from nparser import Parser
 
 expression = sys.argv[1]
 
-
+# TODO pep8 says that we should catch specific errors 
 def calc_eval(equation):
     nsp = Parser()
     try:

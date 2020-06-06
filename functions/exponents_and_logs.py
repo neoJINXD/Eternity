@@ -1,4 +1,3 @@
-import functions.common as common
 import functions.exponent_helper_functions as helper_functions
 import exceptions.exceptions as exceptions
 import math as math  # used only for frexp() to get mantissa sign
@@ -70,9 +69,9 @@ def ln(argument):
     mantissa, exponent = math.frexp(argument)
 
     # It follows from the properties of logarithms that ln(m*2^p)=ln(m)+p*ln(2).
-    LN_2 = 0.6931471805599453
-    lnMantissa = ln_taylor(mantissa)
-    return lnMantissa + exponent * LN_2
+    LN_2 = 0.6931471805599453  # TODO according to pep8 constants should be module level
+    ln_mantissa = ln_taylor(mantissa)
+    return ln_mantissa + exponent * LN_2
 
 
 def log(argument, base=10):

@@ -1,5 +1,5 @@
-import numpy as np
-import exceptions.exceptions as the_exception
+# import numpy as np
+# import exceptions.exceptions as the_exception
 import functions.exponents_and_logs as exp
 
 
@@ -32,4 +32,3 @@ def std(*arg):
         distance_square += (e - mean) * (e - mean)
     result = exp.calculate_exponent((distance_square/size), (1/2))
     return result
-

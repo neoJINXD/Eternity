@@ -95,6 +95,7 @@ class ExponentsTest(unittest.TestCase):
             exp.log(complex(2, 1), 2)
         with self.assertRaises(TypeError):
             exp.log(None, 2)
+
     def test_power_of_ten(self):
         # Tests power of ten function.
         self.assertAlmostEqual(exp.power_of_ten(0), 1)

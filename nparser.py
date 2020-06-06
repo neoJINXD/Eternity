@@ -5,7 +5,7 @@ __note__ = '''
 Demonstration of the pyparsing module, implementing a simple 4-function expression parser,
 with support for scientific notation, and symbols for e and pi.
 Extended to add exponentiation and simple built-in functions.
-Extended test cases, simplified pushFirst method.
+Extended test cases, simplified push_first method.
 Removed unnecessary expr.suppress() call (thanks Nathaniel Peterson!), and added Group
 Changed fnumber to use a Regex, which is now the preferred method
 Reformatted to latest pypyparsing features, support multiple and variable args to functions
@@ -30,18 +30,18 @@ import operator
 # from .calculation import Calculation
 
 from functions.common import factorial
-from functions.trignometry import sinh, cosh, tanh, generate_pi
-from functions.sin import sin
+from functions.trignometry import sinh, cosh, tanh, generate_pi, sin
 from functions.exponents_and_logs import calculate_exponent, generate_e, ln, log
 from functions.statistic import mad, std
+
 
 class Parser(object):
     exprStack = []
 
-    def pushFirst(self, strg, loc, toks):
+    def push_first(self, strg, loc, toks):
         self.exprStack.append(toks[0])
 
-    def pushUMinus(self, strg, loc, toks):
+    def push_u_minus(self, strg, loc, toks):
         for t in toks:
             if t == "-":
                 self.exprStack.append('unary -')
@@ -97,19 +97,19 @@ class Parser(object):
         atom = (
             addop[...]
             + (
-                (fn_call | pi | e | fnumber | ident).setParseAction(self.pushFirst)
+                (fn_call | pi | e | fnumber | ident).setParseAction(self.push_first)
                 | Group(lpar + expr + rpar)
             )
-        ).setParseAction(self.pushUMinus)
+        ).setParseAction(self.push_u_minus)
 
         # by defining exponentiation as "atom [ ^ factor ]..." instead of "atom [ ^ atom ]...", we get right-to-left
         # exponents, instead of left-to-right that is, 2^3^2 = 2^(3^2), not (2^3)^2.
-        # term = factor + (multop + factor).setParseAction(self.pushFirst)[...]
+        # term = factor + (multop + factor).setParseAction(self.push_first)[...]
         factor = Forward()
-        factor <<= atom + (expop + factor).setParseAction(self.pushFirst)[...]
-        facto = factor + (factop).setParseAction(self.pushFirst)[...]
-        term = facto + (multop + facto).setParseAction(self.pushFirst)[...]
-        expr <<= term + (addop + term).setParseAction(self.pushFirst)[...]
+        factor <<= atom + (expop + factor).setParseAction(self.push_first)[...]
+        facto = factor + (factop).setParseAction(self.push_first)[...]
+        term = facto + (multop + facto).setParseAction(self.push_first)[...]
+        expr <<= term + (addop + term).setParseAction(self.push_first)[...]
         self.bnf = expr
 
         # map operator symbols to corresponding arithmetic operations
@@ -126,38 +126,38 @@ class Parser(object):
         self.fn = {"sinh": sinh,
                    "cosh": cosh,
                    "tanh": tanh,
-                    "sin": sin,
-                    "cos": math.cos,
-                    "tan": math.tan,
-                    "sqrt": math.sqrt,
-                    "exp": generate_e,
-                    "abs": abs,
-                    "trunc": int,
-                    "round": round,
-                    "sgn": lambda a: -1 if a < -epsilon else 1 if a > epsilon else 0,
-                    # functionsl with multiple arguments
-                    "multiply": lambda a, b: a * b,
-                    "hypot": math.hypot,
-                    # functions with a variable number of arguments
-                    "all": lambda *a: all(a),
-                    "mad": mad,
-                    "std": std,
-                    "ln": ln,
-                    "log": log,
-                     }
+                   "sin": sin,
+                   "cos": math.cos,
+                   "tan": math.tan,
+                   "sqrt": math.sqrt,
+                   "exp": generate_e,
+                   "abs": abs,
+                   "trunc": int,
+                   "round": round,
+                   "sgn": lambda a: -1 if a < -epsilon else 1 if a > epsilon else 0,
+                   # functionsl with multiple arguments
+                   "multiply": lambda a, b: a * b,
+                   "hypot": math.hypot,
+                   # functions with a variable number of arguments
+                   "all": lambda *a: all(a),
+                   "mad": mad,
+                   "std": std,
+                   "ln": ln,
+                   "log": log,
+                   }
 
-    def evaluateStack(self, s):
+    def evaluate_stack(self, s):
         op, num_args = s.pop(), 0
         if isinstance(op, tuple):
             op, num_args = op
         if op == 'unary -':
-            return -self.evaluateStack(s)
+            return -self.evaluate_stack(s)
         if op == "!":
-            op1 = self.evaluateStack(s)
+            op1 = self.evaluate_stack(s)
             return self.opn[op](op1)
         if op in "+-*/^%":
-            op2 = self.evaluateStack(s)
-            op1 = self.evaluateStack(s)
+            op2 = self.evaluate_stack(s)
+            op1 = self.evaluate_stack(s)
             return self.opn[op](op1, op2)
         elif op == "PI":
             return generate_pi()  # 3.1415926535
@@ -165,7 +165,7 @@ class Parser(object):
             return generate_e()  # 2.718281828
         elif op in self.fn:
             # note: args are pushed onto the stack in reverse order
-            args = reversed([self.evaluateStack(s) for _ in range(num_args)])
+            args = reversed([self.evaluate_stack(s) for _ in range(num_args)])
             return self.fn[op](*args)
         elif op[0].isalpha():
             raise Exception("invalid identifier '%s'" % op)
@@ -176,11 +176,11 @@ class Parser(object):
             except ValueError:
                 return float(op)
 
-    def eval(self, num_string, expected=None, parseAll=True):
+    def eval(self, num_string, expected=None, parse_all=True):
         self.exprStack[:] = []
         try:
-            results = self.bnf.parseString(num_string, parseAll)
-            val = self.evaluateStack(self.exprStack[:])
+            results = self.bnf.parseString(num_string, parse_all)
+            val = self.evaluate_stack(self.exprStack[:])
         except ParseException as pe:
             print(num_string, "failed parse:", str(pe))
             return "Error: Unknown input character."
@@ -195,6 +195,4 @@ class Parser(object):
                     print(num_string, "=", val)
                     return val
                 else:
-                    print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)       
-
-
+                    print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)

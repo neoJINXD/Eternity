@@ -45,7 +45,7 @@ def take_inverse(x):
 # This function is used to calculate the approximate value of a number to the 100th root
 # This is used if the exponent is a fraction.
 def calculate_root(b):
-    a = listOfValues
+    a = ListOfValues
     the_number = 0
     for values in a:
         temp = calculate_exponent_int_only(values, 100)
@@ -56,4 +56,4 @@ def calculate_root(b):
 
 
 # Static variables
-listOfValues = calculate_approx_square()
+ListOfValues = calculate_approx_square()
