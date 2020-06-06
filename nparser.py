@@ -30,7 +30,7 @@ import operator
 # from .calculation import Calculation
 
 from functions.common import factorial
-from functions.trignometry import sinh, cosh, tanh
+from functions.trignometry import sinh, cosh, tanh, generate_pi
 from functions.sin import sin
 from functions.exponents_and_logs import calculate_exponent, generate_e, ln, log
 from functions.statistic import mad, std
@@ -159,9 +159,9 @@ class Parser(object):
             op1 = self.evaluateStack(s)
             return self.opn[op](op1, op2)
         elif op == "PI":
-            return func.generate_pi()  # 3.1415926535
+            return generate_pi()  # 3.1415926535
         elif op == "E":
-            return func.generate_e()  # 2.718281828
+            return generate_e()  # 2.718281828
         elif op in self.fn:
             # note: args are pushed onto the stack in reverse order
             args = reversed([self.evaluateStack(s) for _ in range(num_args)])
