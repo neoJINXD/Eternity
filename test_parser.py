@@ -9,6 +9,7 @@ def calc_eval(equation):
         equation = re.sub('(?<=\d|\))(\()', '*(', equation)
         equation = equation.replace('π', 'PI')
         equation = equation.replace('e', 'E')
+        equation = equation.replace('√', 'sqrt')
         result = nsp.eval(equation)
         return result
     except:
@@ -26,7 +27,7 @@ if __name__ == '__main__':
     start = time.time()
     eq = '√(9)'
     print(f'Calculating {eq}')
-    calc_eval(eq)
+    print(calc_eval(eq))
     print(f'Took {time.time()-start}')
     print()
 

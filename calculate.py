@@ -11,6 +11,7 @@ def calc_eval(equation):
         equation = re.sub('(?<=\d|\))(\()', '*(', equation)
         equation = equation.replace('π', 'PI')
         equation = equation.replace('e', 'E')
+        equation = equation.replace('√', 'sqrt')
         result = nsp.eval(equation)
         return result
     except:
