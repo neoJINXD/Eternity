@@ -19,14 +19,15 @@ def generate_e_taylor(x=1):
 
 
 def generate_e(x=1):
-    # Calculate e to the power of some input value x using both the Maclaurin series expansion of e^x and exponentiation by squaring
+    # Calculate e to the power of some input value x using both the Maclaurin series expansion of e^x and
+    # exponentiation by squaring
     e = 2.7182818284590452
-    integerPartOfX = int(x)
-    fractionalPartOfX = x - integerPartOfX
-    return helper_functions.exponentiation_by_squaring(e, integerPartOfX) * generate_e_taylor(fractionalPartOfX)
+    integer_part_of_x = int(x)
+    fractional_part_of_x = x - integer_part_of_x
+    return helper_functions.exponentiation_by_squaring(e, integer_part_of_x) * generate_e_taylor(fractional_part_of_x)
 
 
-def calculate_exponent(x, y, rootUsed=int(1E5)):
+def calculate_exponent(x, y, root_used=int(1E5)):
     # Calculate value of x to the power of y.
     # Check type of parameters
     if not isinstance(x, (int, float)) or isinstance(x, bool):
@@ -36,12 +37,13 @@ def calculate_exponent(x, y, rootUsed=int(1E5)):
 
     # Calculate exponent in two parts (integer and fractional part)
     # Calculate integer part using exponentiation by squaring
-    integerPartOfY = int(y)
-    result = helper_functions.exponentiation_by_squaring(x, integerPartOfY)
-    # If fractional part remains, approximate it using Newton's method for the denominator and exponentiation by squaring for the numerator
-    fractionalPartOfY = y - integerPartOfY
-    if fractionalPartOfY != 0:
-        result *= helper_functions.exponentiation_by_squaring(helper_functions.nth_root(x, rootUsed), int(rootUsed * fractionalPartOfY))
+    integer_part_of_y = int(y)
+    result = helper_functions.exponentiation_by_squaring(x, integer_part_of_y)
+    # If fractional part remains, approximate it using Newton's method for the denominator and exponentiation by
+    # squaring for the numerator
+    fractional_part_of_y = y - integer_part_of_y
+    if fractional_part_of_y != 0:
+        result *= helper_functions.exponentiation_by_squaring(helper_functions.nth_root(x, root_used), int(root_used * fractional_part_of_y))
 
     return result
 
@@ -79,9 +81,9 @@ def ln(argument):
     mantissa, exponent = math.frexp(argument)
 
     # It follows from the properties of logarithms that ln(m*2^p)=ln(m)+p*ln(2).
-    LN_2 = 0.6931471805599453
-    lnMantissa = ln_taylor(mantissa)
-    return lnMantissa + exponent * LN_2
+    ln_2 = 0.6931471805599453
+    ln_mantissa = ln_taylor(mantissa)
+    return ln_mantissa + exponent * ln_2
 
 
 def log(argument, base=10):

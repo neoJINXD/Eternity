@@ -23,21 +23,21 @@ def exponentiation_by_squaring(x, y):
 
 def nth_root(x, y, d=1E-10):
     # This function approximates the nth root of x using Newton's method to the desired level of precision.
-    apprx = 1
-    oldApprox = apprx
+    approx = 1
+    old_approx = approx
     while True:
-        power = exponentiation_by_squaring(apprx, y)
-        apprx = (y - 1 + x / power) * (apprx / y)
+        power = exponentiation_by_squaring(approx, y)
+        approx = (y - 1 + x / power) * (approx / y)
         # Return current approximation when the absolute difference is within the desired range.
         diff = power - x if power > x else x - power
         if diff < d:
-            return apprx
-        # Sometimes, floating point numbers are not precise enough to yield the desired level of precision. 
-        # Under these circumstances, we see that the approximation eventually stops improving. We need to check for that.
-        diff = oldApprox - apprx if oldApprox > apprx else apprx - oldApprox
+            return approx
+        # Sometimes, floating point numbers are not precise enough to yield the desired level of precision. Under
+        # these circumstances, we see that the approximation eventually stops improving. We need to check for that.
+        diff = old_approx - approx if old_approx > approx else approx - old_approx
         if diff < 1E-15:
-            return apprx
-        oldApprox = apprx
+            return approx
+        old_approx = approx
 
 
 # This function checks if an exponent is negative

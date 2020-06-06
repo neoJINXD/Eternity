@@ -27,13 +27,13 @@ def sin(x: float) -> float:
     result = x  # accumulator for the result
 
     # keeping track of the previous term
-    num = x
-    denom = 1
+    numerator = x
+    denominator = 1
 
     for n in range(3, 50, 2):
-        num *= -x * x
-        denom *= n * (n - 1)
-        result += num / denom
+        numerator *= -x * x
+        denominator *= n * (n - 1)
+        result += numerator / denominator
 
     return result
 
