@@ -31,16 +31,13 @@ npm run electron
 
 ### Development
 
-Please consult [our wiki](https://github.com/neoJINXD/Eternity/blob/integration/app/nparser.py#L175) for a list of technologies used.
+Please consult [our wiki](https://github.com/neoJINXD/Eternity/wiki) for a list of technologies used.
 
 #### Testing
 
 Test suites are defined using the `unittest` python library and found in the [/tests](/tests) folder:
 
 ```bash
-// install unittest
-pip install unittest
-
 //run tests from the root folder
 python -m unittest
 ```
