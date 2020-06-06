@@ -16,7 +16,7 @@ function calc() {
 
     pyshell.on('message', (msg) => {
         console.log(msg);
-        result = Number(msg);
+        result = msg;
         document.getElementById('resultInput').value = result;
     }); 
 }
