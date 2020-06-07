@@ -4,13 +4,13 @@
 
 This Project consists of making a calculator with the goal of solving transcendental functions without using existing math libraries.
 
-Information on team organization, tech stack, reference, and the user guide can be found on [our wiki](https://github.com/neoJINXD/Eternity/wiki).
+Information on team organization, tech stack, and the user guide can be found on [our wiki](https://github.com/neoJINXD/Eternity/wiki).
 
 ---
 
 ### How to Run
 
-#### Prerequesites
+#### Prerequisites
 
 [Requires nodejs installed locally](https://nodejs.org/en/)
 
@@ -26,8 +26,9 @@ npm start
 
 // runs the electron app
 npm run electron
-
 ```
+
+The application will open in a dedicated desktop window.
 
 ### Development
 
