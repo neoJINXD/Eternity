@@ -1,4 +1,3 @@
-import functions.common as common
 import functions.exponent_helper_functions as helper_functions
 import exceptions.exceptions as exceptions
 import math as math  # used only for frexp() to get mantissa sign
@@ -29,11 +28,6 @@ def generate_e(x=1):
 
 def calculate_exponent(x, y, root_used=int(1E5)):
     # Calculate value of x to the power of y.
-    # Check type of parameters
-    if not isinstance(x, (int, float)) or isinstance(x, bool):
-        raise exceptions.CalculationError(x + " is not a number")
-    if not isinstance(y, (int, float)) or isinstance(y, bool):
-        raise exceptions.CalculationError(y + " is not a number")
 
     # Calculate exponent in two parts (integer and fractional part)
     # Calculate integer part using exponentiation by squaring

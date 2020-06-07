@@ -63,13 +63,6 @@ class ExponentsTest(unittest.TestCase):
         self.assertAlmostEqual(exp.calculate_exponent((1 / 20), (2 / 9)), (1 / 20) ** (2 / 9), 5)
         self.assertAlmostEqual(exp.calculate_exponent((2 ** (1 / 2)), (2 ** (1 / 2))), math.sqrt(2) ** math.sqrt(2), 5)
 
-    def test_exponent_exceptions(self):
-        # Tests exponent function's exception handling capacity.
-        with self.assertRaises(the_exception.CalculationError):
-            exp.calculate_exponent('x-Value', 5)
-        with self.assertRaises(the_exception.CalculationError):
-            exp.calculate_exponent(5, 'y-Value')
-
     def test_logarithm_input_int(self):
         # Tests logarithm function's capacity for handling positive integer inputs.
         # Logarithms undefined for negative arguments &  base in addition to arguments and bases of 0 and 1.
@@ -113,18 +106,16 @@ class ExponentsTest(unittest.TestCase):
         self.assertAlmostEqual(exp.power_of_ten(2), 100)
         self.assertAlmostEqual(exp.power_of_ten(-4), 10 ** (-4))
         self.assertAlmostEqual(exp.power_of_ten(0.01), 10 ** 0.01)
-        self.assertAlmostEqual(exp.power_of_ten(self.PI), 10 ** self.PI, 1)  # TODO still inaccurate
-        self.assertRaises(the_exception.CalculationError, exp.power_of_ten, 'invalid')
+        self.assertAlmostEqual(exp.power_of_ten(self.PI), 10 ** self.PI, 1)
 
     def test_power_of_pi(self):
         # Tests power of pi function.
         self.assertAlmostEqual(exp.power_of_pi(0), 1)
         self.assertAlmostEqual(exp.power_of_pi(1), self.PI)
         self.assertAlmostEqual(exp.power_of_pi(2), self.PI ** 2)
-        self.assertAlmostEqual(exp.power_of_pi(-4), self.PI ** (-4))  # TODO still inaccurate
+        self.assertAlmostEqual(exp.power_of_pi(-4), self.PI ** (-4))
         self.assertAlmostEqual(exp.power_of_pi(0.01), self.PI ** 0.01)
-        self.assertAlmostEqual(exp.power_of_pi(self.PI), self.PI ** self.PI, 1)  # TODO still inaccurate
-        # self.assertRaises(the_exception.CalculationError, exp.power_of_pi, True) #Currently Failing
+        self.assertAlmostEqual(exp.power_of_pi(self.PI), self.PI ** self.PI, 3)
 
 
 if __name__ == '__main__':

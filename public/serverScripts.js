@@ -18,6 +18,8 @@ function del() {
 async function calc() {
     // gets the input from teh textbox
     const input = { expression: document.getElementById('resultInput').value };
+    document.getElementById('equation').innerHTML = `> ${input.expression}`;
+
     // calls node to perform the calculation over the route
     const response = await fetch(`http://localhost:3000/math`, {
         method: 'POST',
@@ -27,6 +29,8 @@ async function calc() {
         }
     });
     const json = await response.json();
+
     // Sets the answer in the input text
-    document.getElementById('resultInput').value = json.answer;
+    document.getElementById('answer').innerHTML = `= ${json.answer}`;
+    document.getElementById('resultInput').value = '';
 }

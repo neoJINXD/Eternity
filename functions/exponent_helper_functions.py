@@ -1,4 +1,5 @@
-# This class is for all the helper functions that were used to calculate the exponent function.
+# This class is for all the helper functions that were
+# used to calculate the exponent function.
 import numpy as np
 
 
@@ -50,3 +51,17 @@ def is_negative(x):
 # This function takes the inverse of a number
 def take_inverse(x):
     return 1 / x
+
+
+# This function is used to calculate the approximate value of a number to the 100th root
+# This is used if the exponent is a fraction.
+def calculate_root(b):
+    a = ListOfValues
+    the_number = 0
+    for values in a:
+        temp = calculate_exponent_int_only(values, 100)
+        if temp >= b:
+            the_number = values
+            break
+    return the_number
+
