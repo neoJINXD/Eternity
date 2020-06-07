@@ -4,36 +4,42 @@ import math as math  # used only for frexp() to get mantissa sign
 import functions.trignometry as trig
 
 
-def generate_e(x=1):
+def generate_e_taylor(x=1):
     # Calculate e to the power of some input value x using the Maclaurin series expansion of e^x.
     e = 1
     numerator = 1
     denominator = 1
 
-    for n in range(1, 100):
+    for n in range(1, 50):
         numerator *= x
         denominator *= n
         e += numerator / denominator
     return e
 
 
-def calculate_exponent(x, y):
+def generate_e(x=1):
+    # Calculate e to the power of some input value x using both the Maclaurin series expansion of e^x and
+    # exponentiation by squaring
+    e = 2.7182818284590452
+    integer_part_of_x = int(x)
+    fractional_part_of_x = x - integer_part_of_x
+    return helper_functions.exponentiation_by_squaring(e, integer_part_of_x) * generate_e_taylor(fractional_part_of_x)
+
+
+def calculate_exponent(x, y, root_used=int(1E5)):
     # Calculate value of x to the power of y.
-    # Check type of parameters
-    if not isinstance(x, (int, float)) or isinstance(x, bool):
-        raise exceptions.CalculationError(x + " is not a number")
-    if not isinstance(y, (int, float)) or isinstance(y, bool):
-        raise exceptions.CalculationError(y + " is not a number")
 
-    # Calculate exponent
-    if isinstance(y, int):
-        second_calculation = helper_functions.calculate_exponent_int_only(x, y)
-    else:
-        first_calculation = helper_functions.calculate_root(x)
-        numerator = int(y * 100)
-        second_calculation = helper_functions.calculate_exponent_int_only(first_calculation, numerator)
+    # Calculate exponent in two parts (integer and fractional part)
+    # Calculate integer part using exponentiation by squaring
+    integer_part_of_y = int(y)
+    result = helper_functions.exponentiation_by_squaring(x, integer_part_of_y)
+    # If fractional part remains, approximate it using Newton's method for the denominator and exponentiation by
+    # squaring for the numerator
+    fractional_part_of_y = y - integer_part_of_y
+    if fractional_part_of_y != 0:
+        result *= helper_functions.exponentiation_by_squaring(helper_functions.nth_root(x, root_used), int(root_used * fractional_part_of_y))
 
-    return second_calculation
+    return result
 
 
 def ln_taylor(argument, iterations=50):
@@ -69,9 +75,9 @@ def ln(argument):
     mantissa, exponent = math.frexp(argument)
 
     # It follows from the properties of logarithms that ln(m*2^p)=ln(m)+p*ln(2).
-    LN_2 = 0.6931471805599453  # TODO according to pep8 constants should be module level
+    ln_2 = 0.6931471805599453
     ln_mantissa = ln_taylor(mantissa)
-    return ln_mantissa + exponent * LN_2
+    return ln_mantissa + exponent * ln_2
 
 
 def log(argument, base=10):

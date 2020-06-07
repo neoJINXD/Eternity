@@ -3,33 +3,42 @@
 import numpy as np
 
 
-# This function obtain a dictionary with a number and the
-# corresponding result of that number to the 100th root
-def calculate_approx_square():
-    a = np.arange(1, 1.44, 0.000001)  # Not sure if numpy can be used
-    dictionary = {}
-    new_list = []
-    for items in a:
-        new_list.append(calculate_exponent_int_only(items, 100))
-    value = 0
-    for i in a:
-        dictionary[i] = new_list[value]
-        value = value + 1
-    return dictionary
-
-
-# This function calculates x^y when y is an integer
-def calculate_exponent_int_only(x, y):
-    new_value = 1
+def exponentiation_by_squaring(x, y):
+    # This function calculates x^y when y is an integer.
+    result = 1
+    # if y is negative, we will use the fact that x^y = (1/x)^-y
     if is_negative(y):
-        y = y * -1
-        for value in range(1, y):
-            new_value = new_value * x
-        new_value = take_inverse(new_value)
-    else:
-        for value in range(y):
-            new_value = new_value * x
-    return new_value
+        x = 1 / x
+        y *= -1
+    # Exponentiation by squaring
+    while y > 0:
+        # If y is odd, we can use the fact that x^y = x(x^2)^((n-1)/2)
+        if y & 1 == 1:
+            result *= x
+            y -= 1
+        # Now that y is even, we can use the fact that x^y = (x^2)^(n/2) when y is even
+        x *= x
+        y >>= 1
+    return result
+
+
+def nth_root(x, y, d=1E-10):
+    # This function approximates the nth root of x using Newton's method to the desired level of precision.
+    approx = 1
+    old_approx = approx
+    while True:
+        power = exponentiation_by_squaring(approx, y)
+        approx = (y - 1 + x / power) * (approx / y)
+        # Return current approximation when the absolute difference is within the desired range.
+        diff = power - x if power > x else x - power
+        if diff < d:
+            return approx
+        # Sometimes, floating point numbers are not precise enough to yield the desired level of precision. Under
+        # these circumstances, we see that the approximation eventually stops improving. We need to check for that.
+        diff = old_approx - approx if old_approx > approx else approx - old_approx
+        if diff < 1E-15:
+            return approx
+        old_approx = approx
 
 
 # This function checks if an exponent is negative
@@ -56,6 +65,3 @@ def calculate_root(b):
             break
     return the_number
 
-
-# Static variables
-ListOfValues = calculate_approx_square()
