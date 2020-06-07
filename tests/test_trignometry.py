@@ -40,7 +40,22 @@ class TestTrigonometry(unittest.TestCase):
         self.assertAlmostEqual(trig.sin(-3*PI/4), -0.707106781186, 9)
         self.assertAlmostEqual(trig.sin(-5*PI/6), -0.5, 9)
 
-    def test_sinh_(self):
+    def test_cos_random_numbers(self):
+        self.assertAlmostEqual(trig.cos(6), 0.9601702867, 9)
+        self.assertAlmostEqual(trig.cos(1.75), -0.1782460556, 9)
+        self.assertAlmostEqual(trig.cos(3.6), -0.8967584163, 9)
+        self.assertAlmostEqual(trig.cos(-0.7), 0.7648421873, 9)
+
+    def test_cos_pi_multiples(self):
+        self.assertAlmostEqual(trig.cos(3.1415926535), -1, 9)
+        self.assertAlmostEqual(trig.cos(0), 1, 9)
+        self.assertAlmostEqual(trig.cos(PI), -1, 9)
+        self.assertAlmostEqual(trig.cos(2*PI), 1, 9)
+        self.assertAlmostEqual(trig.cos(-1*PI), -1, 9)
+
+    # TODO need more test cases for cos later
+
+    def test_sinh(self):
         # test for hyberbolic function sinh
         self.assertAlmostEqual(trig.sinh(6), math.sinh(6), 9)
         self.assertAlmostEqual(trig.sinh(1.75), math.sinh(1.75), 9)

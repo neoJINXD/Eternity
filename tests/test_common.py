@@ -7,9 +7,6 @@ import exceptions.exceptions as the_exception
 # test class
 class TestCommon(unittest.TestCase):
 
-    def test_add(self):
-        self.assertEqual(common.add(1, 1), 2)
-
     def test_factorial(self):
         self.assertEqual(common.factorial(6), math.factorial(6))
         self.assertEqual(common.factorial(0), math.factorial(0))  # Test input of 0

@@ -2,10 +2,10 @@ import unittest
 import functions.statistic as std_mad
 import numpy as np
 import pandas as pd
-import exceptions.exceptions as the_exception
+# import exceptions.exceptions as the_exception
 
 
-class stdMadTest(unittest.TestCase):
+class StdMadTest(unittest.TestCase):
     def test_std(self):
         self.assertAlmostEqual(std_mad.std(1, 4, 7, 2, 6), 2.280350850198276, 9)
         self.assertAlmostEqual(std_mad.std(5, 4, 7, 1, 9, 18, 22, 33), 10.270558650823235, 9)
