@@ -4,10 +4,11 @@ function calc() {
 
     var input = document.getElementById('resultInput').value;
 
-    console.log('my inpit: ', input);
-    result = '';
+    document.getElementById('equation').innerHTML = `> ${input}`;
 
-    option = {
+    console.log('my inpit: ', input);
+
+    const option = {
         args: [input]
     };
 
@@ -16,8 +17,9 @@ function calc() {
 
     pyshell.on('message', (msg) => {
         console.log(msg);
-        result = msg;
-        document.getElementById('resultInput').value = result;
+        let result = msg;
+        document.getElementById('answer').innerHTML = `= ${result}`;
+        document.getElementById('resultInput').value = '';
     }); 
 }
 
