@@ -27,13 +27,12 @@ from pyparsing import (
 )
 import math
 import operator
-# from .calculation import Calculation
-import functions as func
 
-# from functions.common import factorial
-# from functions.trignometry import sinh, cosh, tanh, generate_pi, sin
-# from functions.exponents_and_logs import calculate_exponent, generate_e, ln, log
-# from functions.statistic import mad, std
+from functions import common
+from functions import exponent_helper_functions
+from functions import exponents_and_logs
+from functions import statistic
+from functions import trignometry
 
 
 class Parser(object):
@@ -121,17 +120,17 @@ class Parser(object):
                     "*": operator.mul,
                     "/": operator.truediv,
                     "%": operator.mod,
-                    "^": func.exponents_and_logs.calculate_exponent,
-                    "!": func.common.factorial,
+                    "^": exponents_and_logs.calculate_exponent,
+                    "!": common.factorial,
                     }
-        self.fn = {"sinh": func.trignometry.sinh,
-                   "cosh": func.trignometry.cosh,
-                   "tanh": func.trignometry.tanh,
-                   "sin": func.trignometry.sin,
-                   "cos": func.trignometry.cos,
+        self.fn = {"sinh": trignometry.sinh,
+                   "cosh": trignometry.cosh,
+                   "tanh": trignometry.tanh,
+                   "sin": trignometry.sin,
+                   "cos": trignometry.cos,
                    "tan": math.tan,
                    "sqrt": math.sqrt,
-                   "exp": func.exponents_and_logs.generate_e,
+                   "exp": exponents_and_logs.generate_e,
                    "abs": abs,
                    "trunc": int,
                    "round": round,
@@ -141,10 +140,10 @@ class Parser(object):
                    "hypot": math.hypot,
                    # functions with a variable number of arguments
                    "all": lambda *a: all(a),
-                   "mad": func.statistic.mad,
-                   "std": func.statistic.std,
-                   "ln": func.exponents_and_logs.ln,
-                   "log": func.exponents_and_logs.log,
+                   "mad": statistic.mad,
+                   "std": statistic.std,
+                   "ln": exponents_and_logs.ln,
+                   "log": exponents_and_logs.log,
                    }
 
     def evaluate_stack(self, s):
@@ -161,9 +160,9 @@ class Parser(object):
             op1 = self.evaluate_stack(s)
             return self.opn[op](op1, op2)
         elif op == "PI":
-            return func.trignometry.generate_pi()  # 3.1415926535
+            return trignometry.generate_pi()  # 3.1415926535
         elif op == "E":
-            return func.exponents_and_logs.generate_e()  # 2.718281828
+            return exponents_and_logs.generate_e()  # 2.718281828
         elif op in self.fn:
             # note: args are pushed onto the stack in reverse order
             args = reversed([self.evaluate_stack(s) for _ in range(num_args)])
