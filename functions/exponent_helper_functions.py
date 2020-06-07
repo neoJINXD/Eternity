@@ -1,8 +1,10 @@
-# This class is for all the helper functions that were used to calculate the exponent function.
+# This class is for all the helper functions that were
+# used to calculate the exponent function.
 import numpy as np
 
 
-# This function obtain a dictionary with a number and the corresponding result of that number to the 100th root
+# This function obtain a dictionary with a number and the
+# corresponding result of that number to the 100th root
 def calculate_approx_square():
     a = np.arange(1, 1.44, 0.000001)  # Not sure if numpy can be used
     dictionary = {}
