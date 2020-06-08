@@ -26,18 +26,18 @@ def generate_e(x=1):
     return helper_functions.exponentiation_by_squaring(e, integer_part_of_x) * generate_e_taylor(fractional_part_of_x)
 
 
-def calculate_exponent(x, y, root_used=int(1E5)):
+def calculate_exponent(x, y, root_used=int(1E10)):
     # Calculate value of x to the power of y.
 
     # Calculate exponent in two parts (integer and fractional part)
     # Calculate integer part using exponentiation by squaring
     integer_part_of_y = int(y)
-    result = helper_functions.exponentiation_by_squaring(x, integer_part_of_y)
+    result = helper_functions.exponentiation_by_squaring(float(x), integer_part_of_y)
     # If fractional part remains, approximate it using Newton's method for the denominator and exponentiation by
     # squaring for the numerator
     fractional_part_of_y = y - integer_part_of_y
     if fractional_part_of_y != 0:
-        result *= helper_functions.exponentiation_by_squaring(helper_functions.nth_root(x, root_used), int(root_used * fractional_part_of_y))
+        result *= helper_functions.exponentiation_by_squaring(helper_functions.nth_root(float(x), root_used), int(root_used * fractional_part_of_y))
 
     return result
 
