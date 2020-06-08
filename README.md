@@ -12,23 +12,27 @@ Information on team organization, tech stack, and the user guide can be found on
 
 #### Prerequisites
 
+[Requires Python 3.8 installed locally](https://www.python.org/downloads/)
+
 [Requires nodejs installed locally](https://nodejs.org/en/)
 
 #### Running the dev versions
 
 ```bash
+// installs the needed python packages
+pip install -r requirements.txt
 
-// installs the dependencies
+// installs the node dependencies
 npm install
 
-// runs the web app
+// runs the web app on https://localhost:3000/
 npm start
 
 // runs the electron app
 npm run electron
 ```
 
-The application will open in a dedicated desktop window.
+When running electron, the window will open automatically, but for the web app, the web page must be loaded manually
 
 ### Development
 
