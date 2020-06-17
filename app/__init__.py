@@ -1,25 +1,32 @@
 from flask import Flask, render_template, request
 import re
+history=[]
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def frontPage():
+  global history
 
   if request.method == 'GET':
     # Show the basic HTML page
     return render_template('index.html')
     
   elif request.method == 'POST':
-    if 'io' in request.form:
-      # Update HTML page
-      expression = request.form.get('calc') + request.form['io']
-      return render_template('index.html', test=expression)
-
-    else:
+    if 'sm' in request.form:
       # Calculate request
       expression = request.form.get('calc')
       result = str(calcEval(expression))
-      return render_template('index.html', result=result, expression=expression)
+      history.append(expression)
+      return render_template('index.html', result=result, expression=expression, dlist=history)
+    elif 'clr' in request.form:
+      # Display action
+      history = []
+      return render_template('index.html', dlist=history)
+    else:
+      # Update HTML page
+      expression = request.form.get('calc')
+      return render_template('index.html', text=expression)
+	  
     
 from .nparser import Parser
 nsp = Parser()

@@ -1,5 +1,5 @@
-import functions.exponents_and_logs as exp
-import functions.exponent_helper_functions as exp_help
+from . import exponents_and_logs as exp
+from . import exponent_helper_functions as exp_help
 
 
 def generate_pi() -> float:

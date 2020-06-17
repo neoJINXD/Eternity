@@ -19,14 +19,19 @@
     <div class='output'>= {% if result %}{{result}}{% endif %}</div>
 
     <form action="/" method="POST" id='fm'> 
-        <input type="text" style="width: 230px" name="calc" id="input" value="{{ test }}" />  
+        <input type="text" autocomplete="off" style="width: 235px" name="calc" id="input" list="browserList" value="{{ text }}" />  
+        <datalist id="browserList" name="browserList"> 
+            {% for elem in dlist %}
+                <option value= {{elem}}>
+            {% endfor %}
+        </datalist>
         <br/><br/>
         <table>
             <tr>
-                <td><button onclick='clearInput()' class='special' id='1'>AC</button></td>
-                <td><button onclick='deleteEle()' class='special' id='2'>DEL</button></td>
-                <td></td>
-                <td colspan='2'><input type="submit" class="special" value="CAL" style='width:80px;border-radius:35%' /></td>
+                <td><button onclick='clearInput()' class='special' name="ac">AC</button></td>
+                <td><button onclick='deleteEle()' class='special' name="del">DEL</button></td>
+                <td><button onclick='deleteEle()' class='special' name="clr">CLR</button></td>
+                <td colspan='2'><input type="submit" class="special" name="sm" value="CAL" style='width:80px;border-radius:35%' /></td>
             </tr>
         </table>
     </form>
@@ -64,7 +69,7 @@
             <td><button name="io" class="number" value="4" >4</button></td>
             <td><button name="io" class="number" value="5" >5</button></td>
             <td><button name="io" class="number" value="6" >6</button></td>
-            <td> <button name="io" class="operator" value="*" >*</button></td>
+            <td> <button name="io" class="operator" value="×" >×</button></td>
             <td> <button name="io" class="operator" value="/" >/</button></td>
         </tr>
         <tr>
