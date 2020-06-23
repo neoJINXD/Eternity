@@ -28,10 +28,11 @@ from pyparsing import (
 import math
 import operator
 from . import functions as func
-from .calculation import Calculation
+
 
 class Parser(object):
     exprStack = []
+
     def pushFirst(self, strg, loc, toks):
         self.exprStack.append(toks[0])
 
@@ -43,8 +44,6 @@ class Parser(object):
                 break
 
     def __init__(self):
-        cal = Calculation()        
-
         """
         expop   :: '^'
         factop  :: '!'
@@ -78,6 +77,7 @@ class Parser(object):
 
         expr = Forward()
         expr_list = delimitedList(Group(expr))
+
         # add parse action that replaces the function identifier with a (name, number of args) tuple
         def insert_fn_argcount_tuple(t):
             fn = t.pop(0)
@@ -127,7 +127,7 @@ class Parser(object):
                     "trunc": int,
                     "round": round,
                     "sgn": lambda a: -1 if a < -epsilon else 1 if a > epsilon else 0,
-                    # functionsl with multiple arguments
+                    # functions with multiple arguments
                     "multiply": lambda a, b: a * b,
                     "hypot": math.hypot,
                     # functions with a variable number of arguments
@@ -186,6 +186,5 @@ class Parser(object):
                     print(num_string, "=", val)
                     return val
                 else:
-                    print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)       
-
+                    print(num_string + "=", val, " != ", expected, results, "=>", self.exprStack)
 
