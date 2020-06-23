@@ -68,8 +68,8 @@ class Parser(object):
             arg_count = len(tokens[0])
             tokens.insert(0, (function_id, arg_count))
         function_id = Word(alphas)
-        argument_list = delimitedList(expr)
-        function = (function_id + left_bracket - Group(argument_list) + right_bracket).setParseAction(add_arg_count_to_tokens)
+        argument_list = delimitedList(Group(expr)) # Expressions must be in groups so that we can count them seperately
+        function = (function_id + left_bracket + Group(argument_list) + right_bracket).setParseAction(add_arg_count_to_tokens)
         
         # Values
         e = CaselessKeyword("E")
@@ -145,7 +145,7 @@ class Parser(object):
         # Process other unary operators
         if symbol == "!":
             operand = self.evaluate_stack(symbol_stack)
-            return self.opn[symbol](operand)
+            return self.operation_map[symbol](operand)
         # Process binary operators
         operation = self.operation_map.get(symbol, False)
         if operation != False:
