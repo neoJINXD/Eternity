@@ -1,5 +1,5 @@
 import functions.common as common
-import functions.trignometry as trig
+import functions.trigonometry as trig
 import exceptions.exceptions as exceptions
 import math as math
 
