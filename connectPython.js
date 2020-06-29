@@ -40,7 +40,12 @@ function addToExpression(i){
 function clearInput() { document.getElementById('resultInput').value = '' }
 
 // function to delete the last character inputted
-function del() { 
+function del() {
     str = document.getElementById('resultInput').value;
     document.getElementById('resultInput').value = str.substring(0, str.length - 1)
+}
+
+// function to delete the datalist
+function clr() {
+    document.getElementById('browserList').innerHTML = '';
 }

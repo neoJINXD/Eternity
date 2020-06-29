@@ -14,6 +14,11 @@ function del() {
     document.getElementById('resultInput').value = str.substring(0, str.length - 1)
 }
 
+// function to delete the datalist
+function clr() {
+    document.getElementById('browserList').innerHTML = '';
+}
+
 // function to send a request to node to run the python command for calculating the result of the expression
 async function calc() {
     // gets the input from teh textbox
