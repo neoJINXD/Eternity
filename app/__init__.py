@@ -1,37 +1,40 @@
 from flask import Flask, render_template, request
 import re
-history=[]
+
+history = []
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def frontPage():
-  global history
+    global history
 
-  if request.method == 'GET':
-    # Show the basic HTML page
-    return render_template('index.html')
-    
-  elif request.method == 'POST':
-    if 'sm' in request.form:
-      # Calculate request
-      expression = request.form.get('calc')
-      result = str(calcEval(expression))
-      history.append(expression)
-      return render_template('index.html', result=result, expression=expression, dlist=history)
-    elif 'clr' in request.form:
-      # Display action
-      history = []
-      return render_template('index.html', dlist=history)
-    else:
-      # Update HTML page
-      expression = request.form.get('calc')
-      return render_template('index.html', text=expression)
-	  
-    
+    if request.method == 'GET':
+        # Show the basic HTML page
+        return render_template('index.html')
+
+    elif request.method == 'POST':
+        if 'clr' in request.form:
+            # Display action
+            history = []
+            return render_template('index.html', dlist=history)
+        elif 'del' in request.form:
+            # Update HTML page
+            expression = request.form.get('calc')
+            return render_template('index.html', text=expression)
+        else:
+            # 'sm' in request.form:
+            # Calculate request
+            expression = request.form.get('calc')
+            result = str(calcEval(expression))
+            history.append(expression)
+            return render_template('index.html', result=result, expression=expression, dlist=history)
+
+
 from .nparser import Parser
 nsp = Parser()
 def calcEval(equation):
-  '''
+    '''
   calcEval() uses eval(), which is normally a dangerous thing to do.
   To combat this, a list of allowed inputs are made so eval() only gets called if the 
   "equation" given contains only allowed inputs.
@@ -54,13 +57,13 @@ def calcEval(equation):
     except:
       return 'Unknown error occured.' 
   '''
-  try:
-    equation = re.sub('(?<=\d|\))(\()', '*(', equation)
-    equation = equation.replace('π','pi')
-    equation = equation.replace('√','sqrt')
-    result = nsp.eval(equation)
-    return result
-  except:
-    return 'Unknown error occured.'  
-
+    try:
+        equation = re.sub('(?<=\d|\))(\()', '*(', equation)
+        equation = equation.replace('π', 'pi')
+        equation = equation.replace('√', 'sqrt')
+        equation = equation.replace('×', '*')
+        result = nsp.eval(equation)
+        return result
+    except:
+        return 'Unknown error occured.'
 
