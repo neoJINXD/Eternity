@@ -9,7 +9,7 @@ def pow_int(base: float, exponent: int) -> float:
 
     Args:
         base (float): Base of power to be returned
-        exponent (float): Exponent of power to be returned
+        exponent (int): Exponent of power to be returned
 
     Returns:
         float: Value of 'base' to the power of 'exponent'

@@ -36,7 +36,14 @@ def is_even(argument: int) -> bool:
 
     Returns:
         bool: True if 'argument' is even and false otherwise
+        
+    Raises:
+        InputError: If 'argument' is not an integer
     """
+    # Ensure that argument is an integer.
+    if not isinstance(argument, int):
+        raise exceptions.InputError(exponent, "Parity of non-integers is undefined.")
+        
     return not (argument & 1)
 
 
@@ -48,7 +55,14 @@ def is_odd(argument: int) -> bool:
 
     Returns:
         bool: True if 'argument' is odd and false otherwise
+        
+    Raises:
+        InputError: If 'argument' is not an integer
     """
+    # Ensure that argument is an integer.
+    if not isinstance(argument, int):
+        raise exceptions.InputError(exponent, "Parity of non-integers is undefined.")
+        
     return argument & 1
 
 
