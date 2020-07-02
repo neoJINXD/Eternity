@@ -21,14 +21,6 @@ function calc() {
         document.getElementById('answer').innerHTML = `= ${result}`;
         document.getElementById('resultInput').value = '';
     });
-
-    const memory = new python('memory.py', { args: [input] });
-
-    memory.on('message', (msg) => {
-        console.log(msg);
-        let result = msg;
-        document.getElementById('browserList').innerHTML = `= ${result}`;
-    });
 }
 
 // function to add character based on what button was pressed

@@ -25,6 +25,11 @@ async function calc() {
     const input = { expression: document.getElementById('resultInput').value };
     document.getElementById('equation').innerHTML = `> ${input.expression}`;
 
+    dlist = document.getElementById('browserList');
+    option = document.createElement('option');
+    option.value = document.getElementById('resultInput').value;
+    dlist.appendChild(option);
+
     // calls node to perform the calculation over the route
     const response = await fetch(`http://localhost:3000/math`, {
         method: 'POST',
