@@ -1,4 +1,5 @@
 import exceptions.exceptions as exceptions
+import numpy as np
 
 
 def factorial(num: int) -> int:
@@ -24,3 +25,40 @@ def mod(dividend: float, divisor: float) -> float:
     while dividend < divisor:
         dividend += divisor
     return dividend
+
+
+# Function to convert a whole number to binary
+def decimal_to_binary_integer(value):
+    the_array = np.array([])
+    while value != 0:
+        number_to_store = value % 2
+        value = int(value / 2)
+        the_array = np.append(the_array, number_to_store)
+    binary_string = ""
+    array_length = the_array.size
+    for x in reversed(range(array_length)):
+        binary_string = binary_string + str(int(the_array[x]))
+    return binary_string
+
+
+# Function to convert a decimal to binary
+def decimal_to_binary_decimal(value):
+    the_array = np.array([])
+    while value != 0 and (the_array.size <= 10):
+        new_value = float(value * 2)
+        number_to_store = int(new_value)
+        value = new_value % 1
+        the_array = np.append(the_array, int(number_to_store))
+    binary_string = "0."
+    for x in the_array:
+        binary_string = binary_string + str(int(x))
+    return binary_string
+
+# This was used for testing
+# if __name__ == "__main__":
+#     number = 12.5
+#     if number % 1 == 0:  # Means that there isn't a fraction
+#         number = decimal_to_binary_integer(number)
+#     else:
+#         number = decimal_to_binary_integer(number % 10) + decimal_to_binary_decimal(number % 1)
+#     print(number)
