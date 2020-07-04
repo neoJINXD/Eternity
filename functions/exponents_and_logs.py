@@ -79,7 +79,7 @@ def radical(radicand: float, index: int, delta: float = 1E-10) -> float:
             return approx
         old_mantissa = crrt_mantissa
 
-def exp_taylor(exponent: float = 1, term_count: int = 50) -> float:
+def pow_e_taylor(exponent: float = 1, term_count: int = 50) -> float:
     """Returns an approximation of the value of e to the power of some real number 'exponent' using the Maclaurin series expansion of e^x.
     
     This function is typically only used with values of 'exponent' close to 0 (the center of the Maclaurin series). 
@@ -103,7 +103,7 @@ def exp_taylor(exponent: float = 1, term_count: int = 50) -> float:
     return result
 
 
-def exp(exponent: float = 1) -> float:
+def pow_e(exponent: float = 1) -> float:
     """Returns an approximation of the value of e to the power of some real number 'exponent'.
     
     This function combines exponentiation by squaring with the Maclaurin series expansion of e^x 
@@ -120,8 +120,8 @@ def exp(exponent: float = 1) -> float:
     fractional_part_of_exponent = exponent - integer_part_of_exponent
     
     # Approximate power of e.
-    e = exp_taylor(1)
-    return pow_int(e, integer_part_of_exponent) * exp_taylor(fractional_part_of_exponent)
+    e = pow_e_taylor(1)
+    return pow_int(e, integer_part_of_exponent) * pow_e_taylor(fractional_part_of_exponent)
 
 
 def pow(base: float, exponent: float, root_used: int = int(1E10)) -> float:

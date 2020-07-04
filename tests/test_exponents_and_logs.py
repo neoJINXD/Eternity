@@ -1,7 +1,7 @@
 import unittest
 import exceptions.exceptions as exceptions
 import functions.exponents_and_logs as exp
-import functions.trignometry as trig
+import functions.trigonometry as trig
 import math as math
 
 
@@ -10,31 +10,31 @@ class ExponentsTest(unittest.TestCase):
 
     def test_e(self):
         # Tests euler number function's capacity for generating euler number.
-        self.assertAlmostEqual(exp.exp(), math.e, 15)
+        self.assertAlmostEqual(exp.pow_e(), math.e, 15)
 
     def test_exp_input_0(self):
         # Tests euler number function's capacity for handling input of 0.
-        self.assertAlmostEqual(exp.exp(0), math.pow(math.e, 0), 12)
+        self.assertAlmostEqual(exp.pow_e(0), math.pow(math.e, 0), 12)
 
     def test_exp_input_neg(self):
         # Tests euler number function's capacity for handling negative inputs.
-        self.assertAlmostEqual(exp.exp(-10), math.pow(math.e, -10), 12)
-        self.assertAlmostEqual(exp.exp(-3), math.pow(math.e, -3), 12)
+        self.assertAlmostEqual(exp.pow_e(-10), math.pow(math.e, -10), 12)
+        self.assertAlmostEqual(exp.pow_e(-3), math.pow(math.e, -3), 12)
 
     def test_exp_input_rational(self):
         # Tests euler number function's capacity for handling non-integer inputs.
-        self.assertAlmostEqual(exp.exp(0.5), math.pow(math.e, 0.5), 12)
-        self.assertAlmostEqual(exp.exp(5 / 8), math.pow(math.e, 5/8), 12)
+        self.assertAlmostEqual(exp.pow_e(0.5), math.pow(math.e, 0.5), 12)
+        self.assertAlmostEqual(exp.pow_e(5 / 8), math.pow(math.e, 5/8), 12)
 
     def test_exp_input_big(self):
         # Tests euler number function's capacity for handling big numbers
-        self.assertAlmostEqual(exp.exp(32), pow(math.e, 32))  # Accuracy needs work for big numbers, decimal places incorrect
-        self.assertAlmostEqual(exp.exp(18), pow(math.e, 18))
+        self.assertAlmostEqual(exp.pow_e(32), pow(math.e, 32))  # Accuracy needs work for big numbers, decimal places incorrect
+        self.assertAlmostEqual(exp.pow_e(18), pow(math.e, 18))
 
     def test_exp_input_transcendental(self):
         # Tests euler number function's capacity for handling other transcendental numbers such as pi as input
-        self.assertAlmostEqual(exp.exp(trig.generate_pi()), pow(math.e, math.pi))
-        self.assertAlmostEqual(exp.exp(exp.exp()), pow(math.e, math.e))
+        self.assertAlmostEqual(exp.pow_e(trig.generate_pi()), pow(math.e, math.pi))
+        self.assertAlmostEqual(exp.pow_e(exp.pow_e()), pow(math.e, math.e))
 
     def test_exponent_input_pos(self):
         # Tests exponent function's capacity for handling positive integer inputs.

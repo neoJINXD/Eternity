@@ -4,7 +4,19 @@ from functions import statistic
 from functions import trigonometry
 import exceptions.exceptions as exceptions
 
-from pyparsing import *
+from pyparsing import (
+    Literal,
+    Word,
+    Group,
+    Forward,
+    alphas,
+    alphanums,
+    Regex,
+    ParseException,
+    CaselessKeyword,
+    Suppress,
+    delimitedList,
+)
 
 
 class Parser(object):
@@ -87,7 +99,7 @@ class Parser(object):
 
         # Mapping between constant names and providers
         self.constant_map = {   "PI": trigonometry.generate_pi,
-                                "E": exponents_and_logs.exp,
+                                "E": exponents_and_logs.pow_e(1),
                             }
         # Mapping between operators and appropriate function calls
         self.operation_map = {  "+": lambda a, b: a + b,
@@ -112,10 +124,11 @@ class Parser(object):
                                 "sqrt": lambda a: exponents_and_logs.radical(a, 2),
                                 "radical": exponents_and_logs.radical,
                                 "root": exponents_and_logs.radical,
-                                "exp": exponents_and_logs.exp,
                                 "pow": exponents_and_logs.pow,
                                 "powTen": exponents_and_logs.pow_10,
                                 "powPi": exponents_and_logs.pow_pi,
+                                "powE": exponents_and_logs.pow_e,
+                                "exp": exponents_and_logs.pow_e,
                                 "ln": exponents_and_logs.ln,
                                 "log": exponents_and_logs.log,
                                 # Statistics functions
@@ -204,6 +217,6 @@ class Parser(object):
         except OverflowError:
             raise Exception("Error: Overflow error occured.")
         except ParseException as e:
-            raise Exception("Parsing Error: " + str(e))
+            raise Exception("Parsing Error: Invalid input entered.") # Not using error message because it's unintuitive to non-technical users.
         except Exception as e:
             raise Exception("Evaluation Error: " + str(e))

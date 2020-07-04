@@ -121,7 +121,7 @@ def sinh(argument: float) -> float:
     Returns:
         float: Approximation of the value of sinh('argument')
     """
-    e = exp.exp(argument)
+    e = exp.pow_e(argument)
     return (e - common.inverse(e)) / 2
 
 
@@ -134,7 +134,7 @@ def cosh(argument: float) -> float:
     Returns:
         float: Approximation of the value of cosh('argument')
     """
-    e = exp.exp(argument)
+    e = exp.pow_e(argument)
     return (e + common.inverse(e)) / 2
 
 
@@ -147,5 +147,5 @@ def tanh(argument: float) -> float:
     Returns:
         float: Approximation of the value of tanh('argument')
     """
-    e = exp.exp(argument)
+    e = exp.pow_e(argument)
     return (e - common.inverse(e)) / (e + common.inverse(e))
