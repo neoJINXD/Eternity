@@ -14,11 +14,21 @@ function del() {
     document.getElementById('resultInput').value = str.substring(0, str.length - 1)
 }
 
+// function to delete the datalist
+function clr() {
+    document.getElementById('browserList').innerHTML = '';
+}
+
 // function to send a request to node to run the python command for calculating the result of the expression
 async function calc() {
     // gets the input from teh textbox
     const input = { expression: document.getElementById('resultInput').value };
     document.getElementById('equation').innerHTML = `> ${input.expression}`;
+
+    dlist = document.getElementById('browserList');
+    option = document.createElement('option');
+    option.value = document.getElementById('resultInput').value;
+    dlist.appendChild(option);
 
     // calls node to perform the calculation over the route
     const response = await fetch(`http://localhost:3000/math`, {
