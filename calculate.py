@@ -2,6 +2,7 @@ import sys
 import re
 from parse import Parser
 
+
 def evaluate(expression: str) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
@@ -24,6 +25,7 @@ def evaluate(expression: str) -> str:
         return parser.evaluate(expression)
     except Exception as e:
         return str(e)
+
 
 if __name__ == "__main__":
     expression = sys.argv[1]

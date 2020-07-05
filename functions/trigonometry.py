@@ -4,12 +4,12 @@ import functions.exponents_and_logs as exp
 
 def generate_pi(term_count: int = 150) -> float:
     """Returns an approximation of the value of PI.
-    
-    PI is approximated using Nilakantha's infinite series. 
-    
+
+    PI is approximated using Nilakantha's infinite series.
+
     Args:
         term_count (int): Number of terms of Nilakantha's series used to approximate PI
- 
+
     Returns:
         float: Approximation of the value of PI
     """
@@ -18,20 +18,20 @@ def generate_pi(term_count: int = 150) -> float:
     for i in range(2, term_count, 2):
         pi += (sign * 4 / (i * (i + 1) * (i + 2)))
         sign *= -1
-        
+
     return pi
 
 
 def sin_taylor(angle: float, term_count: int = 150) -> float:
     """Returns an approximation of the value of sin('angle') using the Maclaurin series expansion of sin(x).
-    
+
     This approximation is typically used for values of 'angle' close to the center of the expansion (0).
     Larger values of x require more terms to converge.
-    
+
     Args:
         angle (float): Input to sin function
         term_count (int): Number of terms of Maclaurin series used to approximate value of sin('angle')
- 
+
     Returns:
         float: Approximation of the value of sin('angle')
     """
@@ -48,14 +48,14 @@ def sin_taylor(angle: float, term_count: int = 150) -> float:
 
 def cos_taylor(angle: float, term_count: int = 150) -> float:
     """Returns an approximation of the value of cos('angle') using the Maclaurin series expansion of cos(x).
-    
+
     This approximation is typically used for values of 'angle' close to the center of the expansion (0).
     Larger values of x require more terms to converge.
-    
+
     Args:
         angle (float): Input to cos function
         term_count (int): Number of terms of Maclaurin series used to approximate value of cos('angle')
- 
+
     Returns:
         float: Approximation of the value of cos('angle')
     """
@@ -72,10 +72,10 @@ def cos_taylor(angle: float, term_count: int = 150) -> float:
 
 def sin(angle: float) -> float:
     """Returns an approximation of the value of sin('angle').
-    
+
     Args:
         angle (float): Input to sin function
- 
+
     Returns:
         float: Approximation of the value of sin('angle')
     """
@@ -85,10 +85,10 @@ def sin(angle: float) -> float:
 
 def cos(angle: float) -> float:
     """Returns an approximation of the value of cos('angle').
-    
+
     Args:
         angle (float): Input to cos function
- 
+
     Returns:
         float: Approximation of the value of cos('angle')
     """
@@ -98,10 +98,10 @@ def cos(angle: float) -> float:
 
 def tan(angle: float) -> float:
     """Returns an approximation of the value of tan('angle').
-    
+
     Args:
         angle (float): Input to tan function
- 
+
     Returns:
         float: Approximation of the value of tan('angle')
     """
@@ -112,12 +112,13 @@ def tan(angle: float) -> float:
     cos = cos_taylor(angle)
     return sin/cos
 
+
 def sinh(argument: float) -> float:
     """Returns an approximation of the value of sinh('argument').
-    
+
     Args:
         argument (float): Input to hyperbolic sin function
- 
+
     Returns:
         float: Approximation of the value of sinh('argument')
     """
@@ -127,10 +128,10 @@ def sinh(argument: float) -> float:
 
 def cosh(argument: float) -> float:
     """Returns an approximation of the value of cosh('argument').
-    
+
     Args:
         argument (float): Input to hyperbolic cos function
- 
+
     Returns:
         float: Approximation of the value of cosh('argument')
     """
@@ -140,10 +141,10 @@ def cosh(argument: float) -> float:
 
 def tanh(argument: float) -> float:
     """Returns an approximation of the value of tanh('argument').
-    
+
     Args:
         argument (float): Input to hyperbolic tan function
- 
+
     Returns:
         float: Approximation of the value of tanh('argument')
     """
