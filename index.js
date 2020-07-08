@@ -11,11 +11,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/math', (req, res) => {
-    // res.send(req.params.expression);
-    
-    //console.log(req.body.expression);
-    // TODO maybe validate inpute here too?
-
     //do python math here
     const python = require('python-shell');
     const path = require('path');

@@ -1,39 +1,25 @@
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
-const url = require('url')
+const {app, BrowserWindow} = require('electron');
+const path = require('path');
+const url = require('url');
 const pyshell =  require('python-shell');
 
+// Connecting with our web app to use the same API
+const express = require('./index'); 
 
+// Initializing the electron app
 
 function createWindow () {
-    window = new BrowserWindow({
+    //express();
+    let window = new BrowserWindow({
       width: 800, 
-      height: 600
+      height: 600,
+      webPreferences: {
+        nodeIntegration: true
+      }
     })
-    //window.loadURL('https://youtube.com')
-    //console.log(`Loading: file://${__dirname}/public/index.html`);
-    
-    window.loadURL(`file://${__dirname}/index.html`)
-    window.setAlwaysOnTop(true)
 
-    
-  //   	var python = require('child_process').spawn('python', ['./hello.py']);
-	//     python.stdout.on('data',function(data){
-  //   	console.log("data: ",data.toString('utf8'));
-	// });
-
-
-  
-
-  //pyshell.run('hello.py',  function  (err, results)  {
-  //if  (err)  throw err;
-  //console.log('hello.py finished.');
-  //console.log('results', results);
-  //document.getElementById('resultInput').innerHTML = results;
-// });   	
-    
+    window.loadURL('http://localhost:3000/');
 }
-
 
 
 app.on('ready', createWindow)
