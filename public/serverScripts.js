@@ -1,6 +1,11 @@
 // function to add character based on what button was pressed
-function addToExpression(i){
-    document.getElementById('resultInput').value = document.getElementById('resultInput').value + i;
+function addToExpression(toInsert) {
+    var textField = document.getElementById('resultInput');
+    var oldText = textField.value;
+    var carretPosition = textField.selectionStart
+    var newText = oldText.substring(0, carretPosition) + toInsert + oldText.substring(carretPosition);
+    textField.value = newText;
+    textField.selectionStart = carretPosition + length(toInsert);
 }
 
 // function to clear the input field

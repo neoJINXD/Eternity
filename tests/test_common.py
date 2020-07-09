@@ -20,6 +20,15 @@ class TestCommon(unittest.TestCase):
         with self.assertRaises(the_exception.InputError):
             common.factorial(56.3)
 
+    def test_exponent_negative(self):
+        self.assertEqual(common.is_negative(-5), True)
+        self.assertEqual(common.is_negative(5), False)
+
+    def test_inverse(self):
+        self.assertEqual(common.inverse(5), 1 / 5)
+        self.assertEqual(common.inverse(-5), - 1 / 5)
+        self.assertEqual(common.inverse(-1 / 5), - 5)
+
 
 # Allows us to run the tests immediately when this file is run
 if __name__ == '__main__':

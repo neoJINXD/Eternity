@@ -1,22 +1,32 @@
 import sys
 import re
-from nparser import Parser
+from parse import Parser
 
-expression = sys.argv[1]
 
-# TODO pep8 says that we should catch specific errors 
-def calc_eval(equation):
-    nsp = Parser()
+def evaluate(expression: str) -> str:
+    """Evaluates a mathematical expression passed as a string and returns the result as another string.
+
+    Args:
+        expression (str): Expression to evaluate
+
+    Returns:
+        str: Result of evaluation of 'expression'
+    """
+    parser = Parser()
     try:
-        equation = re.sub('(?<=\d|\))(\()', '*(', equation)
-        equation = equation.replace('π', 'PI')
-        equation = equation.replace('e', 'E')
-        equation = equation.replace('√', 'sqrt')
-        result = nsp.eval(equation)
-        return result
-    except:
-        return 'Unknown error occured.'
+        # Make implicit multiplications between bracketed items explicit.
+        expression = re.sub('(?<=\d|\))(\()', '*(', expression)
+        # Ensure that characters used can be read by parser.
+        # Math euler's constant to the letter e when not surrounded by other letters
+        expression = re.sub('(?![a-zA-Z])e(?![a-zA-Z])', 'E', expression)
+        expression = expression.replace('π', 'PI')
+        expression = expression.replace('√', 'sqrt')
+        # Evaluate expression
+        return parser.evaluate(expression)
+    except Exception as e:
+        return str(e)
 
 
-print(calc_eval(expression))
-sys.stdout.flush()
+if __name__ == "__main__":
+    expression = sys.argv[1]
+    print(evaluate(expression))
