@@ -12,6 +12,6 @@
         "ecmaVersion": 11
     },
     "rules": {
-        "no-restricted-globals": ["length"]
+        "no-restricted-globals": 0
     }
 }

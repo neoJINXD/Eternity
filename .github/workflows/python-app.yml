@@ -40,3 +40,13 @@ jobs:
       run: |
         coverage run -m unittest
         coverage report -m
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Eslint on Node.js
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 12.x
+      - run: npm install
+      - run: npm run lint
