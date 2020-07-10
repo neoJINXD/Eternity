@@ -2,8 +2,14 @@
 
 // function to add character based on what button was pressed
 /* eslint-disable-next-line */
-function addToExpression(i) {
-  document.getElementById('resultInput').value = document.getElementById('resultInput').value + i;
+function addToExpression(toInsert) {
+  const textField = document.getElementById('resultInput');
+  const oldText = textField.value;
+  const carretPosition = textField.selectionStart;
+  const newText = oldText.substring(0, carretPosition)
+                    + toInsert + oldText.substring(carretPosition);
+  textField.value = newText;
+  textField.selectionStart = carretPosition + length(toInsert);
 }
 
 // function to clear the input field
