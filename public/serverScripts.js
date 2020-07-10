@@ -15,7 +15,7 @@ function addToExpression(toInsert) {
 // function to clear the input field
 /* eslint-disable-next-line */
 function clearInput() {
-  document.getElementById('resultInput').value = ''
+  document.getElementById('resultInput').value = '';
 }
 
 // function to delete the last character inputted
