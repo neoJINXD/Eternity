@@ -45,8 +45,8 @@ class Parser(object):
 
     def __init__(self):
         """
-        expop   :: '^'
         factop  :: '!'
+        expop   :: '^'
         multop  :: '*' | '/' | '%'
         addop   :: '+' | '-'
         integer :: ['+' | '-'] '0'..'9'+
@@ -99,9 +99,8 @@ class Parser(object):
         # exponents, instead of left-to-right that is, 2^3^2 = 2^(3^2), not (2^3)^2.
         # term = factor + (multop + factor).setParseAction(self.pushFirst)[...]
         factor = Forward()
-        factor <<= atom + (expop + factor).setParseAction(self.pushFirst)[...]
-        facto = factor + (factop).setParseAction(self.pushFirst)[...]
-        term = facto + (multop + facto).setParseAction(self.pushFirst)[...]
+        factor <<= atom + (factop | (expop + factor)).setParseAction(self.pushFirst)[...]
+        term = factor + (multop + factor).setParseAction(self.pushFirst)[...]
         expr <<= term + (addop + term).setParseAction(self.pushFirst)[...]
         self.bnf = expr
 
