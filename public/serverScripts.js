@@ -59,11 +59,16 @@ async function calc() {
   document.getElementById('resultInput').value = '';
 }
 
-$(document).ready(function(){
-	$('#resultInput').on("keydown", function(e) {
-		if(e.which === 13) { // enter key
-			e.preventDefault(); // prevents linebreak
-			calc(); // add your submit call
-		}
-	});
-});
+document.addEventListener('DOMContentLoaded', function(){
+    var input = document.getElementById('resultInput');
+
+  // Execute a function when the user releases a key on the keyboard
+  input.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      calc();
+    }
+  });
+}, false);
+
