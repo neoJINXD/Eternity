@@ -58,3 +58,12 @@ async function calc() {
   document.getElementById('answer').innerHTML = `= ${json.answer}`;
   document.getElementById('resultInput').value = '';
 }
+
+$(document).ready(function(){
+	$('#resultInput').on("keydown", function(e) {
+		if(e.which === 13) { // enter key
+			e.preventDefault(); // prevents linebreak
+			calc(); // add your submit call
+		}
+	});
+});
