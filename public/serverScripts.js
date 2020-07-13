@@ -58,3 +58,16 @@ async function calc() {
   document.getElementById('answer').innerHTML = `= ${json.answer}`;
   document.getElementById('resultInput').value = '';
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('resultInput');
+
+  // Execute a function when the user releases a key on the keyboard
+  input.addEventListener('keyup', (event) => {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      calc();
+    }
+  });
+}, false);
