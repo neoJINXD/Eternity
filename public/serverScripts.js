@@ -59,11 +59,11 @@ async function calc() {
   document.getElementById('resultInput').value = '';
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-    var input = document.getElementById('resultInput');
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('resultInput');
 
   // Execute a function when the user releases a key on the keyboard
-  input.addEventListener("keyup", function(event) {
+  input.addEventListener('keyup', (event) => {
     // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -71,4 +71,3 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 }, false);
-
