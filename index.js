@@ -15,11 +15,11 @@ app.post('/math', (req, res) => {
   // do python math here
   // const python = require('python-shell');
   const input = req.body.expression;
-  const is_rad = req.body.is_rad;
+  let isRad = req.body.is_rad;
   // console.log('my input: ', input);
 
   const option = {
-    args: [input, is_rad],
+    args: [input, isRad],
   };
 
   // TODO change to always listening python shell instead of creating and deleting everytime
