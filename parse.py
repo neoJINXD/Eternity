@@ -59,9 +59,16 @@ class Parser(object):
         if is_negative:
             self._symbol_stack.append('unary -')
 
-    def __init__(self: object) -> None:
+    def __init__(self: object, is_rad: bool) -> None:
         """Define grammar to be used by parser and parse actions to be used in constructing the symbol stack.
+
+        Args:
+            is_rad (bool): Angle mode
         """
+
+        # Angle Mode
+        self.is_rad = is_rad
+
         # Expressions
         expr = Forward()
 
@@ -78,6 +85,7 @@ class Parser(object):
             function_id = tokens.pop(0)
             arg_count = len(tokens[0])
             tokens.insert(0, (function_id, arg_count))
+
         function_id = Word(alphas)
         # Expressions must be in groups so that we can count them separately.
         argument_list = delimitedList(Group(expr))
@@ -95,17 +103,17 @@ class Parser(object):
         atom = (addition_operation[...] + (
                 (function | value).setParseAction(self.push_first) |
                 Group(left_bracket + expr + right_bracket)
-                )).setParseAction(self.push_unary_operator)
+        )).setParseAction(self.push_unary_operator)
         factor << atom + (
                 (power_operation + factor) |
                 factorial_operation
-                ).setParseAction(self.push_first)[...]
+        ).setParseAction(self.push_first)[...]
         term = factor + (
                 multiplication_operation + factor
-                ).setParseAction(self.push_first)[...]
+        ).setParseAction(self.push_first)[...]
         expr << term + (
                 addition_operation + term
-                ).setParseAction(self.push_first)[...]
+        ).setParseAction(self.push_first)[...]
         self.bnf = expr
 
         # Mapping between constant names and providers
@@ -123,14 +131,7 @@ class Parser(object):
                               }
         # Mapping between function ids and appropriate function calls.
         # Remember that function names must only contain letters.
-        self.function_map = {  # Basic trigonometry functions
-            "sin": trigonometry.sin,
-            "cos": trigonometry.cos,
-            "tan": trigonometry.tan,
-            # Hyperbolic trigonometry functions
-            "sinh": trigonometry.sinh,
-            "cosh": trigonometry.cosh,
-            "tanh": trigonometry.tanh,
+        self.function_map = {
             # Exponential and logarithmic functions
             "sqrt": lambda a: exponents_and_logs.radical(a, 2),
             "radical": exponents_and_logs.radical,
@@ -146,6 +147,19 @@ class Parser(object):
             "mean": statistic.mean,
             "mad": statistic.mad,
             "std": statistic.std
+        }
+
+        # Mapping between trig function ids and appropriate function calls.
+        # Remember that function names must only contain letters.
+        self.trig_map = {
+            # Basic trigonometry functions
+            "sin": trigonometry.sin,
+            "cos": trigonometry.cos,
+            "tan": trigonometry.tan,
+            # Hyperbolic trigonometry functions
+            "sinh": trigonometry.sinh,
+            "cosh": trigonometry.cosh,
+            "tanh": trigonometry.tanh,
         }
 
     def evaluate_stack(self: object, symbol_stack: list) -> str:
@@ -184,6 +198,14 @@ class Parser(object):
             args = reversed([self.evaluate_stack(symbol_stack)
                              for _ in range(num_args)])
             return operation(*args)
+        # Process trig function calls
+        operation = self.trig_map.get(symbol, False)
+        if operation:
+            # Begin by getting arguments.
+            # Note that arguments are pushed onto tack in reverse order.
+            args = reversed([self.evaluate_stack(symbol_stack)
+                             for _ in range(num_args)])
+            return trigonometry.process_angle_mode(*args, self.is_rad, operation)
         # Process constants.
         operation = self.constant_map.get(symbol, False)
         if operation:

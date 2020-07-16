@@ -17,7 +17,7 @@ def evaluate(expression: str, is_rad: bool) -> str:
     if exp_is_blank(expression):
         return ""
 
-    parser = Parser()
+    parser = Parser(is_rad == "true")
     try:
         # Make implicit multiplications between bracketed items explicit.
         expression = re.sub('(?<=\d|\))(\()', '*(', expression)
