@@ -11,6 +11,7 @@ def rad(deg: float) -> float:
     """
 
     return float(Decimal(deg) * Decimal(trig.generate_pi()) / Decimal(180.0))
+     # TO SHOW ACCURACY: return float(Decimal(deg) * Decimal(math.pi) / Decimal(180.0))
 
 
 def deg(rad: float) -> float:
@@ -22,3 +23,5 @@ def deg(rad: float) -> float:
     """
 
     return float(Decimal(rad) * Decimal(180.0) / Decimal(trig.generate_pi()))
+    # TO SHOW ACCURACY: return float(Decimal(rad) * Decimal(180.0) / Decimal(math.pi))
+

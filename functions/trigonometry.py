@@ -154,7 +154,8 @@ def tanh(argument: float) -> float:
 
 
 def process_angle_mode(argument: float, is_rad: bool, operation) -> float:
-    """Returns an approximation of the value of PI.
+    """Returns value of trigonometric function using appropriate angle mode.
+       Used as a wrapper in the parser for all trigonometric functions.
 
     Args:
         argument (float): initial angle specified
@@ -167,8 +168,7 @@ def process_angle_mode(argument: float, is_rad: bool, operation) -> float:
 
 # Default results are in radians
     if(not is_rad):
-        argument = display.rad(argument)
-        return display.deg(operation(argument))
+        return operation(display.rad(argument))
 
     return operation(argument)
 
