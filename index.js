@@ -15,7 +15,7 @@ app.post('/math', (req, res) => {
   // do python math here
   // const python = require('python-shell');
   const input = req.body.expression;
-  let isRad = req.body.is_rad;
+  const isRad = req.body.is_rad;
   // console.log('my input: ', input);
 
   const option = {
