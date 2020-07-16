@@ -12,8 +12,11 @@ def evaluate(expression: str, is_rad:bool) -> str:
         is_rad (bool): Determines if in radian mode
 
     Returns:
-        str: Result of evaluation of 'expression
+        str: Result of evaluation of expression
     """
+    if exp_is_blank(expression):
+        return ""
+
     parser = Parser()
     try:
         # Make implicit multiplications between bracketed items explicit.
@@ -26,24 +29,44 @@ def evaluate(expression: str, is_rad:bool) -> str:
 
 
         #Convert numbers directly to rad
-        if input_is_only_num(expression):
+        if exp_is_only_num(expression):
             if is_rad == "true":
-                expression = "2"
+                expression = str(display.rad((float)(expression)))
             elif is_rad == "false":
-                expression = "1"
+                expression = str(display.deg((float)(expression)))
 
         # Evaluate expression
         return parser.evaluate(expression)
     except Exception as e:
         return str(e)
 
-def input_is_only_num(expression):
+
+def exp_is_only_num(expression: str) -> bool:
+    """Evaluates mathematical expression passed to determine if it is a number (float or int)
+
+    Args:
+        expression (str): Expression to evaluate
+
+    Returns:
+        bool: Result of evaluation of expression type
+    """
     try:
         float(expression)
         return True
     except ValueError:
         return False
 
+
+def exp_is_blank (expression: str) -> bool:
+    """Evaluates mathematical expression passed to determine if it is empty
+
+        Args:
+            expression (str): Expression to evaluate
+
+        Returns:
+            bool: Result of evaluation of expression length
+        """
+    return not (expression and expression.strip())
 
 if __name__ == "__main__":
     expression = sys.argv[1]
