@@ -165,10 +165,10 @@ def process_angle_mode(argument: float, is_rad: bool, operation) -> float:
         float: value of function
     """
 
-    if(is_rad):
-        argument = display.deg(argument)
-        result = operation(argument)
-        return display.rad(result)
+# Default results are in radians
+    if(not is_rad):
+        argument = display.rad(argument)
+        return display.deg(operation(argument))
 
     return operation(argument)
 

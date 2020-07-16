@@ -9,7 +9,7 @@ def rad(deg: float) -> float:
            float: Radian of input
     """
 
-    return (deg * trig.generate_pi())/ 180
+    return deg * (trig.generate_pi()/ 180)
 
 
 def deg(rad: float) -> float:
@@ -20,4 +20,4 @@ def deg(rad: float) -> float:
            float: Degree of input
     """
 
-    return (rad * 180) / trig.generate_pi()
+    return rad * (180 / trig.generate_pi())
