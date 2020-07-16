@@ -1,5 +1,6 @@
 import functions.trigonometry as trig
-
+from decimal import *
+import math
 
 def rad(deg: float) -> float:
     """Returns the radians corresponding to input angle
@@ -9,7 +10,7 @@ def rad(deg: float) -> float:
            float: Radian of input
     """
 
-    return deg * (trig.generate_pi()/ 180)
+    return float(Decimal(deg) * Decimal(trig.generate_pi()) / Decimal(180.0))
 
 
 def deg(rad: float) -> float:
@@ -20,4 +21,4 @@ def deg(rad: float) -> float:
            float: Degree of input
     """
 
-    return rad * (180 / trig.generate_pi())
+    return float(Decimal(rad) * Decimal(180.0) / Decimal(trig.generate_pi()))
