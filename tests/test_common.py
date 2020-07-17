@@ -20,6 +20,9 @@ class TestCommon(unittest.TestCase):
         with self.assertRaises(the_exception.InputError):
             common.factorial(56.3)
 
+    def test_factorial_float_raise_error(self):  # 0b is removed from bin result for all unit tests
+        self.assertEqual((common.convert_to_binary(6)), bin(6).replace("0b", ""))  # Test for positive integer
+        self.assertEqual((common.convert_to_binary(-6)), bin(-6).replace("0b", ""))  # Test for negative integer
 
 # Allows us to run the tests immediately when this file is run
 if __name__ == '__main__':
