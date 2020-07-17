@@ -35,8 +35,8 @@ function clr() {
 // for calculating the result of the expression
 /* eslint-disable-next-line */
 async function calc() {
-  // gets the input from teh textbox
-  const input = { expression: document.getElementById('resultInput').value };
+  // gets the input from the textbox
+  const input = { expression: document.getElementById('resultInput').value, is_rad: document.getElementById('angleMode').checked };
   document.getElementById('equation').innerHTML = `> ${input.expression}`;
 
   const dlist = document.getElementById('browserList');

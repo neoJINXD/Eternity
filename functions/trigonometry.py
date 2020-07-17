@@ -1,5 +1,6 @@
 import functions.common as common
 import functions.exponents_and_logs as exp
+import functions.output_display as display
 
 
 def generate_pi(term_count: int = 150) -> float:
@@ -150,3 +151,25 @@ def tanh(argument: float) -> float:
     """
     e = exp.pow_e(argument)
     return (e - common.inverse(e)) / (e + common.inverse(e))
+
+
+def process_angle_mode(argument: float, is_rad: bool, operation) -> float:
+    """Returns value of trigonometric function using appropriate angle mode.
+       Used as a wrapper in the parser for all trigonometric functions.
+
+    Args:
+        argument (float): initial angle specified
+        is_rad(bool): angle mode
+        operation: trigonometric function
+
+    Returns:
+        float: value of function
+    """
+
+# Default results are in radians
+    if(not is_rad):
+        return operation(display.rad(argument))
+
+    return operation(argument)
+
+
