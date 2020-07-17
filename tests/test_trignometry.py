@@ -1,5 +1,5 @@
 import unittest
-import functions.trignometry as trig
+import functions.trigonometry as trig
 import math
 
 # temporary const for PI

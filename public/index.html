@@ -16,14 +16,15 @@
     <div id="equation"></div>
     <div id="answer"></div>
 
-    <input id="resultInput" type="text" style="width: 210px" name="calc" value="" /> 
+    <input id="resultInput" type="text" autocomplete="off" style="width: 210px" name="calc" list="browserList" value="" />
+    <datalist id="browserList" name="browserList"></datalist>
     <br/><br/>
 
     <table>
         <tr>
             <td><button onclick='clearInput()' class='special' id='1'>AC</button></td>
             <td><button onclick='del()' class='special' id='2'>DEL</button></td>
-            <td></td>
+            <td><button onclick='clr()' class='special' id='3'>CLR</button></td>
             <td colspan='2'><input onclick='calc()' type="submit" class="special" value="CAL" style='width:80px;border-radius:35%' /></td>
         </tr>
         <tr>
