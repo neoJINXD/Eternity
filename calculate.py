@@ -4,17 +4,18 @@ from parse import Parser
 import functions.output_display as display
 
 
-def evaluate(expression: str, is_rad: bool) -> str:
+def evaluate(expression: str, is_rad: bool, is_speech: bool) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
     Args:
         expression (str): Expression to evaluate
         is_rad (bool): Determines if in radian mode
+        is_speech (bool): Determines if in speech mode
 
     Returns:
         str: Result of evaluation of expression
     """
-    if exp_is_blank(expression):
+    if exp_is_blank(expression) and is_speech == "false":
         return ""
 
     parser = Parser(is_rad == "true")
@@ -28,7 +29,7 @@ def evaluate(expression: str, is_rad: bool) -> str:
         expression = expression.replace('√', 'sqrt')
 
         # Convert numbers directly to rad
-        if exp_is_only_num(expression):
+        if exp_is_only_num(expression) and is_speech == "false":
             if is_rad == "true":
                 expression = str(display.rad((float)(expression)))
             elif is_rad == "false":
@@ -71,4 +72,5 @@ def exp_is_blank(expression: str) -> bool:
 if __name__ == "__main__":
     expression = sys.argv[1]
     is_rad = sys.argv[2]
-    print(evaluate(expression, is_rad.lower()))
+    is_speech = sys.argv[3]
+    print(evaluate(expression, is_rad.lower(), is_speech.lower()))
