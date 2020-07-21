@@ -36,7 +36,9 @@ function clr() {
 /* eslint-disable-next-line */
 async function calc() {
   // gets the input from the textbox
-  const input = { expression: document.getElementById('resultInput').value, is_rad: document.getElementById('angleMode').checked };
+  const input = { expression: document.getElementById('resultInput').value,
+  is_rad: document.getElementById('angleMode').checked,
+  is_binary: document.getElementById('binOutput').checked};
   document.getElementById('equation').innerHTML = `> ${input.expression}`;
 
   const dlist = document.getElementById('browserList');

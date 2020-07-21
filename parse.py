@@ -69,6 +69,9 @@ class Parser(object):
         # Angle Mode
         self.is_rad = is_rad
 
+        # Binary Mode
+        # self.is_binary = is_binary
+
         # Expressions
         expr = Forward()
 

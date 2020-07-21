@@ -14,6 +14,7 @@ def evaluate(expression: str, is_rad: bool) -> str:
     Returns:
         str: Result of evaluation of expression
     """
+
     if exp_is_blank(expression):
         return ""
 
@@ -30,12 +31,15 @@ def evaluate(expression: str, is_rad: bool) -> str:
         # Convert numbers directly to rad
         if exp_is_only_num(expression):
             if is_rad == "true":
-                expression = str(display.rad((float)(expression)))
+                expression = str(display.rad(float(expression)))
             elif is_rad == "false":
-                expression = str(display.deg((float)(expression)))
+                expression = str(display.deg(float(expression)))
 
         # Evaluate expression
-        return parser.evaluate(expression)
+        evaluation = parser.evaluate(expression)
+        # if is_binary == "true":
+        #     evaluation = convert_to_binary(evaluation)
+        return evaluation
     except Exception as e:
         return str(e)
 
@@ -69,6 +73,10 @@ def exp_is_blank(expression: str) -> bool:
 
 
 if __name__ == "__main__":
-    expression = sys.argv[1]
-    is_rad = sys.argv[2]
-    print(evaluate(expression, is_rad.lower()))
+    print(sys.argv)
+
+    # expression = sys.argv[1]
+    # is_rad = sys.argv[2]
+    # # is_binary = sys.argv[3]
+    # print(evaluate(expression, is_rad.lower()))
+    # # print(evaluate(expression, is_rad.lower(), is_binary.lower()))
