@@ -1,6 +1,7 @@
 import numpy as np
 
 import functions.trigonometry as trig
+import functions.exponents_and_logs as exponents
 from decimal import *
 import math
 
@@ -88,6 +89,63 @@ def convert_to_binary(number: float) -> str:
         return "-" + binary_result
 
 
+def convert_to_decimal(number: float) -> float:
+    """Returns a float that contains the equivalent of the binary value entered
+         Args:
+             number (float): Value in binary
+         Returns:
+             float: Value in decimal
+     """
+    if number >= 0:
+        pos_sign = True
+    else:
+        pos_sign = False
+    if number % 1 == 0:  # Means that there isn't a fraction
+        decimal_result = int_binary_to_decimal(number)
+    else:  # Means that it's not a whole number and integer and fraction will be calculated individually
+        string_number = str(number)
+        decimal_index = string_number.index('.')
+        decimal_number = float(string_number[decimal_index:])
+        decimal_result = int_binary_to_decimal(int(number)) + float_binary_to_decimal(decimal_number % 1)
+    if pos_sign:
+        return decimal_result
+    else:
+        return decimal_result * -1
+
+def int_binary_to_decimal(value: float) -> float:
+    """Returns a float that contains the integer equivalent of the binary value entered
+        Args:
+            value (float): Value in binary
+        Returns:
+            float: Value in decimal
+    """
+    the_number = str(value)
+    position = 0
+    value = 0
+    for char in reversed(the_number):
+        # print(int(char))
+        value = value + (int(char) * exponents.pow(2,position))
+        position = position + 1
+    return value
+
+
+def float_binary_to_decimal(value: float) -> float:
+    """Returns a float that contains the decimal equivalent of the binary value entered
+        Args:
+            value (float): Value in binary
+        Returns:
+            float: Value in decimal
+    """
+    the_number = str(value)[2:]
+    position = -1
+    value = 0
+    for char in the_number:
+        value = value + (int(char) * exponents.pow(2,position))
+        position = position - 1
+    return value
+
+
 # This was used for testing
-if __name__ == "__main__":
-    print(convert_to_binary(10.68))
+# if __name__ == "__main__":
+#     print(convert_to_decimal(11101.11101))
+#     print(convert_to_binary(0.544))

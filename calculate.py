@@ -4,7 +4,7 @@ from parse import Parser
 import functions.output_display as display
 
 
-def evaluate(expression: str, is_rad: bool) -> str:
+def evaluate(expression: str, is_rad: bool, is_bool: bool) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
     Args:
@@ -37,8 +37,8 @@ def evaluate(expression: str, is_rad: bool) -> str:
 
         # Evaluate expression
         evaluation = parser.evaluate(expression)
-        # if is_binary == "true":
-        #     evaluation = convert_to_binary(evaluation)
+        if is_binary == "true":
+            evaluation = display.convert_to_binary(evaluation)
         return evaluation
     except Exception as e:
         return str(e)
@@ -73,10 +73,10 @@ def exp_is_blank(expression: str) -> bool:
 
 
 if __name__ == "__main__":
-    print(sys.argv)
+    # print(sys.argv)
 
-    # expression = sys.argv[1]
-    # is_rad = sys.argv[2]
-    # # is_binary = sys.argv[3]
+    expression = sys.argv[1]
+    is_rad = sys.argv[2]
+    is_binary = sys.argv[3]
     # print(evaluate(expression, is_rad.lower()))
-    # # print(evaluate(expression, is_rad.lower(), is_binary.lower()))
+    print(evaluate(expression, is_rad.lower(), is_binary.lower()))
