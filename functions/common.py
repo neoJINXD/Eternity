@@ -1,5 +1,5 @@
 import exceptions.exceptions as exceptions
-import numpy as np
+
 
 
 def factorial(argument: int) -> int:

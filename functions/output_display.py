@@ -1,6 +1,9 @@
+import numpy as np
+
 import functions.trigonometry as trig
 from decimal import *
 import math
+
 
 def rad(deg: float) -> float:
     """Returns the radians corresponding to input angle
@@ -11,7 +14,7 @@ def rad(deg: float) -> float:
     """
 
     return float(Decimal(deg) * Decimal(trig.generate_pi()) / Decimal(180.0))
-     # TO SHOW ACCURACY: return float(Decimal(deg) * Decimal(math.pi) / Decimal(180.0))
+    # TO SHOW ACCURACY: return float(Decimal(deg) * Decimal(math.pi) / Decimal(180.0))
 
 
 def deg(rad: float) -> float:
@@ -25,8 +28,14 @@ def deg(rad: float) -> float:
     return float(Decimal(rad) * Decimal(180.0) / Decimal(trig.generate_pi()))
     # TO SHOW ACCURACY: return float(Decimal(rad) * Decimal(180.0) / Decimal(math.pi))
 
-def decimal_to_binary_integer(value):
-    """Returns a string that contains the binary result of an integer"""
+
+def decimal_to_binary_integer(value: int) -> str:
+    """Returns a string that contains the binary result of an integer
+        Args:
+            value (int): Value in decimal
+        Returns:
+            str: Value in binary
+    """
     the_array = np.array([])
     while value != 0:
         number_to_store = value % 2
@@ -39,8 +48,13 @@ def decimal_to_binary_integer(value):
     return binary_string
 
 
-def decimal_to_binary_decimal(value):
-    """Returns a string that contains the binary result of an decimal value"""
+def decimal_to_binary_decimal(value: float) -> str:
+    """Returns a string that contains the binary result of an decimal value
+        Args:
+            value (float): Value in decimal
+        Returns:
+            str: Value in binary
+    """
     the_array = np.array([])
     while value != 0 and (the_array.size <= 10):
         new_value = float(value * 2)
@@ -53,8 +67,13 @@ def decimal_to_binary_decimal(value):
     return binary_string
 
 
-def convert_to_binary(number):
-    """Returns the binary of a number"""
+def convert_to_binary(number: float) -> str:
+    """Returns the binary of a number
+        Args:
+            number (float): Value in decimal
+        Returns:
+            str: Value in binary
+    """
     if number >= 0:
         pos_sign = True
     else:
@@ -67,3 +86,8 @@ def convert_to_binary(number):
         return binary_result
     else:
         return "-" + binary_result
+
+
+# This was used for testing
+if __name__ == "__main__":
+    print(convert_to_binary(10.68))
