@@ -69,7 +69,7 @@ def decimal_to_binary_decimal(value: float) -> str:
 
 
 def convert_to_binary(number: float) -> str:
-    """Returns the binary of a number
+    """Returns the the decimal equivalent of a binary number
         Args:
             number (float): Value in decimal
         Returns:
@@ -113,7 +113,7 @@ def convert_to_decimal(number: float) -> float:
         return decimal_result * -1
 
 def int_binary_to_decimal(value: float) -> float:
-    """Returns a float that contains the integer equivalent of the binary value entered
+    """Returns the decimal equivalent of a binary integer
         Args:
             value (float): Value in binary
         Returns:
