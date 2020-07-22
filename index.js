@@ -17,10 +17,11 @@ app.post('/math', (req, res) => {
   const input = req.body.expression;
   const isRad = req.body.is_rad;
   const isBinary = req.body.is_binary;
+  const isBinaryInput = req.body.is_binary_input;
   // console.log('my input: ', input);
 
   const option = {
-    args: [input, isRad, isBinary],
+    args: [input, isRad, isBinary, isBinaryInput],
   };
 
   // TODO change to always listening python shell instead of creating and deleting everytime

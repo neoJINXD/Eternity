@@ -4,13 +4,14 @@ from parse import Parser
 import functions.output_display as display
 
 
-def evaluate(expression: str, is_rad: bool, is_binary: bool) -> str:
+def evaluate(expression: str, is_rad: bool, is_binary: bool, is_binary_input: bool) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
     Args:
         expression (str): Expression to evaluate
         is_rad (bool): Determines if in radian mode
         is_binary (bool): Determines if the output should be binary or not
+        is_binary_input (bool): Determines if the input should be binary or not
 
     Returns:
         str: Result of evaluation of expression
@@ -19,7 +20,7 @@ def evaluate(expression: str, is_rad: bool, is_binary: bool) -> str:
     if exp_is_blank(expression):
         return ""
 
-    parser = Parser(is_rad == "true")
+    parser = Parser(is_rad == "true", is_binary_input)
     try:
         # Make implicit multiplications between bracketed items explicit.
         expression = re.sub('(?<=\d|\))(\()', '*(', expression)
@@ -37,7 +38,7 @@ def evaluate(expression: str, is_rad: bool, is_binary: bool) -> str:
                 expression = str(display.deg(float(expression)))
 
         # Evaluate expression
-        evaluation = parser.evaluate(expression)
+        evaluation = parser.evaluate(expression, is_binary_input)
         if is_binary == "true":
             evaluation = display.convert_to_binary(evaluation)
         return evaluation
@@ -79,5 +80,6 @@ if __name__ == "__main__":
     expression = sys.argv[1]
     is_rad = sys.argv[2]
     is_binary = sys.argv[3]
+    is_binary_input = sys.argv[4]
     # print(evaluate(expression, is_rad.lower()))
-    print(evaluate(expression, is_rad.lower(), is_binary.lower()))
+    print(evaluate(expression, is_rad.lower(), is_binary.lower(), is_binary_input.lower()))
