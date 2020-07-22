@@ -31,11 +31,11 @@ def evaluate(expression: str, is_rad: bool, is_binary: bool, is_binary_input: bo
         expression = expression.replace('√', 'sqrt')
 
         # Convert numbers directly to rad
-        if exp_is_only_num(expression):
-            if is_rad == "true":
-                expression = str(display.rad(float(expression)))
-            elif is_rad == "false":
-                expression = str(display.deg(float(expression)))
+        # if exp_is_only_num(expression):
+        #     if is_rad == "true":
+        #         expression = str(display.rad(float(expression)))
+        #     elif is_rad == "false":
+        #         expression = str(display.deg(float(expression)))
 
         # Evaluate expression
         evaluation = parser.evaluate(expression, is_binary_input)
