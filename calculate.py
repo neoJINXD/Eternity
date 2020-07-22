@@ -4,13 +4,13 @@ from parse import Parser
 import functions.output_display as display
 
 
-def evaluate(expression: str, is_rad: bool, is_speech: bool) -> str:
+def evaluate(expression: str, is_rad: str, is_speech: str) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
     Args:
         expression (str): Expression to evaluate
-        is_rad (bool): Determines if in radian mode
-        is_speech (bool): Determines if in speech mode
+        is_rad (str): Determines if in radian mode
+        is_speech (str): Determines if in speech mode
 
     Returns:
         str: Result of evaluation of expression
