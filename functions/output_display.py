@@ -143,9 +143,3 @@ def float_binary_to_decimal(value: float) -> float:
         value = value + (int(char) * exponents.pow(2,position))
         position = position - 1
     return value
-
-
-# This was used for testing
-# if __name__ == "__main__":
-#     print(convert_to_decimal(11101.11101))
-#     print(convert_to_binary(0.544))
