@@ -4,14 +4,14 @@ from parse import Parser
 import functions.output_display as display
 
 
-def evaluate(expression: str, is_rad: bool, is_binary: bool, is_binary_input: bool) -> str:
+def evaluate(expression: str, is_rad: str, is_binary: str, is_binary_input: str) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
     Args:
         expression (str): Expression to evaluate
-        is_rad (bool): Determines if in radian mode
-        is_binary (bool): Determines if the output should be binary or not
-        is_binary_input (bool): Determines if the input should be binary or not
+        is_rad (str): Determines if in radian mode
+        is_binary (str): Determines if the output should be binary or not
+        is_binary_input (str): Determines if the input should be binary or not
 
     Returns:
         str: Result of evaluation of expression
