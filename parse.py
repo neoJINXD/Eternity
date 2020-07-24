@@ -218,7 +218,7 @@ class Parser(object):
         try:
             value = int(symbol)
             if self._is_binary:
-                value = display.binary_to_decimal_integer(value)
+                value = display.binary_to_decimal(value)
             return value
         except ValueError:
             pass

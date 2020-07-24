@@ -42,7 +42,7 @@ def decimal_to_binary_integer(value: int) -> str:
     bits = list()
     while value != 0:
         number_to_store = value % 2
-        value = int(value // 2)
+        value = value // 2
         bits.append(number_to_store)
     binary_string = ""
     for x in reversed(bits):
@@ -81,17 +81,15 @@ def decimal_to_binary(number: float) -> str:
         str: Value in binary
     """
     if number >= 0:
-        pos_sign = True
+        binary_result = ""
     else:
-        pos_sign = False
-    if number % 1 == 0:  # Means that there isn't a fraction
-        binary_result = decimal_to_binary_integer(int(number))
+        binary_result = "-"
+        number *= -1
+    if number % 1 == 0: # Means that there isn't a fraction
+        binary_result += decimal_to_binary_integer(int(number))
     else:  # Means that it's not a whole number and integer and fraction will be calculated individually
-        binary_result = decimal_to_binary_integer(int(number)) + decimal_to_binary_fraction(number % 1)[1:]
-    if pos_sign:
-        return binary_result
-    else:
-        return "-" + binary_result
+        binary_result += decimal_to_binary_integer(int(number)) + decimal_to_binary_fraction(number % 1)[1:]
+    return binary_result
 
 
 def binary_to_decimal_integer(value: str) -> int:
@@ -110,8 +108,8 @@ def binary_to_decimal_integer(value: str) -> int:
     position = 0
     value = 0
     for char in reversed(the_number):
-        value = value + (int(char) * exponents.pow(2,position))
-        position = position + 1
+        value += int(char) * exponents.pow(2,position)
+        position += 1
     return value
 
 
@@ -131,8 +129,8 @@ def binary_to_decimal_fraction(value: str) -> float:
     position = -1
     value = 0
     for char in the_number:
-        value = value + (int(char) * exponents.pow(2,position))
-        position = position - 1
+        value += int(char) * exponents.pow(2,position)
+        position -= 1
     return value
 
 
@@ -146,21 +144,15 @@ def binary_to_decimal(number: str) -> float:
          float: Value in decimal
      """
     if number >= 0:
-        pos_sign = True
+        decimal_result = 1
     else:
-        pos_sign = False
+        decimal_result = -1
     if number % 1 == 0:  # Means that there isn't a fraction
-        decimal_result = binary_to_decimal_integer(number)
+        decimal_result *= binary_to_decimal_integer(number)
     else:  # Means that it's not a whole number and integer and fraction will be calculated individually
-        string_number = str(number)
-        decimal_index = string_number.index('.')
-        decimal_number = float(string_number[decimal_index:])
-        decimal_result = binary_to_decimal_integer(int(number)) + binary_to_decimal_fraction(decimal_number % 1)
-    if pos_sign:
-        return decimal_result
-    else:
-        return decimal_result * -1
-        
+        decimal_index = number.index('.')
+        decimal_result *= binary_to_decimal_integer(number[:decimal_index]) + binary_to_decimal_fraction("0." + number[decimal_index:])
+    return decimal_result
         
 def is_binary(number: str) -> bool:
     """Returns true if input is a valid binary number and false otherwise.
