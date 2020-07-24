@@ -26,6 +26,6 @@ class TestOutputDisplayFunctions(unittest.TestCase):
         self.assertAlmostEqual(display.rad(-11), math.radians(-11), 9)
 
     def test_binary(self):  # 0b is removed from bin result for all unit tests
-        self.assertEqual((display.convert_to_binary(6)), bin(6).replace("0b", ""))  # Test for positive integer
-        self.assertEqual((display.convert_to_binary(-6)), bin(-6).replace("0b", ""))  # Test for negative integer
+        self.assertEqual((display.decimal_to_binary(6)), bin(6).replace("0b", ""))  # Test for positive integer
+        self.assertEqual((display.decimal_to_binary(-6)), bin(-6).replace("0b", ""))  # Test for negative integer
 
