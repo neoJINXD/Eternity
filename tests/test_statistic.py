@@ -1,5 +1,7 @@
 import unittest
 import functions.statistic as stats
+import functions.trigonometry as trig
+import math
 import numpy as np
 import pandas as pd
 # import exceptions.exceptions as the_exception
@@ -19,6 +21,10 @@ class StdMadTest(unittest.TestCase):
 
     def test_mad_input_of_0(self):
         self.assertAlmostEqual(stats.mad(3, 15, 21, 13, 0), pd.Series([3, 15, 21, 13, 0]).mad(), 9)
+
+    def test_std_input_of_pi(self):
+        self.assertAlmostEqual(stats.std(1.1, 4.6, 7.2, 2.5, 6.3, trig.generate_pi()),
+                               np.std([1.1, 4.6, 7.2, 2.5, 6.3, math.pi]), 7)
 
     def test_std_input_of_neg(self):
         self.assertAlmostEqual(stats.std(1, 4, 7, 2, 6, -10), np.std([1, 4, 7, 2, 6, -10]), 9)
