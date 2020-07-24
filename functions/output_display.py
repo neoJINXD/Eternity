@@ -145,15 +145,17 @@ def binary_to_decimal(number: str) -> float:
      Returns:
          float: Value in decimal
      """
-    if number >= 0:
-        decimal_result = 1
-    else:
+    if number[0] == '-':
         decimal_result = -1
-    if number % 1 == 0:  # Means that there isn't a fraction
-        decimal_result *= binary_to_decimal_integer(number)
-    else:  # Means that it's not a whole number and integer and fraction will be calculated individually
+        number = number[1:]
+    else:
+        decimal_result = 1
+    try:
         decimal_index = number.index('.')
-        decimal_result *= binary_to_decimal_integer(number[:decimal_index]) + binary_to_decimal_fraction("0." + number[decimal_index:])
+        decimal_result *= binary_to_decimal_integer(number[:decimal_index]) + binary_to_decimal_fraction("0" + number[decimal_index:])
+    # If the number is an integer, number.index('.') will throw a ValueError.
+    except ValueError:
+        decimal_result *= binary_to_decimal_integer(number)
     return decimal_result
         
 def is_binary(number: str) -> bool:
