@@ -29,12 +29,6 @@ def evaluate(expression: str, is_rad: str, is_binary: str) -> str:
         expression = expression.replace('π', 'PI')
         expression = expression.replace('√', 'sqrt')
 
-        # Convert numbers directly to rad
-        # if exp_is_only_num(expression):
-        #     if is_rad == "true":
-        #         expression = str(display.rad(float(expression)))
-        #     elif is_rad == "false":
-        #         expression = str(display.deg(float(expression)))
 
         # Evaluate expression
         evaluation = parser.evaluate(expression, is_binary)
@@ -43,22 +37,6 @@ def evaluate(expression: str, is_rad: str, is_binary: str) -> str:
         return evaluation
     except Exception as e:
         return str(e)
-
-
-def exp_is_only_num(expression: str) -> bool:
-    """Evaluates mathematical expression passed to determine if it is a number (float or int)
-
-    Args:
-        expression (str): Expression to evaluate
-
-    Returns:
-        bool: Result of evaluation of expression type
-    """
-    try:
-        float(expression)
-        return True
-    except ValueError:
-        return False
 
 
 def exp_is_blank(expression: str) -> bool:
