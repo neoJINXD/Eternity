@@ -40,6 +40,8 @@ def decimal_to_binary_integer(value: int) -> str:
         str: Value in binary
     """
     bits = list()
+    if value == 0:
+        return ""
     while value != 0:
         number_to_store = value % 2
         value = value // 2
@@ -60,7 +62,7 @@ def decimal_to_binary_fraction(value: float) -> str:
         str: Value in binary
     """
     bits = list()
-    while value != 0 and (len(bits) <= 10):
+    while value != 0 and (len(bits) <= 15):
         new_value = float(value * 2)
         number_to_store = int(new_value)
         value = new_value % 1
@@ -167,4 +169,3 @@ def is_binary(number: str) -> bool:
         if not (char in "01."):
             return False
     return True
-    

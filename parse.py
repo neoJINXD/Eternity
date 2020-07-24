@@ -60,6 +60,7 @@ class Parser(object):
         if is_negative:
             self._symbol_stack.append('unary -')
 
+            
     def __init__(self: object, is_rad: bool, is_binary: bool) -> None:
         """Define grammar to be used by parser and parse actions to be used in constructing the symbol stack.
 
@@ -165,6 +166,7 @@ class Parser(object):
             "tanh": trigonometry.tanh,
         }
 
+        
     def evaluate_stack(self: object, symbol_stack: list) -> str:
         """Return result of expression represented by postfix stack of symbols.
 
@@ -233,6 +235,7 @@ class Parser(object):
         # If none of the casts worked, we have some unrecognized symbol. Raise an exception.
         raise Exception("{0} is not a recognized symbol.".format(symbol))
 
+        
     def evaluate(self: object, expression: str) -> float:
         """Return result of expression passed as string.
 

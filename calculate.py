@@ -4,14 +4,13 @@ from parse import Parser
 import functions.output_display as display
 
 
-def evaluate(expression: str, is_rad: bool, is_binary_output: bool, is_binary_input: bool) -> str:
+def evaluate(expression: str, is_rad: bool, is_binary: bool) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
     Args:
         expression (str): Expression to evaluate
         is_rad (str): Determines if in radian mode
-        is_binary (str): Determines if the output should be binary or not
-        is_binary_input (str): Determines if the input should be binary or not
+        is_binary (str): Determines if the input and output is in binary
 
     Returns:
         str: Result of evaluation of expression
@@ -20,7 +19,7 @@ def evaluate(expression: str, is_rad: bool, is_binary_output: bool, is_binary_in
     if exp_is_blank(expression):
         return ""
 
-    parser = Parser(is_rad, is_binary_input)
+    parser = Parser(is_rad, is_binary)
     try:
         # Make implicit multiplications between bracketed items explicit.
         expression = re.sub('(?<=\d|\))(\()', '*(', expression)
@@ -32,46 +31,27 @@ def evaluate(expression: str, is_rad: bool, is_binary_output: bool, is_binary_in
 
         # Evaluate expression
         evaluation = parser.evaluate(expression)
-        if is_binary_output:
+        if is_binary:
             evaluation = display.decimal_to_binary(evaluation)
         return evaluation
     except Exception as e:
         return str(e)
 
 
-def exp_is_only_num(expression: str) -> bool:
-    """Evaluates mathematical expression passed to determine if it is a number (float or int)
+def exp_is_blank(expression: str) -> bool:
+    """Evaluates mathematical expression passed to determine if it is empty.
 
     Args:
         expression (str): Expression to evaluate
 
     Returns:
-        bool: Result of evaluation of expression type
+        bool: Result of evaluation of expression length
     """
-    try:
-        float(expression)
-        return True
-    except ValueError:
-        return False
-
-
-def exp_is_blank(expression: str) -> bool:
-    """Evaluates mathematical expression passed to determine if it is empty
-
-        Args:
-            expression (str): Expression to evaluate
-
-        Returns:
-            bool: Result of evaluation of expression length
-        """
     return not (expression and expression.strip())
 
 
 if __name__ == "__main__":
-    # print(sys.argv)
-
     expression = sys.argv[1]
     is_rad = sys.argv[2].lower() == "true"
-    is_binary_output = sys.argv[3].lower() == "true"
-    is_binary_input = sys.argv[4].lower() == "true"
-    print(evaluate(expression, is_rad, is_binary_output, is_binary_input))
+    is_binary = sys.argv[3].lower() == "true"
+    print(evaluate(expression, is_rad, is_binary))
