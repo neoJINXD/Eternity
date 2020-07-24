@@ -30,12 +30,12 @@ def deg(rad: float) -> float:
     # TO SHOW ACCURACY: return float(Decimal(rad) * Decimal(180.0) / Decimal(math.pi))
 
 
-def decimal_to_binary_integer(value: int) -> str:
-    """Returns a string that contains the binary result of an integer
+def decimal_to_binary_integer(value: int) -> float:
+    """Returns a float that contains the binary result of an integer
         Args:
             value (int): Value in decimal
         Returns:
-            str: Value in binary
+            float: Value in binary
     """
     the_array = np.array([])
     while value != 0:
@@ -46,15 +46,15 @@ def decimal_to_binary_integer(value: int) -> str:
     array_length = the_array.size
     for x in reversed(range(array_length)):
         binary_string = binary_string + str(int(the_array[x]))
-    return binary_string
+    return float(binary_string)
 
 
-def decimal_to_binary_decimal(value: float) -> str:
+def decimal_to_binary_decimal(value: float) -> float:
     """Returns a string that contains the binary result of an decimal value
         Args:
             value (float): Value in decimal
         Returns:
-            str: Value in binary
+            float: Value in binary
     """
     the_array = np.array([])
     while value != 0 and (the_array.size <= 10):
@@ -65,7 +65,7 @@ def decimal_to_binary_decimal(value: float) -> str:
     binary_string = "0."
     for x in the_array:
         binary_string = binary_string + str(int(x))
-    return binary_string
+    return float(binary_string)
 
 
 def convert_to_binary(number: float) -> str:
@@ -80,13 +80,21 @@ def convert_to_binary(number: float) -> str:
     else:
         pos_sign = False
     if number % 1 == 0:  # Means that there isn't a fraction
+        if not pos_sign:
+            number = number * -1
         binary_result = decimal_to_binary_integer(number)
     else:  # Means that it's not a whole number and integer and fraction will be calculated individually
-        binary_result = decimal_to_binary_integer(int(number)) + decimal_to_binary_decimal(number % 1)
+        if pos_sign:
+            binary_result = decimal_to_binary_integer(int(number)) + decimal_to_binary_decimal(float(number) - int(number))
+        else:
+            pos_value = number*-1
+            binary_result = decimal_to_binary_integer(pos_value) + decimal_to_binary_decimal(pos_value - (int(pos_value)))
+
+
     if pos_sign:
         return binary_result
     else:
-        return "-" + binary_result
+        return binary_result*-1
 
 
 def convert_to_decimal(number: float) -> float:
@@ -101,12 +109,16 @@ def convert_to_decimal(number: float) -> float:
     else:
         pos_sign = False
     if number % 1 == 0:  # Means that there isn't a fraction
-        decimal_result = int_binary_to_decimal(number)
+        if not pos_sign:
+            number = number * -1
+        decimal_result = int(int_binary_to_decimal(number))
     else:  # Means that it's not a whole number and integer and fraction will be calculated individually
+        if not pos_sign:
+            number = number * -1
         string_number = str(number)
         decimal_index = string_number.index('.')
         decimal_number = float(string_number[decimal_index:])
-        decimal_result = int_binary_to_decimal(int(number)) + float_binary_to_decimal(decimal_number % 1)
+        decimal_result = float(int_binary_to_decimal(int(number))) + float_binary_to_decimal(decimal_number % 1)
     if pos_sign:
         return decimal_result
     else:
@@ -142,4 +154,7 @@ def float_binary_to_decimal(value: float) -> float:
     for char in the_number:
         value = value + (int(char) * exponents.pow(2,position))
         position = position - 1
-    return value
+    return float(value)
+
+if __name__ == '__main__':
+    print(convert_to_decimal(-10.1101))
