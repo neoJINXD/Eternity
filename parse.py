@@ -60,19 +60,22 @@ class Parser(object):
         if is_negative:
             self._symbol_stack.append('unary -')
 
-    def __init__(self: object, is_rad: bool, is_binary_input: bool) -> None:
+    def __init__(self: object, is_rad: bool, is_binary: str) -> None:
         """Define grammar to be used by parser and parse actions to be used in constructing the symbol stack.
 
         Args:
             is_rad (bool): Angle mode
-            is_binary_input (bool): Binary input option
+            is_binary (str): Binary input option
         """
 
         # Angle Mode
         self.is_rad = is_rad
 
         # Binary Mode
-        # self.is_binary = is_binary
+        if is_binary == "true":
+            self.is_binary = True
+        else:
+            self.is_binary = False
 
         # Expressions
         expr = Forward()
@@ -167,12 +170,12 @@ class Parser(object):
             "tanh": trigonometry.tanh,
         }
 
-    def evaluate_stack(self: object, symbol_stack: list, is_binary_input: bool) -> str:
+    def evaluate_stack(self: object, symbol_stack: list, is_binary: bool) -> str:
         """Return result of expression represented by postfix stack of symbols.
 
         Args:
             symbol_stack (list): Postfix stack of mathematical symbols.
-            is_binary_input (bool): If the input is binary or not
+            is_binary (bool): If the input is binary or not
 
         Returns:
             str: Result of expression
@@ -185,23 +188,23 @@ class Parser(object):
 
         # Process unary '-'
         if symbol == 'unary -':
-            return -self.evaluate_stack(symbol_stack, is_binary_input)
+            return -self.evaluate_stack(symbol_stack, is_binary)
         # Process other unary operators
         if symbol == "!":
-            operand = self.evaluate_stack(symbol_stack, is_binary_input)
+            operand = self.evaluate_stack(symbol_stack, is_binary)
             return self.operation_map[symbol](operand)
         # Process binary operators
         operation = self.operation_map.get(symbol, False)
         if operation:
-            operand_2 = self.evaluate_stack(symbol_stack, is_binary_input)
-            operand_1 = self.evaluate_stack(symbol_stack, is_binary_input)
+            operand_2 = self.evaluate_stack(symbol_stack, is_binary)
+            operand_1 = self.evaluate_stack(symbol_stack, is_binary)
             return operation(operand_1, operand_2)
         # Process function calls
         operation = self.function_map.get(symbol, False)
         if operation:
             # Begin by getting arguments.
             # Note that arguments are pushed onto tack in reverse order.
-            args = reversed([self.evaluate_stack(symbol_stack, is_binary_input)
+            args = reversed([self.evaluate_stack(symbol_stack, is_binary)
                              for _ in range(num_args)])
             return operation(*args)
         # Process trig function calls
@@ -209,7 +212,7 @@ class Parser(object):
         if operation:
             # Begin by getting arguments.
             # Note that arguments are pushed onto tack in reverse order.
-            args = reversed([self.evaluate_stack(symbol_stack, is_binary_input)
+            args = reversed([self.evaluate_stack(symbol_stack, is_binary)
                              for _ in range(num_args)])
             return trigonometry.process_angle_mode(*args, self.is_rad, operation)
         # Process constants.
@@ -219,7 +222,7 @@ class Parser(object):
         # If symbol is not an operation or a constant, the symbol must be a numeral. Try casting to an int.
         try:
             value = int(symbol)
-            if is_binary_input == "true":
+            if self.is_binary:
                 value = display.convert_to_decimal(value)
             return value
         except ValueError:
@@ -227,7 +230,7 @@ class Parser(object):
         # Try casting to a float.
         try:
             value = float(symbol)
-            if is_binary_input == "true":
+            if self.is_binary:
                 value = display.convert_to_decimal(value)
             return value
         except ValueError:
@@ -235,12 +238,12 @@ class Parser(object):
         # If none of the casts worked, we have some unrecognized symbol. Raise an exception.
         raise Exception("{0} is not a recognized symbol.".format(symbol))
 
-    def evaluate(self: object, expression: str, is_binary_input: bool) -> float:
+    def evaluate(self: object, expression: str, is_binary: bool) -> float:
         """Return result of expression passed as string.
 
         Args:
             expression (str): Expression to evaluate.
-            is_binary_input (bool): If the input is binary or not
+            is_binary (bool): If the input is binary or not
 
         Returns:
             str: Result of expression
@@ -253,7 +256,7 @@ class Parser(object):
             # Make postfix notation of infix notation.
             _ = self.bnf.parseString(expression, True)
             # Evaluate generated stack of postfix symbols.
-            return self.evaluate_stack(self._symbol_stack[:], is_binary_input)
+            return self.evaluate_stack(self._symbol_stack[:], is_binary)
         # Return appropriate message if error was encountered. Sometimes, we might want to print additional information to console.
         except exceptions.InputError as e:
             raise Exception("Input Error: " + e.message)
