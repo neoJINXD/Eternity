@@ -4,7 +4,7 @@ from parse import Parser
 import functions.output_display as display
 
 
-def evaluate(expression: str, is_rad: str, is_binary: str, is_binary_input: str) -> str:
+def evaluate(expression: str, is_rad: bool, is_binary_output: bool, is_binary_input: bool) -> str:
     """Evaluates a mathematical expression passed as a string and returns the result as another string.
 
     Args:
@@ -20,27 +20,20 @@ def evaluate(expression: str, is_rad: str, is_binary: str, is_binary_input: str)
     if exp_is_blank(expression):
         return ""
 
-    parser = Parser(is_rad == "true", is_binary_input)
+    parser = Parser(is_rad, is_binary_input)
     try:
         # Make implicit multiplications between bracketed items explicit.
         expression = re.sub('(?<=\d|\))(\()', '*(', expression)
         # Ensure that characters used can be read by parser.
-        # Math euler's constant to the letter e when not surrounded by other letters
+        # Map euler's constant to the letter e when not surrounded by other letters
         expression = re.sub('(?![a-zA-Z])e(?![a-zA-Z])', 'E', expression)
         expression = expression.replace('π', 'PI')
         expression = expression.replace('√', 'sqrt')
 
-        # Convert numbers directly to rad
-        # if exp_is_only_num(expression):
-        #     if is_rad == "true":
-        #         expression = str(display.rad(float(expression)))
-        #     elif is_rad == "false":
-        #         expression = str(display.deg(float(expression)))
-
         # Evaluate expression
-        evaluation = parser.evaluate(expression, is_binary_input)
-        if is_binary == "true":
-            evaluation = display.convert_to_binary(evaluation)
+        evaluation = parser.evaluate(expression)
+        if is_binary_output:
+            evaluation = display.decimal_to_binary(evaluation)
         return evaluation
     except Exception as e:
         return str(e)
@@ -78,8 +71,7 @@ if __name__ == "__main__":
     # print(sys.argv)
 
     expression = sys.argv[1]
-    is_rad = sys.argv[2]
-    is_binary = sys.argv[3]
-    is_binary_input = sys.argv[4]
-    # print(evaluate(expression, is_rad.lower()))
-    print(evaluate(expression, is_rad.lower(), is_binary.lower(), is_binary_input.lower()))
+    is_rad = sys.argv[2].lower() == "true"
+    is_binary_output = sys.argv[3].lower() == "true"
+    is_binary_input = sys.argv[4].lower() == "true"
+    print(evaluate(expression, is_rad, is_binary_output, is_binary_input))

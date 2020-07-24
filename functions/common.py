@@ -134,7 +134,4 @@ def abs(argument: float) -> float:
         float: Absolute value of 'argument'.
     """
     return -argument if argument < 0 else argument
-
-# This was used for testing
-# if __name__ == "__main__":
-#     print(convert_to_binary(10.68))
+    
