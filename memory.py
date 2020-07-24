@@ -1,6 +1,6 @@
 import sys
 import re
-from nparser import Parser
+from parse import Parser
 
 expression = sys.argv[1]
 history = []
