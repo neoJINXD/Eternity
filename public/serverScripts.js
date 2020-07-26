@@ -9,8 +9,8 @@ function addToExpression(toInsert) {
   const newText = oldText.substring(0, caretPosition)
                     + toInsert + oldText.substring(caretPosition);
   textField.value = newText;
-  caretPosition = caretPosition + toInsert.length;
-  textField.setSelectionRange(caretPosition,caretPosition);
+  caretPosition += toInsert.length;
+  textField.setSelectionRange(caretPosition, caretPosition);
   textField.focus();
 }
 
