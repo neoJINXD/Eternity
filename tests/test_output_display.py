@@ -1,5 +1,6 @@
 import unittest
 import functions.output_display as display
+import exceptions.exceptions as exceptions
 import math
 
 
@@ -45,4 +46,11 @@ class TestOutputDisplayFunctions(unittest.TestCase):
         self.assertEqual(display.binary_to_decimal("-10"), -2)
         # Test for converting negative binary real number
         self.assertEqual(display.binary_to_decimal("-101111.101"), -47.625)
+
+    def test_error_handling(self):
+        self.assertRaises(exceptions.InputError, display.binary_to_decimal, "5")
+        self.assertRaises(exceptions.InputError, display.binary_to_decimal_integer, "-010")
+        self.assertRaises(exceptions.InputError, display.binary_to_decimal_fraction, "-0.010")
+        self.assertRaises(exceptions.InputError, display.decimal_to_binary_integer, -10)
+        self.assertRaises(exceptions.InputError, display.decimal_to_binary_fraction, -0.010)
 

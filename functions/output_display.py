@@ -1,6 +1,7 @@
 import exceptions.exceptions as exceptions
 import functions.trigonometry as trig
 import functions.exponents_and_logs as exponents
+import functions.common as common
 from decimal import *
 
 
@@ -38,7 +39,13 @@ def decimal_to_binary_integer(value: int) -> str:
         
     Returns:
         str: Value in binary
+
+    Raises:
+        InputError: If input is not a valid positive number.
     """
+    if common.is_negative(value):
+        raise exceptions.InputError(value, "decimal_to_binary_integer does not accept negative inputs.")
+        
     bits = list()
     if value == 0:
         return ""
@@ -60,7 +67,13 @@ def decimal_to_binary_fraction(value: float) -> str:
         
     Returns:
         str: Value in binary
+
+    Raises:
+        InputError: If input is not a valid positive number.
     """
+    if common.is_negative(value):
+        raise exceptions.InputError(value, "decimal_to_binary_fraction does not accept negative inputs.")
+        
     bits = list()
     while value != 0 and (len(bits) <= 15):
         new_value = float(value * 2)
@@ -102,7 +115,12 @@ def binary_to_decimal_integer(value: str) -> int:
         
     Returns:
         int: Value in decimal
+
+    Raises:
+        InputError: If input is not a valid positive binary number.
     """
+    if value[0] == '-':
+        raise exceptions.InputError(value, "binary_to_decimal_integer does not accept negative inputs.")
     if not is_binary(value):
         raise exceptions.InputError(value, "Binary numbers can only contain 1s and 0s.")
         
@@ -123,7 +141,12 @@ def binary_to_decimal_fraction(value: str) -> float:
         
     Returns:
         float: Value in decimal
+
+    Raises:
+        InputError: If input is not a valid positive binary number.
     """
+    if value[0] == '-':
+        raise exceptions.InputError(value, "binary_to_decimal_fraction does not accept negative inputs.")
     if not is_binary(value):
         raise exceptions.InputError(value, "Binary numbers can only contain 1s and 0s.")
         
@@ -157,6 +180,7 @@ def binary_to_decimal(number: str) -> float:
     except ValueError:
         decimal_result *= binary_to_decimal_integer(number)
     return decimal_result
+        
         
 def is_binary(number: str) -> bool:
     """Returns true if input is a valid binary number and false otherwise.
