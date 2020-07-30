@@ -5,11 +5,13 @@
 function addToExpression(toInsert) {
   const textField = document.getElementById('resultInput');
   const oldText = textField.value;
-  const carretPosition = textField.selectionStart;
-  const newText = oldText.substring(0, carretPosition)
-                    + toInsert + oldText.substring(carretPosition);
+  let caretPosition = textField.selectionStart;
+  const newText = oldText.substring(0, caretPosition)
+                    + toInsert + oldText.substring(caretPosition);
   textField.value = newText;
-  textField.selectionStart = carretPosition + length(toInsert);
+  caretPosition += toInsert.length;
+  textField.setSelectionRange(caretPosition, caretPosition);
+  textField.focus();
 }
 
 // function to clear the input field
