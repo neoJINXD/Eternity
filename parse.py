@@ -217,19 +217,15 @@ class Parser(object):
         if operation:
             return operation()
         # If symbol is not an operation or a constant, the symbol must be a numeral. Try casting to an int.
+        if self._is_binary:
+            return display.binary_to_decimal(symbol)
         try:
-            value = int(symbol)
-            if self._is_binary:
-                value = display.binary_to_decimal(value)
-            return value
+            return int(symbol)
         except ValueError:
             pass
         # Try casting to a float.
         try:
-            value = float(symbol)
-            if self._is_binary:
-                value = display.binary_to_decimal(value)
-            return value
+            return float(symbol)
         except ValueError:
             pass
         # If none of the casts worked, we have some unrecognized symbol. Raise an exception.
