@@ -2,6 +2,7 @@ from functions import common
 from functions import exponents_and_logs
 from functions import statistic
 from functions import trigonometry
+import functions.output_display as display
 import exceptions.exceptions as exceptions
 
 from pyparsing import (
@@ -59,15 +60,18 @@ class Parser(object):
         if is_negative:
             self._symbol_stack.append('unary -')
 
-    def __init__(self: object, is_rad: bool) -> None:
+            
+    def __init__(self: object, is_rad: bool, is_binary: bool) -> None:
         """Define grammar to be used by parser and parse actions to be used in constructing the symbol stack.
 
         Args:
             is_rad (bool): Angle mode
+            is_binary (bool): Binary input option
         """
 
-        # Angle Mode
-        self.is_rad = is_rad
+        # Settings
+        self._is_rad = is_rad
+        self._is_binary = is_binary
 
         # Expressions
         expr = Forward()
@@ -162,6 +166,7 @@ class Parser(object):
             "tanh": trigonometry.tanh,
         }
 
+        
     def evaluate_stack(self: object, symbol_stack: list) -> str:
         """Return result of expression represented by postfix stack of symbols.
 
@@ -173,6 +178,7 @@ class Parser(object):
         """
         # Get current symbol.
         symbol = symbol_stack.pop()
+        
         # If symbol is tuple, symbol is a function. Get function identifier and argument count.
         if isinstance(symbol, tuple):
             symbol, num_args = symbol
@@ -205,12 +211,15 @@ class Parser(object):
             # Note that arguments are pushed onto tack in reverse order.
             args = reversed([self.evaluate_stack(symbol_stack)
                              for _ in range(num_args)])
-            return trigonometry.process_angle_mode(*args, self.is_rad, operation)
+            return trigonometry.process_angle_mode(*args, self._is_rad, operation)
         # Process constants.
         operation = self.constant_map.get(symbol, False)
         if operation:
             return operation()
-        # If symbol is not an operation or a constant, the symbol must be a numeral. Try casting to an int.
+        # If symbol is not an operation or a constant, the symbol must be a numeral.
+        if self._is_binary:
+            return display.binary_to_decimal(symbol)
+        # Try casting to an int.
         try:
             return int(symbol)
         except ValueError:
@@ -223,6 +232,7 @@ class Parser(object):
         # If none of the casts worked, we have some unrecognized symbol. Raise an exception.
         raise Exception("{0} is not a recognized symbol.".format(symbol))
 
+        
     def evaluate(self: object, expression: str) -> float:
         """Return result of expression passed as string.
 
