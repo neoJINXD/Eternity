@@ -121,7 +121,7 @@ class Parser(object):
         self.bnf = expr
 
         # Mapping between constant names and providers
-        self.constant_map = {"PI": trigonometry.generate_pi,
+        self.constant_map = {"PI": trigonometry.generate_pi(),
                              "E": exponents_and_logs.pow_e(1),
                              }
         # Mapping between operators and appropriate function calls
@@ -213,9 +213,9 @@ class Parser(object):
                              for _ in range(num_args)])
             return trigonometry.process_angle_mode(*args, self._is_rad, operation)
         # Process constants.
-        operation = self.constant_map.get(symbol, False)
-        if operation:
-            return operation()
+        constant = self.constant_map.get(symbol, False)
+        if constant:
+            return constant
         # If symbol is not an operation or a constant, the symbol must be a numeral.
         if self._is_binary:
             return display.binary_to_decimal(symbol)
