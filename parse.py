@@ -216,9 +216,10 @@ class Parser(object):
         operation = self.constant_map.get(symbol, False)
         if operation:
             return operation()
-        # If symbol is not an operation or a constant, the symbol must be a numeral. Try casting to an int.
+        # If symbol is not an operation or a constant, the symbol must be a numeral.
         if self._is_binary:
             return display.binary_to_decimal(symbol)
+        # Try casting to an int.
         try:
             return int(symbol)
         except ValueError:
