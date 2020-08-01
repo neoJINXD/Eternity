@@ -40,9 +40,14 @@ async function calc() {
   // gets the input from the textbox
   // const input = {
   //   expression: document.getElementById('resultInput').value,
-  //   is_rad: document.getElementById('angleMode').checked
+  //   is_rad: document.getElementById('angleMode').checked,
+  //   is_binary: document.getElementById('binOutput').checked,
   // };
-  const input = { expression: document.getElementById('resultInput').value, is_rad: false };
+  const input = {
+    expression: document.getElementById('resultInput').value,
+    is_rad: false,
+    is_binary: false,
+  };
   // document.getElementById('equation').innerHTML = `> ${input.expression}`;
 
   const dlist = document.getElementById('browserList');
