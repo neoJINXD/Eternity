@@ -38,8 +38,12 @@ function clr() {
 /* eslint-disable-next-line */
 async function calc() {
   // gets the input from the textbox
-  const input = { expression: document.getElementById('resultInput').value, is_rad: document.getElementById('angleMode').checked };
-  document.getElementById('equation').innerHTML = `> ${input.expression}`;
+  // const input = {
+  //   expression: document.getElementById('resultInput').value,
+  //   is_rad: document.getElementById('angleMode').checked
+  // };
+  const input = { expression: document.getElementById('resultInput').value, is_rad: false };
+  // document.getElementById('equation').innerHTML = `> ${input.expression}`;
 
   const dlist = document.getElementById('browserList');
   const option = document.createElement('option');
@@ -57,8 +61,8 @@ async function calc() {
   const json = await response.json();
 
   // Sets the answer in the input text
-  document.getElementById('answer').innerHTML = `= ${json.answer}`;
-  document.getElementById('resultInput').value = '';
+  document.getElementById('resultOutput').value = `= ${json.answer}`;
+  // document.getElementById('resultInput').value = '';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
