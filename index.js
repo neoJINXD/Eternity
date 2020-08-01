@@ -21,7 +21,7 @@ app.post('/math', (req, res) => {
 
   const option = {
     args: [input, isRad, isBinary],
-//    args: [input, isRad, isBinary, isBinaryInput],
+    // args: [input, isRad, isBinary, isBinaryInput],
   };
 
   // TODO change to always listening python shell instead of creating and deleting everytime
