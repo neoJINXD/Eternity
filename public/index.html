@@ -4,6 +4,16 @@
 <title>Calculator Application</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="./serverScripts.js"></script>
+    <script type="text/javascript">
+    <!--            This function is based off:
+    https://www.codeproject.com/Questions/851789/Link-button-onclick-open-pdf-file-in-new-tab-->
+    function openPDF()
+    {
+    <!--    Use the commented out code below for testing until this is pushed to the master branch -->
+    <!--        window.open("https://github.com/neoJINXD/Eternity/blob/UserGuide/User_Guide.pdf");-->
+        window.open("https://github.com/neoJINXD/Eternity/User_Guide.pdf");
+    }
+    </script>
 </head>
 <body>
 
@@ -25,6 +35,7 @@
             <td><button onclick='clearInput()' class='special' id='1'>AC</button></td>
             <td><button onclick='del()' class='special' id='2'>DEL</button></td>
             <td><button onclick='clr()' class='special' id='3'>CLR</button></td>
+            <td><button onClick="openPDF(this)" class='special' id='3'>help</button></td>
             <td colspan='2'><input onclick='calc()' type="submit" class="special" value="CAL" style='width:80px;border-radius:35%' /></td>
         </tr>
         <tr>
