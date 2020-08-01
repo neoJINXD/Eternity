@@ -107,6 +107,7 @@ input:focus{
   border: 3px solid black;
   border-radius: 30px;
   padding: 2%;
+  min-width: 460px;
 }
 
 
