@@ -8,7 +8,7 @@ def convert_to_sn(number: float) -> str:
         return num_as_str
     if len(num_as_str.split('.')) == 2:
         whole_part, decimal_part = num_as_str.split('.')
-    else: 
+    else:
         whole_part = num_as_str
         decimal_part = ''
     if int(whole_part) == 0:
