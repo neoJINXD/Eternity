@@ -84,12 +84,12 @@
                             <table>
                                 <tr>
                                     <!-- TODO Set active to one being clicked and disable the other -->
-                                    <td><button onclick="" class="operation selected" value="">Rad</button></td>
-                                    <td><button onclick="" class="operation" value="">Deg</button></td>
+                                    <td><button onclick="flipSelected('rad','deg')" class="operation selected" id="rad">Rad</button></td>
+                                    <td><button onclick="flipSelected('deg','rad')" class="operation" id="deg">Deg</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button onclick="" class="operation" value="">BIN</button></td>
-                                    <td><button onclick="" class="operation selected" value="">DEC</button></td>
+                                    <td><button onclick="flipSelected('bin','dec')" class="operation" id="bin">BIN</button></td>
+                                    <td><button onclick="flipSelected('dec','bin')" class="operation selected" id="dec">DEC</button></td>
                                     <!-- <button onclick="" class="operation" value="">SN</button> -->
                                 </tr>
                             </table>

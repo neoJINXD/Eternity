@@ -36,17 +36,23 @@ function clr() {
 // function to send a request to node to run the python command
 // for calculating the result of the expression
 /* eslint-disable-next-line */
-async function calc() {
-  // gets the input from the textbox
-  // const input = {
-  //   expression: document.getElementById('resultInput').value,
-  //   is_rad: document.getElementById('angleMode').checked,
-  //   is_binary: document.getElementById('binOutput').checked,
-  // };
+async function calc() {  
+  // getting the data from which button is selected
+  // console.log(document.getElementsByClassName('selected'));
+  const arr = document.getElementsByClassName('selected');
+  const firstButton = arr[0];
+  const secondButton = arr[1];
+
+  const rad = firstButton.id === 'rad';
+  const bin = secondButton.id === 'bin';
+
+  // console.log(`Calculation is rad: ${rad} and bin: ${bin}`);
+
+  // forming the input that will be submitted for calculation
   const input = {
     expression: document.getElementById('resultInput').value,
-    is_rad: false,
-    is_binary: false,
+    is_rad: rad,
+    is_binary: bin,
   };
   // document.getElementById('equation').innerHTML = `> ${input.expression}`;
 
@@ -82,3 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 }, false);
+
+function flipSelected(first, second) {
+  document.getElementById(first).className = 'operation selected';
+  document.getElementById(second).className = 'operation';
+}
