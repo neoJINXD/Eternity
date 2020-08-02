@@ -6,6 +6,7 @@ This Project consists of making a calculator with the goal of solving transcende
 
 Information on team organization and tech stack can be found on [our wiki](https://github.com/neoJINXD/Eternity/wiki).
 
+The user guide can be found under "User_Guide.pdf" (https://github.com/neoJINXD/Eternity/User_Guide.pdf)
 ---
 
 ### How to Run
