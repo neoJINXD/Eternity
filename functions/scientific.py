@@ -27,10 +27,3 @@ def convert_to_sn(number: float) -> str:
         exp = len(whole_part[1:])
         output = whole_part[0] + '.' + whole_part[1:] + decimal_part + 'e+' + str(exp)
     return output
-
-
-print(convert_to_sn(0.0056))
-print(convert_to_sn(0.00000856))
-print(convert_to_sn(0.075056))
-print(convert_to_sn(750.56))
-print(convert_to_sn(7506235474))
