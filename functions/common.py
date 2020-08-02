@@ -16,11 +16,11 @@ def factorial(argument: int) -> int:
     """
     # Ensure that input is an integer.
     if int(argument) != argument:
-        raise exceptions.InputError(argument, "Input to factorial should be a non-negative integer.")
+        raise exceptions.InputError(argument, "Input to factorial must be a positive integer.")
     argument = int(argument)
     # Ensure that input is non-negative.
     if argument < 0:
-        raise exceptions.InputError(argument, "Input to factorial should be a non-negative integer.")
+        raise exceptions.InputError(argument, "Input to factorial must be a positive integer.")
 
     # Calculate factorial using repeated multiplication.
     result = 1
