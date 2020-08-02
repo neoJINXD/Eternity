@@ -30,16 +30,24 @@ def factorial(argument: int) -> int:
 
 
 def mod(dividend: float, divisor: float) -> float:
-    # TODO not sure on the typing for this,
-    # and should check if can be optimized
+    """Returns the modulus of some real number divided by another.
+
+    Args:
+        dividend (float): Dividend
+        divisor (float): Divisor
+
+    Returns:
+        float: Modulus of quotient
+    """
+    # Ensure that divisor is not 0.
+    if divisor == 0:
+        raise exceptions.InputError(divisor, "Modulus with divisor of 0 is undefined.")
+
     while dividend > divisor:
         dividend -= divisor
     while dividend < divisor:
         dividend += divisor
     return dividend
-
-
-
 
 
 def is_even(argument: int) -> bool:
