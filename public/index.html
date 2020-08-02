@@ -21,7 +21,9 @@
 
         <input id="resultInput" type="text" autocomplete="off" style="width: 100%" name="calc" list="browserList" /><br/>
         <input id="resultOutput" type="text" autocomplete="off" style="width: 100%" name="calc" list="browserList" disabled/>
-        <datalist id="browserList" name="browserList"></datalist>
+        <datalist id="browserList" name="browserList">
+            <option value=""/>
+        </datalist>
         <br/><br/>
     
     
@@ -60,7 +62,7 @@
                                     <td><button onclick="addToExpression('tanh(')" class="operation" value="">tanh</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button onclick="addToExpression('mod(')" class="operation" value="">mod</button></td>
+                                    <td><button onclick="addToExpression('%')" class="operation" value="">mod</button></td>
                                     <td><button onclick="addToExpression('mad(')" class="operation" value="">mad</button></td>
                                     <td><button onclick="addToExpression('std(')" class="operation" value="">std</button></td>
                                 </tr>
