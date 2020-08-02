@@ -31,7 +31,7 @@ npm start
 
 // Option 2: Run the local version by typing in the command window:
 npm run electron
-// Aftwrwards, the calculator should pop up on your screen
+// The calculator should now pop up on your screen
 ```
 
 
