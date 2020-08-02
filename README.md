@@ -19,19 +19,19 @@ Information on team organization, tech stack, and the user guide can be found on
 #### Running the dev versions
 
 ```bash
-// Step 1: Install the needed python packages by entering in the command window:
+// Step 1: Install the needed python packages through the command window:
 pip install -r requirements.txt
 
-// Step 2: Install the node dependencies by entering in the command window:
+// Step 2: Install the node dependencies through the command window:
 npm install
 
-// To run the web app on https://localhost:3000/ type in the command window:
+// Option 1: Run the web app by typing in the command window:
 npm start
-// Once this is done, you can open a brower, type in "https://localhost:3000/" and the calculator will appear
+// Now, you can open a brower, type in "https://localhost:3000/" and the calculator will appear
 
-// To run a local version of the electron app, type in the command window:
+// Option 2: Run the local version by typing in the command window:
 npm run electron
-// Once this is done, the calculator should pop up on your screen
+// Aftwrwards, the calculator should pop up on your screen
 ```
 
 When running electron, the window will open automatically, but for the web app, the web page must be loaded manually
