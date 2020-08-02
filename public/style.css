@@ -137,3 +137,7 @@ input:focus{
 .selected{
   font-weight: bold;
 }
+
+.unselectable{
+  user-select: none;
+}

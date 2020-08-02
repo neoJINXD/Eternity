@@ -95,3 +95,11 @@ function flipSelected(first, second) {
   document.getElementById(first).className = 'operation selected';
   document.getElementById(second).className = 'operation';
 }
+
+// This function is based off: https://www.codeproject.com/Questions/851789/Link-button-onclick-open-pdf-file-in-new-tab
+/* eslint-disable-next-line */
+function openHelp() {
+  // Use the commented out code below for testing until this is pushed to the master branch
+  // window.open('https://github.com/neoJINXD/Eternity/blob/UserGuide/User_Guide.pdf');
+  window.open('https://github.com/neoJINXD/Eternity/User_Guide.pdf');
+}
