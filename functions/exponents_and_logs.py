@@ -57,7 +57,7 @@ def radical(radicand: float, index: int, delta: float = 1E-10) -> float:
     """
     # Ensure that real value of root exists.
     if common.is_negative(radicand) and common.is_even(index):
-        raise exceptions.InputError(None, "Radical with negative radicand and even index is undefined over set of real numbers.")
+        raise exceptions.InputError(None, "Not in domain of radical function.")
 
     # Approximate radicand using Newton's method.
     approx = 1
@@ -146,7 +146,7 @@ def pow(base: float, exponent: float, root_used: int = int(1E10)) -> float:
     fractional_part_of_exponent = exponent - integer_part_of_exponent
     # Ensure that base is not negative if exponent is not a integer.
     if common.is_negative(base) and fractional_part_of_exponent != 0:
-        raise exceptions.InputError(None, "Implementation of exponent function for real exponents does not support negative bases because the power function for negative bases is non-continuous over the set of real numbers.")
+        raise exceptions.InputError(None, "Negative base with fractional exponent.")
 
     # Calculate integer part using exponentiation by squaring
     result = pow_int(float(base), integer_part_of_exponent)
@@ -203,7 +203,7 @@ def ln(argument: float) -> float:
     """
     # Ensure that argument is within domain of natural logarithm.
     if not common.is_positive(argument):
-        raise exceptions.InputError(argument, "The value of a logarithm is undefined for non-positive arguments.")
+        raise exceptions.InputError(argument, "Not in domain of log function.")
 
     # We use frexp to fetch mantissa and exponent of argument in a platform agnostic way.
     mantissa, exponent = math.frexp(argument)

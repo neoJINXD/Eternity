@@ -122,7 +122,7 @@ def binary_to_decimal_integer(value: str) -> int:
     if value[0] == '-':
         raise exceptions.InputError(value, "binary_to_decimal_integer does not accept negative inputs.")
     if not is_binary(value):
-        raise exceptions.InputError(value, "Binary numbers can only contain 1s and 0s.")
+        raise exceptions.InputError(value, "Not in binary.")
         
     the_number = str(value)
     position = 0
@@ -148,7 +148,7 @@ def binary_to_decimal_fraction(value: str) -> float:
     if value[0] == '-':
         raise exceptions.InputError(value, "binary_to_decimal_fraction does not accept negative inputs.")
     if not is_binary(value):
-        raise exceptions.InputError(value, "Binary numbers can only contain 1s and 0s.")
+        raise exceptions.InputError(value, "Not in binary.")
         
     the_number = str(value)[2:]
     position = -1
