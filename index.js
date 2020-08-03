@@ -3,21 +3,31 @@ const python = require('python-shell');
 // const fs = require('fs');
 const path = require('path');
 
-const { execSync } = require('child_process');
+// const { execSync } = require('child_process');
 
-const reqPath = path.join(__dirname, '/requirements.txt');
+// const reqPath = path.join(__dirname, '/requirements.txt');
 
-execSync(`pip install -r ${reqPath}`, (error, stdout, stderr) => {
-  if (error) {
-    console.log(`error: ${error.message}`);
-    return;
-  }
-  if (stderr) {
-    console.log(`stderr: ${stderr}`);
-    return;
-  }
-  // console.log(`stdout: ${stdout}`);
-});
+// execSync(`pip install -r ${reqPath}`, (error, stdout, stderr) => {
+//   if (error) {
+//     console.log(`error: ${error.message}`);
+//     return;
+//   }
+//   if (stderr) {
+//     console.log(`stderr: ${stderr}`);
+//     return;
+//   }
+//   // console.log(`stdout: ${stdout}`);
+// });
+
+const reqPath = path.join(__dirname, '/prereq.py');
+
+async function installReq() {
+  python.run(reqPath, null, (err) => {
+    // if (err) throw err;
+    console.log('finished');
+  });
+}
+installReq();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
