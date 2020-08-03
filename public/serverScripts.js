@@ -101,5 +101,5 @@ function flipSelected(first, second) {
 function openHelp() {
   // Use the commented out code below for testing until this is pushed to the master branch
   // window.open('https://github.com/neoJINXD/Eternity/blob/UserGuide/User_Guide.pdf');
-  window.open('https://github.com/neoJINXD/Eternity/User_Guide.pdf');
+  window.open('https://github.com/neoJINXD/Eternity/blob/master/User_Guide.pdf');
 }
