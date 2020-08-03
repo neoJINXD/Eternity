@@ -146,7 +146,7 @@ def pow(base: float, exponent: float, root_used: int = int(1E10)) -> float:
     fractional_part_of_exponent = exponent - integer_part_of_exponent
     # Ensure that base is not negative if exponent is not a integer.
     if common.is_negative(base) and fractional_part_of_exponent != 0:
-        raise exceptions.InputError(None, "negative base with fractional exponent.")
+        raise exceptions.InputError(None, "Negative base with fractional exponent.")
 
     # Calculate integer part using exponentiation by squaring
     result = pow_int(float(base), integer_part_of_exponent)
