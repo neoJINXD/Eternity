@@ -7,7 +7,7 @@ const { execSync } = require('child_process');
 
 const reqPath = path.join(__dirname, '/requirements.txt');
 
-execSync(`pip3 install -r ${reqPath}`, (error, stdout, stderr) => {
+execSync(`pip3 install -r "${reqPath}"`, (error, stdout, stderr) => {
   if (error) {
     /* eslint-disable-next-line */
     console.log(`error: ${error.message}`);
