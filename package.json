@@ -6,13 +6,17 @@
   "scripts": {
     "electron": "electron main.js",
     "start": "node index.js",
+    "lint": "eslint --ext .js .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^2.0.8"
+    "electron": "^2.0.8",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   },
   "dependencies": {
     "express": "^4.17.1",

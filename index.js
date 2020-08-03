@@ -1,4 +1,5 @@
 const express = require('express');
+const python = require('python-shell');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -7,39 +8,31 @@ app.use(express.static('public'));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('yes');
+  res.send('yes');
 });
 
 app.post('/math', (req, res) => {
-    // res.send(req.params.expression);
-    
-    //console.log(req.body.expression);
-    // TODO maybe validate inpute here too?
+  // do python math here
+  // const python = require('python-shell');
+  const input = req.body.expression;
+  const isRad = req.body.is_rad;
+  const isBinary = req.body.is_binary;
+  // console.log('my input: ', input);
 
-    //do python math here
-    const python = require('python-shell');
-    const path = require('path');
+  const option = {
+    args: [input, isRad, isBinary],
+    // args: [input, isRad, isBinary, isBinaryInput],
+  };
 
-    var input = req.body.expression;
+  // TODO change to always listening python shell instead of creating and deleting everytime
+  /* eslint-disable-next-line */
+  const pyshell = new python('calculate.py', option);
 
-    console.log('my inpit: ', input);
-    result = '';
-
-    option = {
-        args: [input]
-    };
-
-
-    const pyshell = new python('calculate.py', { args: [input] });
-
-    pyshell.on('message', (msg) => {
-        //console.log(msg);
-        result = Number(msg);
-        //document.getElementById('resultInput').value = result;
-        res.status(200);
-        res.send({ answer: msg });
-    }); 
-    
+  pyshell.on('message', (msg) => {
+    res.status(200);
+    res.send({ answer: msg });
+  });
 });
 
+/* eslint-disable-next-line */ // Disabled for console log
 app.listen(PORT, () => console.log(`Listening on localhost:${PORT}`));
