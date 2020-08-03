@@ -60,24 +60,21 @@ def radical(radicand: float, index: int, delta: float = 1E-10) -> float:
         raise exceptions.InputError(None, "Not in domain of radical function.")
 
     # Approximate radicand using Newton's method.
-    approx = 1
-    old_mantissa, _ = math.frexp(approx)
+    approx = 1.0
+    old_mantissa, old_exp = math.frexp(approx)
     while True:
+        # Incrementally improve approximation.
         power = pow_int(approx, index)
         approx = (index - 1 + radicand / power) * (approx / index)
 
-        # Return current approximation when the absolute difference is within the desired range.
-        diff = abs(power - radicand)
-        if diff < delta:
-            return approx
-
-        # Return early if approximation stops improving
-        crrt_mantissa, _ = math.frexp(approx)
+        # Return when approximation stops improving
+        crrt_mantissa, crrt_exp = math.frexp(approx)
         diff = abs(old_mantissa - crrt_mantissa)
         # We use 1E-15 here because a double precision floating point mantissa can hold no more than 52 bits of precision.
-        if diff < 1E-15:
+        if crrt_exp==old_exp and diff < 1E-15:
             return approx
         old_mantissa = crrt_mantissa
+        old_exp = crrt_exp
 
 
 def pow_e_taylor(exponent: float = 1, term_count: int = 50) -> float:
