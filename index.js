@@ -2,7 +2,7 @@ const express = require('express');
 const python = require('python-shell');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -21,10 +21,12 @@ app.post('/math', (req, res) => {
 
   const option = {
     args: [input, isRad, isBinary],
+    scriptPath: '/app/',
     // args: [input, isRad, isBinary, isBinaryInput],
   };
 
   // TODO change to always listening python shell instead of creating and deleting everytime
+  const pyPath = path.join('', 'calculate.py');
   /* eslint-disable-next-line */
   const pyshell = new python('calculate.py', option);
 

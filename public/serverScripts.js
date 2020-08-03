@@ -62,7 +62,7 @@ async function calc() {
   dlist.appendChild(option);
 
   // calls node to perform the calculation over the route
-  const response = await fetch('http://localhost:3000/math', {
+  const response = await fetch('/math', {
     method: 'POST',
     body: JSON.stringify(input),
     headers: {
