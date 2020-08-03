@@ -1,5 +1,23 @@
 const express = require('express');
 const python = require('python-shell');
+// const fs = require('fs');
+const path = require('path');
+
+const { execSync } = require('child_process');
+
+const reqPath = path.join(__dirname, '/requirements.txt');
+
+execSync(`pip install -r ${reqPath}`, (error, stdout, stderr) => {
+  if (error) {
+    console.log(`error: ${error.message}`);
+    return;
+  }
+  if (stderr) {
+    console.log(`stderr: ${stderr}`);
+    return;
+  }
+  // console.log(`stdout: ${stdout}`);
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,8 +43,9 @@ app.post('/math', (req, res) => {
   };
 
   // TODO change to always listening python shell instead of creating and deleting everytime
+  const pyPath = path.join(__dirname, '/calculate.py');
   /* eslint-disable-next-line */
-  const pyshell = new python('calculate.py', option);
+  const pyshell = new python(pyPath, option);
 
   pyshell.on('message', (msg) => {
     res.status(200);
