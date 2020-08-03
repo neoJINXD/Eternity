@@ -9,25 +9,18 @@ const reqPath = path.join(__dirname, '/requirements.txt');
 
 execSync(`pip3 install -r ${reqPath}`, (error, stdout, stderr) => {
   if (error) {
+    /* eslint-disable-next-line */
     console.log(`error: ${error.message}`);
     return;
   }
   if (stderr) {
+    /* eslint-disable-next-line */
     console.log(`stderr: ${stderr}`);
+    /* eslint-disable-next-line */
     return;
   }
   // console.log(`stdout: ${stdout}`);
 });
-
-// const reqPath = path.join(__dirname, '/prereq.py');
-
-// async function installReq() {
-//   python.run(reqPath, null, (err) => {
-//     // if (err) throw err;
-//     console.log('finished');
-//   });
-// }
-// installReq();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
