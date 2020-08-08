@@ -2,7 +2,8 @@ import sys
 import re
 from parse import Parser
 
-expression = sys.argv[1]
+expression = sys.argv[1] if len(sys.argv) > 1 else ""
+
 history = []
 
 
