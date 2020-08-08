@@ -28,28 +28,6 @@ def factorial(argument: int) -> int:
         result *= i
     return result
 
-# Note - I don't think this is actually used anywhere
-def mod(dividend: float, divisor: float) -> float:
-    """Returns the modulus of some real number divided by another.
-
-    Args:
-        dividend (float): Dividend
-        divisor (float): Divisor
-
-    Returns:
-        float: Modulus of quotient
-    """
-    # Ensure that divisor is not 0.
-    if divisor == 0:
-        raise exceptions.InputError(divisor, "Modulus with divisor of 0 is undefined.")
-
-    while dividend > divisor:
-        dividend -= divisor
-    while dividend < divisor:
-        dividend += divisor
-    return dividend
-
-
 def is_even(argument: int) -> bool:
     """Returns true is input is even and false otherwise.
 
