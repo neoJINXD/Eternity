@@ -17,11 +17,14 @@ class TestCommon(unittest.TestCase):
         with self.assertRaises(the_exception.InputError):
             common.factorial(56.3)
 
+    # should be removed if our mod function is not in use
+    # some of these 6%3 and 3%6 both fail
     def test_mod(self):
         """Test mod function."""
         self.assertEqual(common.mod(6,3), 6 % 3)
         self.assertEqual(common.mod(32.5,11.1), 32.5 % 11.1)
         self.assertEqual(common.mod(10,3), 10 % 3)
+        self.assertEqual(common.mod(3,10), 3 % 10)
         self.assertEqual(common.mod(-64.32,-9.34), -64.32 % -9.34)
         with self.assertRaises(the_exception.InputError):
             common.mod(6,0)

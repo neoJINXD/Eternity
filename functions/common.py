@@ -28,7 +28,7 @@ def factorial(argument: int) -> int:
         result *= i
     return result
 
-
+# Note - I don't think this is actually used anywhere
 def mod(dividend: float, divisor: float) -> float:
     """Returns the modulus of some real number divided by another.
 
