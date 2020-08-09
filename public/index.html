@@ -15,12 +15,12 @@
         <div class="title">
             <h1>Eternity</h1>
         </div>
-        <button class="help unselectable" onclick="openHelp()">?</button>
+        <button class="help" onclick="openHelp()">?</button>
 
 
         <div class="fieldContainer">
             <span class="prefix">></span>
-            <input id="resultInput" class="field" type="text" autocomplete="off" name="calc" list="browserList" />
+            <input id="resultInput" class="field" type="text" autocomplete="off" name="calc" list="browserList" autofocus/>
         </div>
         <div class="fieldContainer">
             <span class="prefix">=</span>
@@ -44,7 +44,7 @@
             <tr>
                 <td colspan="2">
                     <div class="dropdown">
-                        <button onclick="" class="operation dropbtn" value="" >Function<span class="drop-indicator">v</span></button>
+                        <button onclick="" class="dropbtn" value="" >Function<span class="drop-indicator">v</span></button>
                         <div class="dropdown-content">
                             <table>
                                 <tr>
@@ -76,7 +76,7 @@
                 </td>
                 <td>
                     <div class="dropdown">
-                        <button onclick="" class="operation dropbtn" value="" >Const<span class="drop-indicator">v</span></button>
+                        <button onclick="" class="dropbtn" value="" >Const<span class="drop-indicator">v</span></button>
                         <div class="dropdown-content">
                             <button onclick="addToExpression('π')" class="operation" value="">π</button>
                             <button onclick="addToExpression('e')" class="operation" value="">e</button>
@@ -85,19 +85,19 @@
                 </td>                
                 <td colspan="2">
                     <div class="dropdown">
-                        <button onclick="" class="operation dropbtn" value="" >Mode<span class="drop-indicator">v</span></button>
+                        <button onclick="" class="dropbtn" value="" >Mode<span class="drop-indicator">v</span></button>
                         <div class="dropdown-content">
                             <table>
                                 <tr>
                                     <td class="toggleCell">
-                                        <button onclick="flipSelected('rad','deg')" class="operation selected" id="rad">Rad</button>
+                                        <button onclick="flipSelected('rad','deg')" class="selected" id="rad">Rad</button>
                                         <div class="verticalSeparator"></div>
                                         <button onclick="flipSelected('deg','rad')" class="operation" id="deg">Deg</button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="toggleCell">
-                                        <button onclick="flipSelected('dec','bin')" class="operation selected" id="dec">DEC</button>
+                                        <button onclick="flipSelected('dec','bin')" class="selected" id="dec">DEC</button>
                                         <div class="verticalSeparator"></div>
                                         <button onclick="flipSelected('bin','dec')" class="operation" id="bin">BIN</button>
                                     </td>

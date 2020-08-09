@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // function for flipping the styles to show which mode is selected
 /* eslint-disable-next-line */
 function flipSelected(first, second) {
-  document.getElementById(first).className = 'operation selected';
+  document.getElementById(first).className = 'selected';
   document.getElementById(second).className = 'operation';
 }
 

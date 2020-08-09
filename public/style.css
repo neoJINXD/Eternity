@@ -36,13 +36,13 @@ button{
   outline: none;
   font-size: 16pt;
   margin: 3% 0;
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
 }
 
-button:hover {
+/* button:hover {
   opacity: 80%;
   border: 2px solid grey;
-}
+} */
 
 table {
   width: 100%;
@@ -83,6 +83,10 @@ table {
 }
 
 
+.dropbtn {
+  border: none;
+  background-color: #FFFFFF;
+}
 
 .drop-indicator{
   float: right;
@@ -156,24 +160,41 @@ td.toggleCell {
   background-color: #CACACA;
 }
 
+.calc-funct:hover {
+  background-color: #a5a5a5;
+}
+
 
 .number{
   color: #FFFFFF;
   background-color: #515151;
 }
 
+.number:hover {
+  background-color: #333333;
+}
+
+.selected{
+  font-weight: bold;
+  background-color: #FF9B3F;
+}
+
+.selected:hover{
+  background-color: #e68d39;
+}
+
 .operation{
   background-color: #FFFFFF;
 }
 
-.dropdown-content button:hover {
-  background-color: #f1f1f1;
+.operation:hover {
+  background-color: #e2e2e2;
 }
 
 .special{
   background-color: #FF9B3F;
 }
 
-.selected{
-  font-weight: bold;
+.special:hover {
+  background-color: #e68d39;
 }
