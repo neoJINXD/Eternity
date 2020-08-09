@@ -55,7 +55,7 @@ input:focus{
 
 .dropbtn {
   border: none;
-
+  background-color: #FFFFFF;
 }
 
 .drop-indicator{
@@ -116,27 +116,50 @@ input:focus{
   background-color: #CACACA;
 }
 
+.calc-funct:hover {
+  background-color: #a5a5a5;
+}
+
 
 .number{
   color: #FFFFFF;
   background-color: #515151;
 }
 
+.number:hover {
+  background-color: #333333;
+}
+
+.selected{
+  font-weight: bold;
+  background-color: #FF9B3F;
+}
+
+.selected:hover{
+  background-color: #e68d39;
+}
+
 .operation{
   background-color: #FFFFFF;
 }
 
-.dropdown-content button:hover {
+.operation:hover {
   background-color: #f1f1f1;
 }
+
+/* .dropdown-content button:hover {
+  background-color: #f1f1f1;
+} */
 
 .special{
   background-color: #FF9B3F;
 }
 
-.selected{
-  font-weight: bold;
+.special:hover {
+  background-color: #e68d39;
 }
+
+
 
 .unselectable{
   user-select: none;
