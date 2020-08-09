@@ -17,15 +17,6 @@ class TestCommon(unittest.TestCase):
         with self.assertRaises(the_exception.InputError):
             common.factorial(56.3)
 
-    def test_mod(self):
-        """Test mod function."""
-        self.assertEqual(common.mod(6,3), 6 % 3)
-        self.assertEqual(common.mod(32.5,11.1), 32.5 % 11.1)
-        self.assertEqual(common.mod(10,3), 10 % 3)
-        self.assertEqual(common.mod(-64.32,-9.34), -64.32 % -9.34)
-        with self.assertRaises(the_exception.InputError):
-            common.mod(6,0)
-
     def test_is_negative(self):
         """Test is_negative function."""
         self.assertEqual(common.is_negative(-5), True)

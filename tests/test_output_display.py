@@ -36,6 +36,7 @@ class TestOutputDisplayFunctions(unittest.TestCase):
         self.assertEqual(display.decimal_to_binary(8.25), "1000.01")
         # Test for negative real number
         self.assertEqual(display.decimal_to_binary(-6.75), "-110.11")
+        self.assertEqual(display.decimal_to_binary(0), '')
 
     def test_binary_to_decimal(self):
         # Test for converting positive binary integer
@@ -46,6 +47,9 @@ class TestOutputDisplayFunctions(unittest.TestCase):
         self.assertEqual(display.binary_to_decimal("-10"), -2)
         # Test for converting negative binary real number
         self.assertEqual(display.binary_to_decimal("-101111.101"), -47.625)
+        # Test for non-binary input
+        with self.assertRaises(exceptions.InputError):
+            display.binary_to_decimal("101111.55")
 
     def test_error_handling(self):
         self.assertRaises(exceptions.InputError, display.binary_to_decimal, "5")

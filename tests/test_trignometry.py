@@ -55,13 +55,10 @@ class TestTrigonometry(unittest.TestCase):
 
     # TODO need more test cases for cos later
 
-    def test_sinh(self):
-        # test for hyberbolic function sinh
-        self.assertAlmostEqual(trig.sinh(6), math.sinh(6), 9)
-        self.assertAlmostEqual(trig.sinh(1.75), math.sinh(1.75), 9)
-        self.assertAlmostEqual(trig.sinh(3.6), math.sinh(3.6), 9)
-        self.assertAlmostEqual(trig.sinh(-0.7), math.sinh(-0.7), 9)
-        self.assertAlmostEqual(trig.sinh(PI), math.sinh(math.pi), 9)
+    def test_tan(self):
+        # test for tan function
+        self.assertAlmostEqual(trig.tan(1), math.tan(1), 9)
+        self.assertAlmostEqual(trig.tan(PI), math.tan(math.pi), 9)
 
     def test_sinh(self):
         # test for hyberbolic function sinh
@@ -70,6 +67,22 @@ class TestTrigonometry(unittest.TestCase):
         self.assertAlmostEqual(trig.sinh(3.6), math.sinh(3.6), 9)
         self.assertAlmostEqual(trig.sinh(-0.7), math.sinh(-0.7), 9)
         self.assertAlmostEqual(trig.sinh(PI), math.sinh(math.pi), 9)
+
+    def test_cosh(self):
+        # test for hyberbolic function cosh
+        self.assertAlmostEqual(trig.cosh(6), math.cosh(6), 9)
+        self.assertAlmostEqual(trig.cosh(1.75), math.cosh(1.75), 9)
+        self.assertAlmostEqual(trig.cosh(3.6), math.cosh(3.6), 9)
+        self.assertAlmostEqual(trig.cosh(-0.7), math.cosh(-0.7), 9)
+        self.assertAlmostEqual(trig.cosh(PI), math.cosh(math.pi), 9)
+
+    def test_tanh(self):
+        # test for hyberbolic function cosh
+        self.assertAlmostEqual(trig.tanh(6), math.tanh(6), 9)
+        self.assertAlmostEqual(trig.tanh(1.75), math.tanh(1.75), 9)
+        self.assertAlmostEqual(trig.tanh(3.6), math.tanh(3.6), 9)
+        self.assertAlmostEqual(trig.tanh(-0.7), math.tanh(-0.7), 9)
+        self.assertAlmostEqual(trig.tanh(PI), math.tanh(math.pi), 9)
 
     def test_generate_pi(self):
         # test for pi constant

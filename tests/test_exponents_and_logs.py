@@ -8,6 +8,14 @@ import math as math
 class ExponentsTest(unittest.TestCase):
     PI = trig.generate_pi()
 
+    def test_pow_int(self):
+        with self.assertRaises(exceptions.InputError):
+            exp.pow_int(1,0.1)
+
+    def test_radical(self):
+        with self.assertRaises(exceptions.InputError):
+            exp.radical(-1,2)
+
     def test_e(self):
         # Tests euler number function's capacity for generating euler number.
         self.assertAlmostEqual(exp.pow_e(), math.e, 15)
@@ -45,10 +53,18 @@ class ExponentsTest(unittest.TestCase):
         self.assertAlmostEqual(exp.pow(200, -99), 200 ** -99)
         self.assertAlmostEqual(exp.pow(997, -15), 997 ** -15)
         self.assertAlmostEqual(exp.pow(8000, -150), 8000 ** -150)
+        with self.assertRaises(exceptions.InputError):
+            exp.pow(-1,0.5)
 
     def test_zero_power_zero(self):
         # Tests 0 to the power of 0
         self.assertAlmostEqual(exp.pow(0, 0), 0 ** 0)
+
+    def test_ln_taylor(self):
+        with self.assertRaises(exceptions.InputError):
+            exp.ln_taylor(0)
+        with self.assertRaises(exceptions.InputError):
+            exp.ln_taylor(2)
 
     def test_exponent_input_rational(self):
         # Tests exponent function's capacity for handling non-integer inputs.
