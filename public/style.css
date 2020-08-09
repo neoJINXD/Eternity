@@ -157,6 +157,10 @@ td.toggleCell {
   border-radius: 20%;
 }
 
+.help:hover{
+  background-color: #9e9e9e;
+}
+
 .calc-funct{
   background-color: #CACACA;
 }
