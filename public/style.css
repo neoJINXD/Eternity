@@ -37,12 +37,12 @@ button{
   font-size: 16pt;
   margin: 3% 0;
   transition-duration: 0.5s;
+  background-color: #FFFFFF;
 }
 
-/* button:hover {
-  opacity: 80%;
-  border: 2px solid grey;
-} */
+button:hover {
+  background-color: #e2e2e2;
+}
 
 table {
   width: 100%;
@@ -84,7 +84,10 @@ table {
 
 
 .dropbtn {
-  border: none;
+  background-color: #FFFFFF;
+}
+
+.dropbtn:hover {
   background-color: #FFFFFF;
 }
 
@@ -154,8 +157,6 @@ td.toggleCell {
   border-radius: 20%;
 }
 
-
-
 .calc-funct{
   background-color: #CACACA;
 }
@@ -181,14 +182,6 @@ td.toggleCell {
 
 .selected:hover{
   background-color: #e68d39;
-}
-
-.operation{
-  background-color: #FFFFFF;
-}
-
-.operation:hover {
-  background-color: #e2e2e2;
 }
 
 .special{
