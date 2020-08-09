@@ -1,5 +1,6 @@
+import functions.common as common
 import functions.exponents_and_logs as exp
-import functions.exponent_helper_functions as exp_help
+import functions.output_display as display
 
 
 def generate_pi() -> float:
@@ -32,3 +33,10 @@ def arccos(x: float) -> float:
 def arctan(x: float) -> float:
     x2 = x*x
     return (arcsin(x/((x2+1)**(1/2))))
+    
+    
+def process_angle_mode(argument: float, is_rad: bool, operation) -> float:
+    if(not is_rad):
+        return operation(display.deg(argument))
+
+    return operation(argument)
