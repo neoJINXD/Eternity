@@ -72,7 +72,7 @@ async function calc() {
   const json = await response.json();
 
   // Sets the answer in the input text
-  document.getElementById('resultOutput').value = `= ${json.answer}`;
+  document.getElementById('resultOutput').value = json.answer;
   // document.getElementById('resultInput').value = '';
 }
 
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // function for flipping the styles to show which mode is selected
 /* eslint-disable-next-line */
 function flipSelected(first, second) {
-  document.getElementById(first).className = 'operation selected';
+  document.getElementById(first).className = 'selected';
   document.getElementById(second).className = 'operation';
 }
 

@@ -11,25 +11,29 @@
 
 <div class="main">    
     <div class="calc">
-        <div class="help unselectable" onclick="openHelp()">
-            <h1>?</h1>
-        </div>
-
-        <div>
+        
+        <div class="title">
             <h1>Eternity</h1>
         </div>
+        <button class="help" onclick="openHelp()">?</button>
 
-        <input id="resultInput" type="text" autocomplete="off" style="width: 100%" name="calc" list="browserList" /><br/>
-        <input id="resultOutput" type="text" autocomplete="off" style="width: 100%" name="calc" list="browserList" disabled/>
+
+        <div class="fieldContainer">
+            <span class="prefix">></span>
+            <input id="resultInput" class="field" type="text" autocomplete="off" name="calc" list="browserList" autofocus/>
+        </div>
+        <div class="fieldContainer">
+            <span class="prefix">=</span>
+            <input id="resultOutput" class="field" type="text" autocomplete="off" name="calc" list="browserList" disabled/>
+        </div>
         <datalist id="browserList" name="browserList">
             <option value=""/>
         </datalist>
-        <br/><br/>
     
     
         <table>
             <tr>
-                <!-- <td><button onclick="" class="operation"  >2nd</button></td> -->
+                <!-- <td><button onclick=""  >2nd</button></td> -->
                 <td><button onclick="" style="visibility: hidden;"></button></td>
                 <td><button onclick="" style="visibility: hidden;"></button></td>
                 <td><button onclick="clearInput()" class="calc-funct" >AC</button></td>
@@ -40,31 +44,31 @@
             <tr>
                 <td colspan="2">
                     <div class="dropdown">
-                        <button onclick="" class="operation dropbtn" value="" >Function<span class="drop-indicator">v</span></button>
+                        <button onclick="" class="dropbtn" value="" >Function<span class="drop-indicator">v</span></button>
                         <div class="dropdown-content">
                             <table>
                                 <tr>
-                                    <td><button onclick="addToExpression('^2')" class="operation" value="">x^2</button></td>
-                                    <td><button onclick="addToExpression('π^')" class="operation" value="">π^x</button></td>
+                                    <td><button onclick="addToExpression('^2')" value="">x^2</button></td>
+                                    <td><button onclick="addToExpression('π^')" value="">π^x</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button onclick="addToExpression('e^')" class="operation" value="">e^x</button></td>
-                                    <td><button onclick="addToExpression('10^')" class="operation" value="">10^x</button></td>
+                                    <td><button onclick="addToExpression('e^')" value="">e^x</button></td>
+                                    <td><button onclick="addToExpression('10^')" value="">10^x</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button onclick="addToExpression('sin(')" class="operation" value="">sin</button></td>
-                                    <td><button onclick="addToExpression('cos(')" class="operation" value="">cos</button></td>
-                                    <td><button onclick="addToExpression('tan(')" class="operation" value="">tan</button></td>
+                                    <td><button onclick="addToExpression('sin(')" value="">sin</button></td>
+                                    <td><button onclick="addToExpression('cos(')" value="">cos</button></td>
+                                    <td><button onclick="addToExpression('tan(')" value="">tan</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button onclick="addToExpression('sinh(')" class="operation" value="">sinh</button></td>
-                                    <td><button onclick="addToExpression('cosh(')" class="operation" value="">cosh</button></td>
-                                    <td><button onclick="addToExpression('tanh(')" class="operation" value="">tanh</button></td>
+                                    <td><button onclick="addToExpression('sinh(')" value="">sinh</button></td>
+                                    <td><button onclick="addToExpression('cosh(')" value="">cosh</button></td>
+                                    <td><button onclick="addToExpression('tanh(')" value="">tanh</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button onclick="addToExpression('%')" class="operation" value="">mod</button></td>
-                                    <td><button onclick="addToExpression('mad(')" class="operation" value="">mad</button></td>
-                                    <td><button onclick="addToExpression('std(')" class="operation" value="">std</button></td>
+                                    <td><button onclick="addToExpression('%')" value="">mod</button></td>
+                                    <td><button onclick="addToExpression('mad(')" value="">mad</button></td>
+                                    <td><button onclick="addToExpression('std(')" value="">std</button></td>
                                 </tr>
                             </table>
                         </div>
@@ -72,26 +76,31 @@
                 </td>
                 <td>
                     <div class="dropdown">
-                        <button onclick="" class="operation dropbtn" value="" >Const<span class="drop-indicator">v</span></button>
+                        <button onclick="" class="dropbtn" value="" >Const<span class="drop-indicator">v</span></button>
                         <div class="dropdown-content">
-                            <button onclick="addToExpression('π')" class="operation" value="">π</button>
-                            <button onclick="addToExpression('e')" class="operation" value="">e</button>
+                            <button onclick="addToExpression('π')" value="">π</button>
+                            <button onclick="addToExpression('e')" value="">e</button>
                         </div>
                     </div>
                 </td>                
                 <td colspan="2">
                     <div class="dropdown">
-                        <button onclick="" class="operation dropbtn" value="" >Mode<span class="drop-indicator">v</span></button>
+                        <button onclick="" class="dropbtn" value="" >Mode<span class="drop-indicator">v</span></button>
                         <div class="dropdown-content">
                             <table>
                                 <tr>
-                                    <td><button onclick="flipSelected('rad','deg')" class="operation selected" id="rad">Rad</button></td>
-                                    <td><button onclick="flipSelected('deg','rad')" class="operation" id="deg">Deg</button></td>
+                                    <td class="toggleCell">
+                                        <button onclick="flipSelected('rad','deg')" class="selected" id="rad">Rad</button>
+                                        <div class="verticalSeparator"></div>
+                                        <button onclick="flipSelected('deg','rad')" class="" id="deg">Deg</button>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td><button onclick="flipSelected('bin','dec')" class="operation" id="bin">BIN</button></td>
-                                    <td><button onclick="flipSelected('dec','bin')" class="operation selected" id="dec">DEC</button></td>
-                                    <!-- <button onclick="" class="operation" value="">SN</button> -->
+                                    <td class="toggleCell">
+                                        <button onclick="flipSelected('dec','bin')" class="selected" id="dec">DEC</button>
+                                        <div class="verticalSeparator"></div>
+                                        <button onclick="flipSelected('bin','dec')" class="" id="bin">BIN</button>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -100,41 +109,41 @@
             </tr>
 
             <tr>
-                <td><button onclick="addToExpression('log(')" class="operation" value="" >log</button></td>
-                <td><button onclick="addToExpression('ln(')" class="operation" value="" >ln</button></td>
-                <td><button onclick="addToExpression('!')" class="operation" value="" >n!</button></td>
-                <td><button onclick="addToExpression('^')" class="operation" value="" >x^y</button></td>
-                <td><button onclick="addToExpression('√(')" class="operation" value="" >√</button></td>
+                <td><button onclick="addToExpression('log(')" value="" >log</button></td>
+                <td><button onclick="addToExpression('ln(')" value="" >ln</button></td>
+                <td><button onclick="addToExpression('!')" value="" >n!</button></td>
+                <td><button onclick="addToExpression('^')" value="" >x^y</button></td>
+                <td><button onclick="addToExpression('√(')" value="" >√</button></td>
             </tr>
 
             <tr>
                 <td><button onclick="addToExpression('7')" class="number"    value="" >7</button></td>            
                 <td><button onclick="addToExpression('8')" class="number"    value="" >8</button></td>
                 <td><button onclick="addToExpression('9')" class="number"    value="" >9</button></td>
-                <td><button onclick="addToExpression('+')" class="operation" value="" >+</button></td>
-                <td><button onclick="addToExpression('-')" class="operation" value="" >-</button></td>
+                <td><button onclick="addToExpression('+')" value="" >+</button></td>
+                <td><button onclick="addToExpression('-')" value="" >-</button></td>
             </tr>
 
             <tr>
                 <td><button onclick="addToExpression('4')" class="number"    value="" >4</button></td>
                 <td><button onclick="addToExpression('5')" class="number"    value="" >5</button></td>
                 <td><button onclick="addToExpression('6')" class="number"    value="" >6</button></td>
-                <td><button onclick="addToExpression('*')" class="operation" value="" >*</button></td>
-                <td><button onclick="addToExpression('/')" class="operation" value="" >÷</button></td>
+                <td><button onclick="addToExpression('*')" value="" >*</button></td>
+                <td><button onclick="addToExpression('/')" value="" >÷</button></td>
             </tr>
             
             <tr>
                 <td><button onclick="addToExpression('1')" class="number"    value="" >1</button></td>
                 <td><button onclick="addToExpression('2')" class="number"    value="" >2</button></td>
                 <td><button onclick="addToExpression('3')" class="number"    value="" >3</button></td>
-                <td><button onclick="addToExpression('.')" class="operation" value="" style="font-weight: bold;">.</button></td>
-                <td><button onclick="addToExpression(',')" class="operation" value="" style="font-weight: bold;">,</button></td>
+                <td><button onclick="addToExpression('.')" value="" style="font-weight: bold;">.</button></td>
+                <td><button onclick="addToExpression(',')" value="" style="font-weight: bold;">,</button></td>
             </tr>
             
             <tr>
                 <td><button onclick="addToExpression('0')" class="number"    value="" >0</button></td>
-                <td><button onclick="addToExpression('(')" class="operation" value="" >(</button></td>
-                <td><button onclick="addToExpression(')')" class="operation" value="" >)</button></td>
+                <td><button onclick="addToExpression('(')" value="" >(</button></td>
+                <td><button onclick="addToExpression(')')" value="" >)</button></td>
                 <td colspan="2"><button onclick="calc()" class="special"   value="" >=</button></td>
             </tr>
         </table>
