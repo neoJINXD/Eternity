@@ -72,7 +72,7 @@ async function calc() {
   const json = await response.json();
 
   // Sets the answer in the input text
-  document.getElementById('resultOutput').value = `= ${json.answer}`;
+  document.getElementById('resultOutput').value = json.answer;
   // document.getElementById('resultInput').value = '';
 }
 
